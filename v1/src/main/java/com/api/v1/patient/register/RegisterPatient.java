@@ -4,8 +4,10 @@ import java.util.concurrent.CompletableFuture;
 
 import org.springframework.http.ResponseEntity;
 
+import jakarta.validation.constraints.NotNull;
+
 public interface RegisterPatient {
 
-	CompletableFuture<ResponseEntity<Void>> register(RegisterPatientDTO dto);
+	CompletableFuture<ResponseEntity<Void>> register(@NotNull RegisterPatientDTO dto);
 	
 }

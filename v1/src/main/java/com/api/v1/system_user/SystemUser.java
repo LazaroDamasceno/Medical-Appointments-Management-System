@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -42,14 +43,18 @@ public class SystemUser implements Serializable {
 	private String email;
 	
 	@Column(nullable = false)
+	private String phoneNumber;
+	
+	@Column(nullable = false)
 	private String gender;
 
-	public SystemUser(RegisterSystemUserDTO dto) {
+	public SystemUser(@NotNull RegisterSystemUserDTO dto) {
 		super();
 		this.fullName = dto.fullName();
 		this.ssn = dto.ssn();
 		this.birthDate = dto.birthDate();
 		this.email = dto.email();
+		this.phoneNumber = dto.phoneNumber();
 		this.gender = dto.gender();
 	}
 	

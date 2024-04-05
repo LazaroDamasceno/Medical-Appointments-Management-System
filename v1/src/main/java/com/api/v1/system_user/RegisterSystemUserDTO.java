@@ -23,6 +23,10 @@ public record RegisterSystemUserDTO(
 		String email,
 		
 		@NotBlank
+		@Size(min=10, max=10)
+		String phoneNumber,
+		
+		@NotBlank
 		@Size(min=1)
 		String gender
 ) { 

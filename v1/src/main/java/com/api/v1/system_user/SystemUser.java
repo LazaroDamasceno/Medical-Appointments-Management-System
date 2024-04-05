@@ -1,0 +1,56 @@
+
+package com.api.v1.system_user;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.UUID;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Table(name = "v1_system_user")
+@Getter
+@Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class SystemUser implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.UUID)
+	private UUID id;
+
+	@Column(nullable = false)
+	private String fullName;
+	
+	@Column(nullable = false, unique = true)
+	private String ssn;
+	
+	@Column(nullable = false)
+	private Date birthDate;
+	
+	@Column(nullable = false)
+	private String email;
+	
+	@Column(nullable = false)
+	private String gender;
+
+	public SystemUser(RegisterSystemUserDTO dto) {
+		super();
+		this.fullName = dto.fullName();
+		this.ssn = dto.ssn();
+		this.birthDate = dto.birthDate();
+		this.email = dto.email();
+		this.gender = dto.gender();
+	}
+	
+}

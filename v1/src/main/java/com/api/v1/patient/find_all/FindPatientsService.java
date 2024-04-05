@@ -1,8 +1,7 @@
-package com.api.v1.find_all;
+package com.api.v1.patient.find_all;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Future;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
@@ -22,7 +21,7 @@ public class FindPatientsService implements FindPatients {
 	
 	@Override
 	@Async
-	public Future<ResponseEntity<List<Patient>>> findAll() {
+	public CompletableFuture<ResponseEntity<List<Patient>>> findAll() {
 		return CompletableFuture.completedFuture(ResponseEntity.ok(repository.findAll()));
 	}
 	

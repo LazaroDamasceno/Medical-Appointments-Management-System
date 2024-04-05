@@ -1,6 +1,6 @@
-package com.api.v1.find_all;
+package com.api.v1.patient.find_all;
 
-import java.util.concurrent.Future;
+import java.util.concurrent.CompletableFuture;
 
 import java.util.List;
 
@@ -10,6 +10,6 @@ import com.api.v1.patient.Patient;
 
 public interface FindPatients {
 	
-	Future<ResponseEntity<List<Patient>>> findAll();
+	CompletableFuture<ResponseEntity<List<Patient>>> findAll();
 
 }

@@ -1,7 +1,7 @@
 package com.api.v1.patient.register;
 
 import java.util.Objects;
-import java.util.concurrent.Future;
+import java.util.concurrent.CompletableFuture;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
@@ -22,7 +22,7 @@ public class RegisterPatientService implements RegisterPatient {
 	
 	@Override
 	@Async
-	public Future<ResponseEntity<Void>> register(@NotNull RegisterPatientDTO dto) {
+	public CompletableFuture<ResponseEntity<Void>> register(@NotNull RegisterPatientDTO dto) {
 		validateInput(dto.systemUser().ssn());
 		Patient patient = new Patient(dto);
 		repository.save(patient);

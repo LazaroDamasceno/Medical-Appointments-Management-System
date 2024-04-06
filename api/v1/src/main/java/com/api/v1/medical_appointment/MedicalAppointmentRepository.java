@@ -20,7 +20,7 @@ public interface MedicalAppointmentRepository extends JpaRepository<MedicalAppoi
 			where ma.patient = :patient
 			and ma.scheduledDateTime = :dateTime
 	""")
-	MedicalAppointment findMedicalAppointmentByPatientAndDate(@Param("patient") Patient patient, 
+	MedicalAppointment findMedicalAppointmentByPatient(@Param("patient") Patient patient, 
 											                  @Param("dateTime") Date dateTime);
 	
 	@Query("""
@@ -28,7 +28,7 @@ public interface MedicalAppointmentRepository extends JpaRepository<MedicalAppoi
 			where ma.physician = :physician
 			and ma.scheduledDateTime = :dateTime
 	""")
-	MedicalAppointment findMedicalAppointmentByPhysicianAndDate(@Param("physician") Physician physician, 
+	MedicalAppointment findMedicalAppointmentByPhysician(@Param("physician") Physician physician, 
 											                    @Param("dateTime") Date dateTime);
 	
 	@Query("""

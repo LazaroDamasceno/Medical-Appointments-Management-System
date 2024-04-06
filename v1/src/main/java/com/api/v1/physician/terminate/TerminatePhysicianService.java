@@ -1,6 +1,6 @@
 package com.api.v1.physician.terminate;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 import java.util.concurrent.CompletableFuture;
 
 import org.springframework.http.ResponseEntity;
@@ -25,7 +25,7 @@ public class TerminatePhysicianService implements TerminatePhysician {
 	@Override
 	public CompletableFuture<ResponseEntity<Void>> terminate(@NotBlank @Size(min = 7, max = 7) String mln) {
 		Physician physician = findPhysicianByMln.findByMln(mln);
-		ZonedDateTime now = ZonedDateTime.now();
+		LocalDateTime now = LocalDateTime.now();
 		physician.setTerminationDateTime(now);
 		repository.save(physician);
 		return AsyncHttpStatus.NO_CONTENT_204;

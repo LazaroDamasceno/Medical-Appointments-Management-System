@@ -20,7 +20,7 @@ public class TerminatePhysicianController implements TerminatePhysician {
 	private final TerminatePhysicianService service;
 	
 	@Override
-	@PatchMapping
+	@PatchMapping("{mln}")
 	public CompletableFuture<ResponseEntity<Void>> terminate(@NotBlank @Size(min = 7, max = 7) @PathVariable String mln) {
 		return service.terminate(mln);
 	}

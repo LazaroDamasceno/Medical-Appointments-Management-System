@@ -33,9 +33,9 @@ public class Physician implements Serializable {
 	@Column(nullable = false, unique = true)
 	private String mln;
 	
-	private final ZonedDateTime inductionDateTime = ZonedDateTime.now();
+	private final LocalDateTime inductionDateTime = LocalDateTime.now();
 	
-	private ZonedDateTime terminationDateTime;
+	private LocalDateTime terminationDateTime;
 	
 	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "system_user_id")

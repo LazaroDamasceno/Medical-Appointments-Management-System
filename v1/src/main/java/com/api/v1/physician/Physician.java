@@ -2,13 +2,10 @@ package com.api.v1.physician;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Objects;
 import java.util.UUID;
 
 import com.api.v1.physician.induct.InductPhysicianDTO;
 import com.api.v1.system_user.SystemUser;
-
-import java.time.ZonedDateTime;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;

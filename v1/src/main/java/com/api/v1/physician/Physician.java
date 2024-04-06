@@ -33,7 +33,7 @@ public class Physician implements Serializable {
 	@Column(nullable = false, unique = true)
 	private String mln;
 	
-	private ZonedDateTime inductionDateTime = ZonedDateTime.now();
+	private final ZonedDateTime inductionDateTime = ZonedDateTime.now();
 	
 	private ZonedDateTime terminationDateTime;
 	

@@ -3,6 +3,7 @@ package com.api.v1.drop_tables;
 import java.util.concurrent.CompletableFuture;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import com.api.v1.constants.AsyncHttpStatus;
@@ -23,6 +24,7 @@ public class DropTablesService implements DropTables {
     private final SystemUserRepository systemUserRepository;
 
     @Override
+    @Async
     public CompletableFuture<ResponseEntity<Void>> dropTables() {
         medicalAppointmentRepository.dropTable();
         patientRepository.dropTable();

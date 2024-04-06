@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.concurrent.CompletableFuture;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import com.api.v1.constants.AsyncHttpStatus;
@@ -23,6 +24,7 @@ public class TerminatePhysicianService implements TerminatePhysician {
 	private final FindPhysicianByMlnService findPhysicianByMln;
 
 	@Override
+	@Async
 	public CompletableFuture<ResponseEntity<Void>> terminate(@NotBlank @Size(min = 7, max = 7) String mln) {
 		Physician physician = findPhysicianByMln.findByMln(mln);
 		LocalDateTime now = LocalDateTime.now();

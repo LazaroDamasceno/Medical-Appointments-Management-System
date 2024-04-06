@@ -1,10 +1,8 @@
 package com.api.v1.patient.find_all;
 
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,8 +20,7 @@ public class FindPatientsController implements FindPatients {
 
 	@Override
 	@GetMapping
-	@Async
-	public CompletableFuture<ResponseEntity<List<Patient>>> findAll() {
+	public ResponseEntity<List<Patient>> findAll() {
 		return service.findAll();
 	}
 

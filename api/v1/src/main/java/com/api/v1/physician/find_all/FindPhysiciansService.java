@@ -6,6 +6,8 @@ import org.springframework.http.ResponseEntity;
 
 import org.springframework.stereotype.Service;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.api.v1.physician.Physician;
 import com.api.v1.physician.PhysicianRepository;
 
@@ -18,7 +20,7 @@ public class FindPhysiciansService implements FindPhysicians {
 	private final PhysicianRepository repository;
 
 	@Override
-
+	@Transactional(readOnly = true)
 	public ResponseEntity<List<Physician>> findAll() {
 		return ResponseEntity.ok(repository.findAll());
 	}

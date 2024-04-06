@@ -36,8 +36,8 @@ public interface MedicalAppointmentRepository extends JpaRepository<MedicalAppoi
 			and ma.scheduledDateTime = :dateTime
 	""")
 	MedicalAppointment findMedicalAppointmentByPatientAndPhysicianAndDate(@Param("patient") Patient patient, 
-														@Param("physician") Physician physician, 
-														@Param("dateTime") LocalDateTime dateTime);
+																		  @Param("physician") Physician physician, 
+																		  @Param("dateTime") LocalDateTime dateTime);
 	
 	@Query("""
 			select ma from MedicalAppointment ma

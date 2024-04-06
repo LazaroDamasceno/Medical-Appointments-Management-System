@@ -5,6 +5,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -37,6 +39,7 @@ public class SystemUser implements Serializable {
 	private String ssn;
 	
 	@Column(nullable = false)
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	private Date birthDate;
 	
 	@Column(nullable = false)

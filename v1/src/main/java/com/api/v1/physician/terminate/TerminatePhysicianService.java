@@ -12,6 +12,7 @@ import com.api.v1.physician.Physician;
 import com.api.v1.physician.PhysicianRepository;
 import com.api.v1.physician.find_by_mln.FindPhysicianByMlnService;
 
+import jakarta.transaction.Transactional;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,7 @@ public class TerminatePhysicianService implements TerminatePhysician {
 
 	@Override
 	@Async
+	@Transactional
 	public CompletableFuture<ResponseEntity<Void>> terminate(@NotBlank @Size(min = 7, max = 7) String mln) {
 		Physician physician = findPhysicianByMln.findByMln(mln);
 		LocalDateTime now = LocalDateTime.now();

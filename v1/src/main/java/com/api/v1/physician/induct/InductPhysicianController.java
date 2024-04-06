@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.transaction.Transactional;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 
@@ -22,6 +23,7 @@ public class InductPhysicianController implements InductPhysician {
 	@Override
 	@PostMapping
 	@Async
+	@Transactional
 	public CompletableFuture<ResponseEntity<Void>> register(@NotNull @RequestBody InductPhysicianDTO dto) {
 		return service.register(dto);
 	}

@@ -10,6 +10,7 @@ import com.api.v1.constants.AsyncHttpStatus;
 import com.api.v1.physician.Physician;
 import com.api.v1.physician.PhysicianRepository;
 
+import jakarta.transaction.Transactional;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 
@@ -21,6 +22,7 @@ public class InductPhysicianService implements InductPhysician {
 	
 	@Override
 	@Async
+	@Transactional
 	public CompletableFuture<ResponseEntity<Void>> register(@NotNull InductPhysicianDTO dto) {
 		validateInput(dto.mln());
 		Physician physician = new Physician(dto);

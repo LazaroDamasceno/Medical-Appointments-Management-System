@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.transaction.Transactional;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,7 @@ public class TerminatePhysicianController implements TerminatePhysician {
 	@Override
 	@PatchMapping("{mln}")
 	@Async
+	@Transactional
 	public CompletableFuture<ResponseEntity<Void>> terminate(@NotBlank @Size(min = 7, max = 7) @PathVariable String mln) {
 		return service.terminate(mln);
 	}

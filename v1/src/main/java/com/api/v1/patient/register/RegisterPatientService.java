@@ -11,6 +11,7 @@ import com.api.v1.constants.AsyncHttpStatus;
 import com.api.v1.patient.Patient;
 import com.api.v1.patient.PatientRepository;
 
+import jakarta.transaction.Transactional;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 
@@ -22,6 +23,7 @@ public class RegisterPatientService implements RegisterPatient {
 	
 	@Override
 	@Async
+	@Transactional
 	public CompletableFuture<ResponseEntity<Void>> register(@NotNull RegisterPatientDTO dto) {
 		validateInput(dto.systemUser().ssn());
 		Patient patient = new Patient(dto);

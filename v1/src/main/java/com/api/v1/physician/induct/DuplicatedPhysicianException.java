@@ -1,4 +1,4 @@
-package com.api.v1.physician.register;
+package com.api.v1.physician.induct;
 
 public class DuplicatedPhysicianException extends RuntimeException {
 	

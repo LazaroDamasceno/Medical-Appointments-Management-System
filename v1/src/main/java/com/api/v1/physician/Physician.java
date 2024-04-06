@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
-import com.api.v1.physician.register.RegisterPhysicianDTO;
+import com.api.v1.physician.induct.InductPhysicianDTO;
 import com.api.v1.system_user.SystemUser;
 
 import java.time.ZonedDateTime;
@@ -41,7 +41,7 @@ public class Physician implements Serializable {
 	@JoinColumn(name = "system_user_id")
 	private SystemUser systemUser;
 
-	public Physician(RegisterPhysicianDTO dto) {
+	public Physician(InductPhysicianDTO dto) {
 		super();
 		this.mln = dto.mln();
 		this.systemUser = new SystemUser(dto.systemUserDTO());

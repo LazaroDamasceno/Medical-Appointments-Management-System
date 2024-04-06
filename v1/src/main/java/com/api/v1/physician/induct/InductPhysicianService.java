@@ -1,4 +1,4 @@
-package com.api.v1.physician.register;
+package com.api.v1.physician.induct;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -15,13 +15,13 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class RegisterPhysicianService implements RegisterPhysician {
+public class InductPhysicianService implements InductPhysician {
 	
 	private final PhysicianRepository repository;
 	
 	@Override
 	@Async
-	public CompletableFuture<ResponseEntity<Void>> register(@NotNull RegisterPhysicianDTO dto) {
+	public CompletableFuture<ResponseEntity<Void>> register(@NotNull InductPhysicianDTO dto) {
 		validateInput(dto.mln());
 		Physician physician = new Physician(dto);
 		repository.save(physician);

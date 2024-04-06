@@ -1,4 +1,4 @@
-package com.api.v1.physician.register;
+package com.api.v1.physician.induct;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -14,13 +14,13 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("api/v1/physician")
 @RequiredArgsConstructor
-public class RegisterPhysicianController implements RegisterPhysician {
+public class InductPhysicianController implements InductPhysician {
 	
-	private final RegisterPhysicianService service;
+	private final InductPhysicianService service;
 
 	@Override
 	@PostMapping
-	public CompletableFuture<ResponseEntity<Void>> register(@NotNull @RequestBody RegisterPhysicianDTO dto) {
+	public CompletableFuture<ResponseEntity<Void>> register(@NotNull @RequestBody InductPhysicianDTO dto) {
 		return service.register(dto);
 	}
 

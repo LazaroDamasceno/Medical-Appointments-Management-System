@@ -36,7 +36,7 @@ public class Patient implements Serializable {
 	@Column(nullable = false)
 	private String address;
 	
-	@OneToOne(cascade = CascadeType.PERSIST)
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "system_user_id")
 	private SystemUser systemUser;
 

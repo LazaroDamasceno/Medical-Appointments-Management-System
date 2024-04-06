@@ -31,11 +31,11 @@ public class MedicalAppointment implements Serializable {
 	
 	private LocalDateTime cancelationDateTime;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "patient_id")
 	private Patient patient;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "physician_id")
 	private Physician physician;
 

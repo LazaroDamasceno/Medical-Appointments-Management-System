@@ -37,7 +37,7 @@ public class Physician implements Serializable {
 	
 	private LocalDateTime terminationDateTime;
 	
-	@OneToOne(cascade = CascadeType.PERSIST)
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "system_user_id")
 	private SystemUser systemUser;
 

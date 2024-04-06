@@ -1,12 +1,9 @@
 package com.api.v1.physician.induct;
 
-import java.util.concurrent.CompletableFuture;
-
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import com.api.v1.constants.AsyncHttpStatus;
+import com.api.v1.constants.HttpStatusCodes;
 import com.api.v1.physician.Physician;
 import com.api.v1.physician.PhysicianRepository;
 
@@ -21,13 +18,12 @@ public class InductPhysicianService implements InductPhysician {
 	private final PhysicianRepository repository;
 	
 	@Override
-	@Async
 	@Transactional
-	public CompletableFuture<ResponseEntity<Void>> register(@NotNull InductPhysicianDTO dto) {
+	public ResponseEntity<Void> register(@NotNull InductPhysicianDTO dto) {
 		validateInput(dto.mln());
 		Physician physician = new Physician(dto);
 		repository.save(physician);
-		return AsyncHttpStatus.CREATED_201;
+		return HttpStatusCodes.CREATED_201;
 	}
 	
 	private void validateInput(String mln) {

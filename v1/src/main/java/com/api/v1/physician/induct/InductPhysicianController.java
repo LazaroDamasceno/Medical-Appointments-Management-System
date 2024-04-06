@@ -1,9 +1,6 @@
 package com.api.v1.physician.induct;
 
-import java.util.concurrent.CompletableFuture;
-
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,9 +19,8 @@ public class InductPhysicianController implements InductPhysician {
 
 	@Override
 	@PostMapping
-	@Async
 	@Transactional
-	public CompletableFuture<ResponseEntity<Void>> register(@NotNull @RequestBody InductPhysicianDTO dto) {
+	public ResponseEntity<Void> register(@NotNull @RequestBody InductPhysicianDTO dto) {
 		return service.register(dto);
 	}
 

@@ -1,7 +1,5 @@
 package com.api.v1.drop_tables;
 
-import java.util.concurrent.CompletableFuture;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,7 +18,7 @@ public class DropTablesController implements DropTables {
     @Override
     @DeleteMapping
     @Async
-    public CompletableFuture<ResponseEntity<Void>> dropTables() {
+    public ResponseEntity<Void> dropTables() {
         return service.dropTables();
     }
     

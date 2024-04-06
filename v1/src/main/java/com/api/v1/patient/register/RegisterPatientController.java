@@ -1,7 +1,5 @@
 package com.api.v1.patient.register;
 
-import java.util.concurrent.CompletableFuture;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,7 +22,7 @@ public class RegisterPatientController implements RegisterPatient {
 	@PostMapping
 	@Async
 	@Transactional
-	public CompletableFuture<ResponseEntity<Void>> register(@NotNull @RequestBody RegisterPatientDTO dto) {
+	public ResponseEntity<Void> register(@NotNull @RequestBody RegisterPatientDTO dto) {
 		return service.register(dto);
 	}
 

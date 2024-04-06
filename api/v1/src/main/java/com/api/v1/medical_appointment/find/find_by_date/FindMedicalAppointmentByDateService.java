@@ -3,6 +3,7 @@ package com.api.v1.medical_appointment.find.find_by_date;
 import java.util.Date;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.MedicalAppointmentRepository;
@@ -21,11 +22,12 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class FindMedicalAppointmentByDateService implements FindMedicalAppointmentByDate {
 
-   private final MedicalAppointmentRepository repository;
+    private final MedicalAppointmentRepository repository;
     private final FindPatientBySsnService findPatientBySsn;
     private final FindPhysicianByMlnService findPhysicianByMln;
 
     @Override
+    @Transactional
     public MedicalAppointment findByDate(
         @NotBlank @Size(min = 9, max = 9) String ssn,
         @NotBlank @Size(min = 7, max = 7) String mln, 

@@ -1,6 +1,6 @@
 package com.api.v1.medical_appointment;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,7 +21,7 @@ public interface MedicalAppointmentRepository extends JpaRepository<MedicalAppoi
 			and ma.scheduledDateTime = :dateTime
 	""")
 	MedicalAppointment findMedicalAppointmentByPatientAndDate(@Param("patient") Patient patient, 
-											                  @Param("dateTime") LocalDateTime dateTime);
+											                  @Param("dateTime") Date dateTime);
 	
 	@Query("""
 			select ma from MedicalAppointment ma
@@ -29,7 +29,7 @@ public interface MedicalAppointmentRepository extends JpaRepository<MedicalAppoi
 			and ma.scheduledDateTime = :dateTime
 	""")
 	MedicalAppointment findMedicalAppointmentByPhysicianAndDate(@Param("physician") Physician physician, 
-											                    @Param("dateTime") LocalDateTime dateTime);
+											                    @Param("dateTime") Date dateTime);
 	
 	@Query("""
 			select ma from MedicalAppointment ma
@@ -37,17 +37,17 @@ public interface MedicalAppointmentRepository extends JpaRepository<MedicalAppoi
 			and ma.patient = :patient
 			and ma.scheduledDateTime = :dateTime
 	""")
-	MedicalAppointment findMedicalAppointmentByPatientAndPhysicianAndDate(@Param("patient") Patient patient, 
-																		  @Param("physician") Physician physician, 
-																		  @Param("dateTime") LocalDateTime dateTime);
+	MedicalAppointment findMedicalAppointmentByDate(@Param("patient") Patient patient, 
+													@Param("physician") Physician physician, 
+													@Param("dateTime") Date dateTime);
 	
 	@Query("""
 			select ma from MedicalAppointment ma
 			where ma.scheduledDateTime >= :firtstDateTime
 			and ma.scheduledDateTime <= :lastDateTime
 	""")
-	MedicalAppointment findMedicalAppointmentsBeetwenDates(@Param("firtstDateTime") LocalDateTime firtstDateTime, 
-														   @Param("lastDateTime") LocalDateTime lastDateTime);
+	MedicalAppointment findMedicalAppointmentsBeetwenDates(@Param("firtstDateTime") Date firtstDateTime, 
+														   @Param("lastDateTime") Date lastDateTime);
 	
 	@Query("""
 			select ma from MedicalAppointment ma

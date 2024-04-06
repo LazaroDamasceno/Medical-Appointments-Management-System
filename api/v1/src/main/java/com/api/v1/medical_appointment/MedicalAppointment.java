@@ -2,13 +2,14 @@ package com.api.v1.medical_appointment;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.UUID;
 
 import com.api.v1.patient.Patient;
 import com.api.v1.physician.Physician;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,7 +18,7 @@ import lombok.Setter;
 @Table(name = "v1_medical_appointment")
 @Getter
 @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 public class MedicalAppointment implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -27,8 +28,10 @@ public class MedicalAppointment implements Serializable {
 	private UUID id;
 	
 	@Column(nullable = false)
-	private LocalDateTime scheduledDateTime;
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+	private Date scheduledDateTime;
 	
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	private LocalDateTime cancelationDateTime;
 	
 	@ManyToOne(cascade = CascadeType.ALL)

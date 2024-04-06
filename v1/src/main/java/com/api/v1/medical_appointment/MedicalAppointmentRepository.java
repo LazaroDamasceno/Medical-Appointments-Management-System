@@ -19,7 +19,7 @@ public interface MedicalAppointmentRepository extends JpaRepository<MedicalAppoi
 			and ma.scheduledDateTime = :dateTime
 	""")
 	MedicalAppointment findMedicalAppointmentByPatientAndDate(@Param("patient") Patient patient, 
-											@Param("dateTime") LocalDateTime dateTime);
+											                  @Param("dateTime") LocalDateTime dateTime);
 	
 	@Query("""
 			select ma from MedicalAppointment ma
@@ -27,7 +27,7 @@ public interface MedicalAppointmentRepository extends JpaRepository<MedicalAppoi
 			and ma.scheduledDateTime = :dateTime
 	""")
 	MedicalAppointment findMedicalAppointmentByPhysicianAndDate(@Param("physician") Physician physician, 
-											  @Param("dateTime") LocalDateTime dateTime);
+											                    @Param("dateTime") LocalDateTime dateTime);
 	
 	@Query("""
 			select ma from MedicalAppointment ma
@@ -45,7 +45,7 @@ public interface MedicalAppointmentRepository extends JpaRepository<MedicalAppoi
 			and ma.scheduledDateTime <= :lastDateTime
 	""")
 	MedicalAppointment findMedicalAppointmentsBeetwenDates(@Param("firtstDateTime") LocalDateTime firtstDateTime, 
-										@Param("lastDateTime") LocalDateTime lastDateTime);
+														   @Param("lastDateTime") LocalDateTime lastDateTime);
 	
 	@Query("""
 			select ma from MedicalAppointment ma

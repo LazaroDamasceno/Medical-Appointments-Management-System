@@ -1,7 +1,7 @@
 package com.api.v1.drop_tables;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Async;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +17,7 @@ public class DropTablesController implements DropTables {
 
     @Override
     @DeleteMapping
-    @Async
+    @Transactional
     public ResponseEntity<Void> dropTables() {
         return service.dropTables();
     }

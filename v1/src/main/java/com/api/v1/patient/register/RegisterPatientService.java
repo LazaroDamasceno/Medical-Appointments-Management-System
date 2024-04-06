@@ -3,7 +3,6 @@ package com.api.v1.patient.register;
 import java.util.Objects;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import com.api.v1.constants.HttpStatusCodes;
@@ -21,7 +20,6 @@ public class RegisterPatientService implements RegisterPatient {
 	private final PatientRepository repository;
 	
 	@Override
-	@Async
 	@Transactional
 	public ResponseEntity<Void> register(@NotNull RegisterPatientDTO dto) {
 		validateInput(dto.systemUser().ssn());

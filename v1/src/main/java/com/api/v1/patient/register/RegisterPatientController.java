@@ -1,7 +1,6 @@
 package com.api.v1.patient.register;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +19,6 @@ public class RegisterPatientController implements RegisterPatient {
 	
 	@Override
 	@PostMapping
-	@Async
 	@Transactional
 	public ResponseEntity<Void> register(@NotNull @RequestBody RegisterPatientDTO dto) {
 		return service.register(dto);

@@ -4,6 +4,7 @@ import java.util.concurrent.CompletableFuture;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +20,7 @@ public class RegisterPhysicianController implements RegisterPhysician {
 
 	@Override
 	@PostMapping
-	public CompletableFuture<ResponseEntity<Void>> register(@NotNull RegisterPhysicianDTO dto) {
+	public CompletableFuture<ResponseEntity<Void>> register(@NotNull @RequestBody RegisterPhysicianDTO dto) {
 		return service.register(dto);
 	}
 

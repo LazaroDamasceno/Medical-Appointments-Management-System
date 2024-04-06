@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class FindPhysiciansService implements FindPhysicians {
 
-	private PhysicianRepository repository;
+	private final PhysicianRepository repository;
 
 	@Override
 	@Async
@@ -25,3 +26,4 @@ public class FindPhysiciansService implements FindPhysicians {
 	}
 	
 }
+

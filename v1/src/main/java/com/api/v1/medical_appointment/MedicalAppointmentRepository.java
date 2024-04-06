@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.api.v1.patient.Patient;
 import com.api.v1.physician.Physician;
@@ -59,5 +61,9 @@ public interface MedicalAppointmentRepository extends JpaRepository<MedicalAppoi
 	""")
 	List<MedicalAppointment> findCanceledMedicalAppointments();
 
+	@Modifying
+	@Transactional
+	@Query(value = "DROP TABLE IF EXISTS v1_medical_appointment", nativeQuery = true)
+	void dropTable();
 
 }

@@ -31,6 +31,4 @@ public class DropTablesService implements DropTables {
         return HttpStatusCodes.NO_CONTENT_204;
     }
 
-
-    
 }

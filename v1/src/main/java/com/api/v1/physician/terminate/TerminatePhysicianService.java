@@ -24,7 +24,6 @@ public class TerminatePhysicianService implements TerminatePhysician {
 	private final FindPhysicianByMlnService findPhysicianByMln;
 
 	@Override
-	@Async
 	@Transactional
 	public ResponseEntity<Void> terminate(@NotBlank @Size(min = 7, max = 7) String mln) {
 		Physician physician = findPhysicianByMln.findByMln(mln);

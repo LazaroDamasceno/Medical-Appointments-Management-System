@@ -3,6 +3,7 @@ package com.api.v1.medical_appointment.find.find_by_physician;
 import java.util.Date;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.MedicalAppointmentRepository;
@@ -23,6 +24,7 @@ public class FindMedicalAppointmentByPhysicianService implements FindMedicalAppo
     private final FindPhysicianByMlnService findPhysicianByMln;
     
     @Override
+    @Transactional
     public MedicalAppointment findByPhysician(@NotBlank @Size(min = 7, max = 7) String ssn, @NotNull Date dateTime) {
         Physician physician = findPhysicianByMln.findByMln(ssn);
         validateInput(physician, dateTime);

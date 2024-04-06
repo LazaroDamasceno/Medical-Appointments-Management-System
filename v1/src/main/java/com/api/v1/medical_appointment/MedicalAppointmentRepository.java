@@ -1,6 +1,7 @@
 package com.api.v1.medical_appointment;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,7 +18,7 @@ public interface MedicalAppointmentRepository extends JpaRepository<MedicalAppoi
 			where ma.patient = :patient
 			and ma.scheduledDateTime = :dateTime
 	""")
-	MedicalAppointment findByPatientAndDate(@Param("patient") Patient patient, 
+	MedicalAppointment findMedicalAppointmentByPatientAndDate(@Param("patient") Patient patient, 
 											@Param("dateTime") LocalDateTime dateTime);
 	
 	@Query("""
@@ -25,7 +26,7 @@ public interface MedicalAppointmentRepository extends JpaRepository<MedicalAppoi
 			where ma.physician = :physician
 			and ma.scheduledDateTime = :dateTime
 	""")
-	MedicalAppointment findByPhysicianAndDate(@Param("physician") Physician physician, 
+	MedicalAppointment findMedicalAppointmentByPhysicianAndDate(@Param("physician") Physician physician, 
 											  @Param("dateTime") LocalDateTime dateTime);
 	
 	@Query("""
@@ -34,8 +35,29 @@ public interface MedicalAppointmentRepository extends JpaRepository<MedicalAppoi
 			and ma.patient = :patient
 			and ma.scheduledDateTime = :dateTime
 	""")
-	MedicalAppointment findByPatientAndPhysicianAndDate(@Param("patient") Patient patient, 
+	MedicalAppointment findMedicalAppointmentByPatientAndPhysicianAndDate(@Param("patient") Patient patient, 
 														@Param("physician") Physician physician, 
 														@Param("dateTime") LocalDateTime dateTime);
+	
+	@Query("""
+			select ma from MedicalAppointment ma
+			where ma.scheduledDateTime >= :firtstDateTime
+			and ma.scheduledDateTime <= :lastDateTime
+	""")
+	MedicalAppointment findMedicalAppointmentsBeetwenDates(@Param("firtstDateTime") LocalDateTime firtstDateTime, 
+										@Param("lastDateTime") LocalDateTime lastDateTime);
+	
+	@Query("""
+			select ma from MedicalAppointment ma
+			where ma.cancelationDateTime is null
+	""")
+	List<MedicalAppointment> findScheduledMedicalAppointments();
+	
+	@Query("""
+			select ma from MedicalAppointment ma
+			where ma.cancelationDateTime is not null
+	""")
+	List<MedicalAppointment> findCanceledMedicalAppointments();
+
 
 }

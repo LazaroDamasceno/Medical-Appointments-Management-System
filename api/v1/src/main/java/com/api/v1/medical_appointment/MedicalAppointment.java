@@ -42,4 +42,6 @@ public class MedicalAppointment implements Serializable {
 	@JoinColumn(name = "physician_id")
 	private Physician physician;
 
+	private String medicalNotes = "";
+
 }

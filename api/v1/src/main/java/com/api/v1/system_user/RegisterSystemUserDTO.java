@@ -26,8 +26,7 @@ public record RegisterSystemUserDTO(
 		@Size(min=10, max=10)
 		String phoneNumber,
 		
-		@NotNull
-		@Size(min=1)
+		@NotBlank
 		String gender
 ) { 
 

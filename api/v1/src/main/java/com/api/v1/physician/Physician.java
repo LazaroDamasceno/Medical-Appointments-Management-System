@@ -10,12 +10,15 @@ import com.api.v1.system_user.UpdatedSystemUserDTO;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.AccessLevel;
 
 @Entity
 @Table(name = "v1_physician")
 @Getter
 @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Physician implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -26,9 +29,9 @@ public class Physician implements Serializable {
 	
 	// MLN stands for medical license number
 	@Column(nullable = false, unique = true)
-	private final String mln;
+	private String mln;
 	
-	private final LocalDateTime inductionDateTime = LocalDateTime.now();
+	private LocalDateTime inductionDateTime = LocalDateTime.now();
 	
 	private LocalDateTime terminationDateTime;
 	

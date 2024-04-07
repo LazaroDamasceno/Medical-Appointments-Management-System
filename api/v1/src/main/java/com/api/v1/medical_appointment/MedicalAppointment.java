@@ -12,10 +12,13 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.AccessLevel;
 
 @Entity
 @Table(name = "v1_medical_appointment")
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class MedicalAppointment implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -26,7 +29,7 @@ public class MedicalAppointment implements Serializable {
 	
 	@Column(nullable = false)
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-	private final Date scheduledDateTime;
+	private Date scheduledDateTime;
 	
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	private LocalDateTime cancelationDateTime;
@@ -36,11 +39,11 @@ public class MedicalAppointment implements Serializable {
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "patient_id")
-	private final Patient patient;
+	private Patient patient;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "physician_id")
-	private final Physician physician;
+	private Physician physician;
 
 	private String medicalNotes = "";
 

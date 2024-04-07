@@ -23,9 +23,16 @@ public class CancelMedicalAppointmentService implements CancelMedicalAppointment
     @Transactional
     public ResponseEntity<Void> cancel(@NotNull CancelMedicalAppointmentDTO dto) {
         MedicalAppointment medicalAppointment = findMedicalAppointmentByPatient.findByPatient(dto.ssn(), dto.dateTime());
+        validateInput(medicalAppointment);
         medicalAppointment.cancel();
         repository.save(medicalAppointment);
         return HttpStatusCodes.NO_CONTENT_204;
+    }
+
+    private void validateInput(MedicalAppointment medicalAppointment) {
+        if (medicalAppointment.getFinishingDateTime() != null) {
+            throw new FinishedMedicalAppointmentException();
+        }
     }
     
 }

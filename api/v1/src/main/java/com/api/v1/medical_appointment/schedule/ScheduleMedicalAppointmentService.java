@@ -36,7 +36,7 @@ public class ScheduleMedicalAppointmentService implements ScheduleMedicalAppoint
 
     private void validateInput(Patient patient, Physician physician, Date dateTime) {
         MedicalAppointment medicalAppointment = repository.findMedicalAppointmentByDate(patient, physician, dateTime);
-        if (medicalAppointment != null && medicalAppointment.getCancelationDateTime() == null) {
+        if (medicalAppointment.getCancelationDateTime() == null) {
             throw new DuplicatedMedicalAppointmentException(patient, physician, dateTime);
         }
     }

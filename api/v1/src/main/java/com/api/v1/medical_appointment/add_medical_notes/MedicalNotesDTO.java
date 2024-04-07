@@ -7,11 +7,11 @@ import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.NotNull;
 
 public record MedicalNotesDTO(
-    @NotBlank
+    @NotNull
     @Size(min=9, max=9)
     String ssn,
 
-    @NotBlank
+    @NotNull
     @Size(min=7, max=7)
     String mln,
 

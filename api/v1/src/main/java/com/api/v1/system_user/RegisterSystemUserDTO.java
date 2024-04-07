@@ -11,7 +11,7 @@ public record RegisterSystemUserDTO(
 		@NotBlank
 		String fullName,
 		
-		@NotBlank
+		@NotNull
 		@Size(min=9, max=9)
 		String ssn,
 		
@@ -22,11 +22,11 @@ public record RegisterSystemUserDTO(
 		@Email
 		String email,
 		
-		@NotBlank
+		@NotNull
 		@Size(min=10, max=10)
 		String phoneNumber,
 		
-		@NotBlank
+		@NotNull
 		@Size(min=1)
 		String gender
 ) { 

@@ -8,10 +8,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public record UpdatedSystemUserDTO(
-    @NotNull 
-    @Size(min = 7, max = 7) 
-    String mln,
-
     @NotBlank
     String fullName,
 

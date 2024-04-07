@@ -10,6 +10,7 @@ import com.api.v1.patient.PatientRepository;
 import com.api.v1.patient.find_by_ssn.FindPatientBySsn;
 
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -21,8 +22,8 @@ public class UpdatePatientService implements UpdatePatient {
     
     @Override
     @Transactional
-    public ResponseEntity<Void> update(@NotNull UpdatePatientDTO dto) {
-        Patient patient = findPatientBySsn.findBySsn(dto.ssn());
+    public ResponseEntity<Void> update(@NotNull @Size(min=9, max=9) String ssn, @NotNull UpdatePatientDTO dto) {
+        Patient patient = findPatientBySsn.findBySsn(ssn);
         patient.update(dto);
         repository.save(patient);
         return HttpStatusCodes.NO_CONTENT_204;

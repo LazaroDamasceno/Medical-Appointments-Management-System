@@ -10,6 +10,7 @@ import com.api.v1.physician.Physician;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 
 @Entity
@@ -57,7 +58,7 @@ public class MedicalAppointment implements Serializable {
 		this.finishingDateTime = LocalDateTime.now();
 	}
 
-	public void addMedicalNotes(String notes) {
+	public void addMedicalNotes(@NotBlank String notes) {
 		this.medicalNotes = notes;
 	}
 

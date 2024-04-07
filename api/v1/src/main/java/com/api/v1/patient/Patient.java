@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.UUID;
 
 import com.api.v1.patient.register.RegisterPatientDTO;
-import com.api.v1.patient.update.UpdatePatientDTO;
 import com.api.v1.system_user.SystemUser;
 
 import jakarta.persistence.CascadeType;
@@ -42,11 +41,6 @@ public class Patient implements Serializable {
 	public Patient(RegisterPatientDTO dto) {
 		this.address = dto.address();
 		this.systemUser = new SystemUser(dto.systemUser());
-	}
-
-	public void update(UpdatePatientDTO dto) {
-		this.address = dto.address();
-		this.systemUser.update(dto.systemUserDTO());
 	}
 	
 }

@@ -58,13 +58,5 @@ public class SystemUser implements Serializable {
 		this.phoneNumber = dto.phoneNumber();
 		this.gender = dto.gender();
 	}
-
-	public void update(UpdatedSystemUserDTO dto) {
-		this.fullName = dto.fullName();
-		this.birthDate = dto.birthDate();
-		this.email = dto.email();
-		this.phoneNumber = dto.phoneNumber();
-		this.gender = dto.gender();
-	}
 	
 }

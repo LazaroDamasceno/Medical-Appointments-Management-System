@@ -6,7 +6,6 @@ import java.util.UUID;
 
 import com.api.v1.physician.induct.InductPhysicianDTO;
 import com.api.v1.system_user.SystemUser;
-import com.api.v1.system_user.UpdatedSystemUserDTO;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -43,10 +42,6 @@ public class Physician implements Serializable {
 		super();
 		this.mln = dto.mln();
 		this.systemUser = new SystemUser(dto.systemUserDTO());
-	}
-
-	public void update(UpdatedSystemUserDTO dto) {
-		this.systemUser.update(dto);
 	}
 
 }

@@ -23,7 +23,7 @@ public record UpdatedSystemUserDTO(
 	String email,
 
     @NotNull
-    @Size(min=7, max=7)
+    @Size(min=10, max=10)
 	String phoneNumber,
 
     @NotBlank

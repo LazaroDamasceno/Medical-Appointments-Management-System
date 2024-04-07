@@ -18,7 +18,7 @@ public class FindPhysicianByMlnService implements FindPhysicianByMln {
 	
 	@Override
 	@Transactional(readOnly = true)
-	public Physician findByMln(@NotNull @Size(min = 9, max = 9) String mln) {
+	public Physician findByMln(@NotNull @Size(min = 7, max = 7) String mln) {
 		validatedInput(mln);
 		return repository.findByMln(mln).get();
 	}

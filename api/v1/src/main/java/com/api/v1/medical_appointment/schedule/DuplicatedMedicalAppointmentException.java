@@ -9,7 +9,7 @@ public class DuplicatedMedicalAppointmentException extends RuntimeException {
 
     public DuplicatedMedicalAppointmentException(Patient patient, Physician physician, Date dateTime) {
         super("""
-            Medical appointment whose patient's SSN is %s, physician's MLN iss %s and scheduled date is %s is already scheduled.
+        Medical appointment whose patient's SSN is %s, physician's MLN iss %s and scheduled date is %s is already scheduled.
         """.formatted(patient.getSystemUser().getSsn(), physician.getMln(), dateTime));
     }
     

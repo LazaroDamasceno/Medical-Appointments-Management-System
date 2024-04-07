@@ -6,18 +6,16 @@ import java.util.UUID;
 
 import com.api.v1.physician.induct.InductPhysicianDTO;
 import com.api.v1.system_user.SystemUser;
+import com.api.v1.system_user.UpdatedSystemUserDTO;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name = "v1_physician")
 @Getter
 @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Physician implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -28,7 +26,7 @@ public class Physician implements Serializable {
 	
 	// MLN stands for medical license number
 	@Column(nullable = false, unique = true)
-	private String mln;
+	private final String mln;
 	
 	private final LocalDateTime inductionDateTime = LocalDateTime.now();
 	
@@ -42,6 +40,10 @@ public class Physician implements Serializable {
 		super();
 		this.mln = dto.mln();
 		this.systemUser = new SystemUser(dto.systemUserDTO());
+	}
+
+	public void update(UpdatedSystemUserDTO dto) {
+		this.systemUser.update(dto);
 	}
 
 }

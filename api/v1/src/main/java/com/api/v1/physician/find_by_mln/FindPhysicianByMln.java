@@ -2,7 +2,7 @@ package com.api.v1.physician.find_by_mln;
 
 import com.api.v1.physician.Physician;
 
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public interface FindPhysicianByMln {

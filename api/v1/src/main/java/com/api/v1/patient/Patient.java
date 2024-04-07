@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.UUID;
 
 import com.api.v1.patient.register.RegisterPatientDTO;
+import com.api.v1.patient.update.UpdatePatientDTO;
 import com.api.v1.system_user.SystemUser;
 
 import jakarta.persistence.CascadeType;
@@ -18,12 +19,10 @@ import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Table(name = "v1_patient")
 @Getter
-@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Patient implements Serializable {
 	
@@ -43,6 +42,11 @@ public class Patient implements Serializable {
 	public Patient(RegisterPatientDTO dto) {
 		this.address = dto.address();
 		this.systemUser = new SystemUser(dto.systemUser());
+	}
+
+	public void update(UpdatePatientDTO dto) {
+		this.address = dto.address();
+		this.systemUser.update(dto.systemUserDTO());
 	}
 	
 }

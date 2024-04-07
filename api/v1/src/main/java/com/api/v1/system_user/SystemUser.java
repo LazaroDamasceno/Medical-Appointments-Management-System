@@ -15,12 +15,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.AccessLevel;
 
 @Entity
 @Table(name = "v1_system_user")
 @Getter
-@Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class SystemUser implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -30,28 +31,36 @@ public class SystemUser implements Serializable {
 	private UUID id;
 
 	@Column(nullable = false)
-	private final String fullName;
+	private String fullName;
 	
 	@Column(nullable = false, unique = true)
-	private final String ssn;
+	private String ssn;
 	
 	@Column(nullable = false)
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-	private final Date birthDate;
+	private Date birthDate;
 	
 	@Column(nullable = false)
-	private final String email;
+	private String email;
 	
 	@Column(nullable = false)
-	private final String phoneNumber;
+	private String phoneNumber;
 	
 	@Column(nullable = false)
-	private final String gender;
+	private String gender;
 
 	public SystemUser(@NotNull RegisterSystemUserDTO dto) {
 		super();
 		this.fullName = dto.fullName();
 		this.ssn = dto.ssn();
+		this.birthDate = dto.birthDate();
+		this.email = dto.email();
+		this.phoneNumber = dto.phoneNumber();
+		this.gender = dto.gender();
+	}
+
+	public void update(UpdatedSystemUserDTO dto) {
+		this.fullName = dto.fullName();
 		this.birthDate = dto.birthDate();
 		this.email = dto.email();
 		this.phoneNumber = dto.phoneNumber();

@@ -14,16 +14,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name = "v1_system_user")
 @Getter
 @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class SystemUser implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -33,23 +30,23 @@ public class SystemUser implements Serializable {
 	private UUID id;
 
 	@Column(nullable = false)
-	private String fullName;
+	private final String fullName;
 	
 	@Column(nullable = false, unique = true)
-	private String ssn;
+	private final String ssn;
 	
 	@Column(nullable = false)
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-	private Date birthDate;
+	private final Date birthDate;
 	
 	@Column(nullable = false)
-	private String email;
+	private final String email;
 	
 	@Column(nullable = false)
-	private String phoneNumber;
+	private final String phoneNumber;
 	
 	@Column(nullable = false)
-	private String gender;
+	private final String gender;
 
 	public SystemUser(@NotNull RegisterSystemUserDTO dto) {
 		super();

@@ -23,7 +23,7 @@ public class AddMedicalNotesService implements AddMedicalNotes {
     @Transactional
     public ResponseEntity<Void> add(@NotNull MedicalNotesDTO dto) {
         MedicalAppointment medicalAppointment = findMedicalAppointmentByDate.findByDate(dto.ssn(), dto.mln(), dto.dateTime());
-        medicalAppointment.setMedicalNotes(dto.notes());
+        medicalAppointment.addMedicalNotes(dto.notes());
         repository.save(medicalAppointment);
         return HttpStatusCodes.NO_CONTENT_204;
     }

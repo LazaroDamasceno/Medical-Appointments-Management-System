@@ -1,7 +1,5 @@
 package com.api.v1.medical_appointment.cancel;
 
-import java.time.LocalDateTime;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,7 +23,7 @@ public class CancelMedicalAppointmentService implements CancelMedicalAppointment
     @Transactional
     public ResponseEntity<Void> cancel(@NotNull CancelMedicalAppointmentDTO dto) {
         MedicalAppointment medicalAppointment = findMedicalAppointmentByPatient.findByPatient(dto.ssn(), dto.dateTime());
-        medicalAppointment.setCancelationDateTime(LocalDateTime.now());
+        medicalAppointment.cancel();
         repository.save(medicalAppointment);
         return HttpStatusCodes.NO_CONTENT_204;
     }

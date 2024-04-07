@@ -29,10 +29,7 @@ public class ScheduleMedicalAppointmentService implements ScheduleMedicalAppoint
         Patient patient = findPatientBySsn.findBySsn(dto.ssn());
         Physician physician = findPhysicianByMln.findByMln(dto.mln());
         validateInput(patient, physician, dto.dateTime());
-        MedicalAppointment medicalAppointment = new MedicalAppointment();
-        medicalAppointment.setScheduledDateTime(dto.dateTime());
-        medicalAppointment.setPatient(patient);
-        medicalAppointment.setPhysician(physician);
+        MedicalAppointment medicalAppointment = new MedicalAppointment(dto.dateTime(), patient, physician);
         repository.save(medicalAppointment);
         return HttpStatusCodes.CREATED_201;
     }

@@ -11,7 +11,6 @@ import com.api.v1.medical_appointment.find.MedicalAppointmentNotFoundException;
 import com.api.v1.patient.Patient;
 import com.api.v1.patient.find_by_ssn.FindPatientBySsnService;
 
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +25,7 @@ public class FindMedicalAppointmentByPatientService implements FindMedicalAppoin
 
     @Override
     @Transactional
-    public MedicalAppointment findByPatient(@NotBlank @Size(min = 9, max = 9) String ssn, @NotNull Date dateTime) {
+    public MedicalAppointment findByPatient(@NotNull @Size(min = 9, max = 9) String ssn, @NotNull Date dateTime) {
         Patient patient = findPatientBySsn.findBySsn(ssn);
         validateInput(patient, dateTime);
         return repository.findMedicalAppointmentByPatient(patient, dateTime);

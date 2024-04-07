@@ -13,7 +13,6 @@ import com.api.v1.patient.find_by_ssn.FindPatientBySsnService;
 import com.api.v1.physician.Physician;
 import com.api.v1.physician.find_by_mln.FindPhysicianByMlnService;
 
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
@@ -29,8 +28,8 @@ public class FindMedicalAppointmentByDateService implements FindMedicalAppointme
     @Override
     @Transactional
     public MedicalAppointment findByDate(
-        @NotBlank @Size(min = 9, max = 9) String ssn,
-        @NotBlank @Size(min = 7, max = 7) String mln, 
+        @NotNull @Size(min = 9, max = 9) String ssn,
+        @NotNull @Size(min = 7, max = 7) String mln, 
         @NotNull Date dateTime
     ) {
         Patient patient = findPatientBySsn.findBySsn(ssn);

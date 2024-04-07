@@ -7,5 +7,5 @@ import jakarta.validation.constraints.Size;
 
 public interface FindPatientBySsn {
 
-	Patient findBySsn(@NotBlank @Size(min=9, max=9) String ssn);
+	Patient findBySsn(@NotNull @Size(min=9, max=9) String ssn);
 }

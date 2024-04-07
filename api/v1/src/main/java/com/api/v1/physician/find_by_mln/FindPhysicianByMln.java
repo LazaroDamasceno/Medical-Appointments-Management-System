@@ -7,6 +7,6 @@ import jakarta.validation.constraints.Size;
 
 public interface FindPhysicianByMln {
 
-	Physician findByMln(@NotBlank @Size(min=9, max=9) String mln);
+	Physician findByMln(@NotNull @Size(min=9, max=9) String mln);
 	
 }

@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.api.v1.patient.Patient;
 import com.api.v1.patient.PatientRepository;
 
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
 
@@ -18,7 +18,7 @@ public class FindPatientBySsnService implements FindPatientBySsn {
 	
 	@Override
 	@Transactional
-	public Patient findBySsn(@NotBlank @Size(min = 9, max = 9) String ssn) {
+	public Patient findBySsn(@NotNull @Size(min = 9, max = 9) String ssn) {
 		validateInput(ssn);
 		return repository.findPatientBySsn(ssn);
 	}

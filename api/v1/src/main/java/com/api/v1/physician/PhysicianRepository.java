@@ -8,12 +8,12 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public interface PhysicianRepository extends JpaRepository<Physician, UUID> {
 	
-	Optional<Physician> findByMln(@NotBlank @Size(min=9, max=9) String mln);
+	Optional<Physician> findByMln(@NotNull @Size(min=9, max=9) String mln);
 
 	@Modifying
 	@Transactional

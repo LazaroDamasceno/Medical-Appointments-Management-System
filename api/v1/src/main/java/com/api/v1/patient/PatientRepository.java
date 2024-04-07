@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public interface PatientRepository extends JpaRepository<Patient, UUID> {
@@ -17,7 +17,7 @@ public interface PatientRepository extends JpaRepository<Patient, UUID> {
 			select p from Patient p
 			where p.systemUser.ssn = :ssn
 	""")
-	Patient findPatientBySsn(@NotBlank @Size(min=9, max=9) @Param("ssn") String ssn);
+	Patient findPatientBySsn(@NotNull @Size(min=9, max=9) @Param("ssn") String ssn);
 
 	@Modifying
 	@Transactional

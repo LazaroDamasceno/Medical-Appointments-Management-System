@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.api.v1.physician.Physician;
 import com.api.v1.physician.PhysicianRepository;
 
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
 
@@ -18,7 +18,7 @@ public class FindPhysicianByMlnService implements FindPhysicianByMln {
 	
 	@Override
 	@Transactional(readOnly = true)
-	public Physician findByMln(@NotBlank @Size(min = 9, max = 9) String mln) {
+	public Physician findByMln(@NotNull @Size(min = 9, max = 9) String mln) {
 		validatedInput(mln);
 		return repository.findByMln(mln).get();
 	}

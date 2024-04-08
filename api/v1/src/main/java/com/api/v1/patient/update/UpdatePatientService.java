@@ -2,6 +2,7 @@ package com.api.v1.patient.update;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.api.v1.constants.HttpStatusCodes;
 import com.api.v1.patient.Patient;
@@ -19,6 +20,7 @@ public class UpdatePatientService implements UpdatePatient {
     private final FindPatientBySsn findPatientBySsn;
     
     @Override
+    @Transactional
     public ResponseEntity<Void> update(@NotNull UpdatePatientDTO dto) {
         Patient patient = findPatientBySsn.findBySsn(dto.ssn());
         patient.update(dto);

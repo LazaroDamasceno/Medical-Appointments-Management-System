@@ -3,12 +3,14 @@ package com.api.v1.medical_appointment.schedule;
 import java.util.Date;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.api.v1.constants.HttpStatusCodes;
 import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.MedicalAppointmentRepository;
 import com.api.v1.patient.Patient;
+import com.api.v1.patient.PatientRepository;
 import com.api.v1.patient.find_by_ssn.FindPatientBySsnService;
 import com.api.v1.physician.Physician;
 import com.api.v1.physician.find_by_mln.FindPhysicianByMlnService;
@@ -20,11 +22,13 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ScheduleMedicalAppointmentService implements ScheduleMedicalAppointment {
 
+    private final PatientRepository patientRepository;
     private final MedicalAppointmentRepository repository;
     private final FindPatientBySsnService findPatientBySsn;
     private final FindPhysicianByMlnService findPhysicianByMln;
     
     @Override
+    @Transactional
     public ResponseEntity<Void> schedule(@NotNull ScheduleMedicalAppointmentDTO dto) {
         Patient patient = findPatientBySsn.findBySsn(dto.ssn());
         Physician physician = findPhysicianByMln.findByMln(dto.mln());
@@ -35,8 +39,7 @@ public class ScheduleMedicalAppointmentService implements ScheduleMedicalAppoint
     }
 
     private void validateInput(Patient patient, Physician physician, Date dateTime) {
-        MedicalAppointment medicalAppointment = repository.findMedicalAppointmentByDate(patient, physician, dateTime);
-        if (medicalAppointment.getCancelationDateTime() == null) {
+        if (repository.findMedicalAppointmentByDate(patient, physician, dateTime) == null) {
             throw new DuplicatedMedicalAppointmentException(patient, physician, dateTime);
         }
     }

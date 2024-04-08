@@ -1,6 +1,7 @@
 package com.api.v1.medical_appointment.schedule;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +19,7 @@ public class ScheduleMedicalAppointmentController implements ScheduleMedicalAppo
 
     @Override
     @PostMapping
+    @Transactional
     public ResponseEntity<Void> schedule(@NotNull @RequestBody ScheduleMedicalAppointmentDTO dto) {
         return service.schedule(dto);
     }

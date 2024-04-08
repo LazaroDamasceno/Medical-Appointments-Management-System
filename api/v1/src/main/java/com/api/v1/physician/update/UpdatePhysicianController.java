@@ -1,6 +1,7 @@
 package com.api.v1.physician.update;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,7 @@ public class UpdatePhysicianController implements UpdatePhysician  {
     
     @Override
     @PutMapping
+    @Transactional
     public ResponseEntity<Void> update(@NotNull @RequestBody UpdatePhysicianDTO dto) {
         return service.update(dto);
     }

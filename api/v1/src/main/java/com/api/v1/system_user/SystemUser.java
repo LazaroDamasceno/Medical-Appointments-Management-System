@@ -37,7 +37,7 @@ public class SystemUser implements Serializable {
 	private String ssn;
 	
 	@Column(nullable = false)
-	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date birthDate;
 	
 	@Column(nullable = false)
@@ -53,6 +53,14 @@ public class SystemUser implements Serializable {
 		super();
 		this.fullName = dto.fullName();
 		this.ssn = dto.ssn();
+		this.birthDate = dto.birthDate();
+		this.email = dto.email();
+		this.phoneNumber = dto.phoneNumber();
+		this.gender = dto.gender();
+	}
+
+	public void update(UpdateSystemUserDTO dto) {
+		this.fullName = dto.fullName();
 		this.birthDate = dto.birthDate();
 		this.email = dto.email();
 		this.phoneNumber = dto.phoneNumber();

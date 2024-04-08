@@ -5,7 +5,9 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 import com.api.v1.physician.induct.InductPhysicianDTO;
+import com.api.v1.physician.update.UpdatePhysicianDTO;
 import com.api.v1.system_user.SystemUser;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -30,8 +32,10 @@ public class Physician implements Serializable {
 	@Column(nullable = false, unique = true)
 	private String mln;
 	
-	private LocalDateTime inductionDateTime = LocalDateTime.now();
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+	private final LocalDateTime inductionDateTime = LocalDateTime.now();
 	
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	private LocalDateTime terminationDateTime;
 	
 	@OneToOne(cascade = CascadeType.ALL)
@@ -42,6 +46,10 @@ public class Physician implements Serializable {
 		super();
 		this.mln = dto.mln();
 		this.systemUser = new SystemUser(dto.systemUserDTO());
+	}
+
+	public void update(UpdatePhysicianDTO dto) {
+		this.systemUser.update(dto.systemUserDTO());
 	}
 
 }

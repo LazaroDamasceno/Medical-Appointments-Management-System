@@ -10,7 +10,6 @@ import com.api.v1.constants.HttpStatusCodes;
 import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.MedicalAppointmentRepository;
 import com.api.v1.patient.Patient;
-import com.api.v1.patient.PatientRepository;
 import com.api.v1.patient.find_by_ssn.FindPatientBySsnService;
 import com.api.v1.physician.Physician;
 import com.api.v1.physician.find_by_mln.FindPhysicianByMlnService;
@@ -21,8 +20,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class ScheduleMedicalAppointmentService implements ScheduleMedicalAppointment {
-
-    private final PatientRepository patientRepository;
+    
     private final MedicalAppointmentRepository repository;
     private final FindPatientBySsnService findPatientBySsn;
     private final FindPhysicianByMlnService findPhysicianByMln;

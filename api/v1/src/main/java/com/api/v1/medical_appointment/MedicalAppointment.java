@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import com.api.v1.patient.Patient;
 import com.api.v1.physician.Physician;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.*;
@@ -38,11 +39,13 @@ public class MedicalAppointment implements Serializable {
 	private LocalDateTime finishingDateTime;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "patient_id")
+	@JoinColumn(name = "patientId")
+	@JsonBackReference
 	private Patient patient;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "physician_id")
+	@JsonBackReference
 	private Physician physician;
 
 	private String medicalNotes = "";

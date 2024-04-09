@@ -13,6 +13,7 @@ import com.api.v1.patient.Patient;
 import com.api.v1.patient.PatientRepository;
 import com.api.v1.patient.find_by_ssn.FindPatientBySsnService;
 import com.api.v1.physician.Physician;
+import com.api.v1.physician.PhysicianRepository;
 import com.api.v1.physician.find_by_mln.FindPhysicianByMlnService;
 
 import jakarta.validation.constraints.NotNull;
@@ -22,6 +23,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ScheduleMedicalAppointmentService implements ScheduleMedicalAppointment {
     
+    private final PhysicianRepository physicianRepository;
     private final PatientRepository patientRepository;
     private final MedicalAppointmentRepository medicalAppointmentRepository;
     private final FindPatientBySsnService findPatientBySsn;
@@ -35,8 +37,10 @@ public class ScheduleMedicalAppointmentService implements ScheduleMedicalAppoint
         validateInput(patient, physician, dto.dateTime());
         MedicalAppointment medicalAppointment = new MedicalAppointment(dto.dateTime(), patient, physician);
         medicalAppointmentRepository.save(medicalAppointment);
-        patient.getAppointmentList().add(medicalAppointment);
+        patient.addMedicalAppointment(medicalAppointment);
         patientRepository.save(patient);
+        physician.addMedicalAppointment(medicalAppointment);
+        physicianRepository.save(physician);
         return HttpStatusCodes.CREATED_201;
     }
 

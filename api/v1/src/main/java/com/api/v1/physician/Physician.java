@@ -59,4 +59,8 @@ public class Physician implements Serializable {
 		this.systemUser.update(dto.systemUserDTO());
 	}
 
+	public void addMedicalAppointment(MedicalAppointment medicalAppointment) {
+		appointmentList.add(medicalAppointment);
+	}
+
 }

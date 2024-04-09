@@ -57,5 +57,9 @@ public class Patient implements Serializable {
 		this.address = dto.address();
 		this.systemUser.update(dto.systemUserDTO());
 	}
+
+	public void addMedicalAppointment(MedicalAppointment medicalAppointment) {
+		appointmentList.add(medicalAppointment);
+	}
 	
 }

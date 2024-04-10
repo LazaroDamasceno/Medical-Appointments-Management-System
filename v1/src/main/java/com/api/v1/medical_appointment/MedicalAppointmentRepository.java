@@ -61,6 +61,12 @@ public interface MedicalAppointmentRepository extends JpaRepository<MedicalAppoi
 	""")
 	List<MedicalAppointment> findCanceledMedicalAppointments();
 
+	@Query("""
+		select ma from MedicalAppointment ma
+		where ma.finishingDateTime is not null
+	""")
+	List<MedicalAppointment> findFinishedMedicalAppointments();
+
 	@Modifying
 	@Transactional
 	@Query(value = "DROP TABLE IF EXISTS v1_medical_appointment", nativeQuery = true)

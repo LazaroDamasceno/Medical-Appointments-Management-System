@@ -2,6 +2,7 @@ package com.api.v1.physician.update;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("api/v1/physician")
 @RequiredArgsConstructor
+@CrossOrigin("http://localhost:5173/")
 public class UpdatePhysicianController implements UpdatePhysician  {
     
     private final UpdatePhysicianService service;

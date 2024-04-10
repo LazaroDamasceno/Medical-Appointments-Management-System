@@ -1,4 +1,4 @@
-package com.api.v1.medical_appointment.find.find_by_physician;
+package com.api.v1.medical_appointment.find_by.find_by_physician;
 
 import java.util.Date;
 

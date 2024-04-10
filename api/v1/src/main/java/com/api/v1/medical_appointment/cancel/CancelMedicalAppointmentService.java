@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.api.v1.constants.HttpStatusCodes;
 import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.MedicalAppointmentRepository;
-import com.api.v1.medical_appointment.find.find_by_patient.FindMedicalAppointmentByPatient;
+import com.api.v1.medical_appointment.find_by.find_by_patient.FindMedicalAppointmentByPatient;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;

@@ -20,16 +20,14 @@ public interface MedicalAppointmentRepository extends JpaRepository<MedicalAppoi
 			where ma.patient = :patient
 			and ma.scheduledDateTime = :dateTime
 	""")
-	MedicalAppointment findMedicalAppointmentByPatient(@Param("patient") Patient patient, 
-											                  @Param("dateTime") Date dateTime);
+	MedicalAppointment findMedicalAppointmentByPatient(@Param("patient") Patient patient, @Param("dateTime") Date dateTime);
 	
 	@Query("""
 			select ma from MedicalAppointment ma
 			where ma.physician = :physician
 			and ma.scheduledDateTime = :dateTime
 	""")
-	MedicalAppointment findMedicalAppointmentByPhysician(@Param("physician") Physician physician, 
-											                    @Param("dateTime") Date dateTime);
+	MedicalAppointment findMedicalAppointmentByPhysician(@Param("physician") Physician physician, @Param("dateTime") Date dateTime);
 	
 	@Query("""
 			select ma from MedicalAppointment ma
@@ -37,17 +35,14 @@ public interface MedicalAppointmentRepository extends JpaRepository<MedicalAppoi
 			and ma.patient = :patient
 			and ma.scheduledDateTime = :dateTime
 	""")
-	MedicalAppointment findMedicalAppointmentByDate(@Param("patient") Patient patient, 
-													@Param("physician") Physician physician, 
-													@Param("dateTime") Date dateTime);
+	MedicalAppointment findMedicalAppointmentByDate(@Param("patient") Patient patient, @Param("physician") Physician physician, @Param("dateTime") Date dateTime);
 	
 	@Query("""
 			select ma from MedicalAppointment ma
 			where ma.scheduledDateTime >= :firtstDateTime
 			and ma.scheduledDateTime <= :lastDateTime
 	""")
-	MedicalAppointment findMedicalAppointmentsBeetwenDates(@Param("firtstDateTime") Date firtstDateTime, 
-														   @Param("lastDateTime") Date lastDateTime);
+	MedicalAppointment findMedicalAppointmentsBeetwenDates(@Param("firtstDateTime") Date firtstDateTime, @Param("lastDateTime") Date lastDateTime);
 	
 	@Query("""
 			select ma from MedicalAppointment ma

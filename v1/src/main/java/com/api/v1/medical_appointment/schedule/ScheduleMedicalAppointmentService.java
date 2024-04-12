@@ -1,6 +1,6 @@
 package com.api.v1.medical_appointment.schedule;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,7 +44,7 @@ public class ScheduleMedicalAppointmentService implements ScheduleMedicalAppoint
         return HttpStatusCodes.CREATED_201;
     }
 
-    private void validateInput(Patient patient, Physician physician, Date dateTime) {
+    private void validateInput(Patient patient, Physician physician, LocalDateTime dateTime) {
         if (medicalAppointmentRepository.findMedicalAppointmentByDate(patient, physician, dateTime) == null) {
             throw new DuplicatedMedicalAppointmentException(patient, physician, dateTime);
         }

@@ -2,7 +2,6 @@ package com.api.v1.medical_appointment;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.UUID;
 
 import com.api.v1.patient.Patient;
@@ -30,7 +29,7 @@ public class MedicalAppointment implements Serializable {
 	
 	@Column(nullable = false)
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-	private Date scheduledDateTime;
+	private LocalDateTime scheduledDateTime;
 	
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	private LocalDateTime cancelationDateTime;
@@ -50,7 +49,7 @@ public class MedicalAppointment implements Serializable {
 
 	private String medicalNotes = "";
 
-	public MedicalAppointment(Date scheduledDateTime, Patient patient, Physician physician) {
+	public MedicalAppointment(LocalDateTime scheduledDateTime, Patient patient, Physician physician) {
 		this.scheduledDateTime = scheduledDateTime;
 		this.patient = patient;
 		this.physician = physician;

@@ -1,6 +1,6 @@
 package com.api.v1.medical_appointment.find_by.find_by_date;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import com.api.v1.medical_appointment.MedicalAppointment;
 
@@ -19,7 +19,7 @@ public interface FindMedicalAppointmentByDate {
         String mln, 
 
         @NotNull
-        Date dateTime
+        LocalDateTime dateTime
     );
 
 }

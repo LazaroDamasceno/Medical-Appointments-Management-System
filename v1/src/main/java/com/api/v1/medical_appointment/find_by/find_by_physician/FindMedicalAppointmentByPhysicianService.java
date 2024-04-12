@@ -1,6 +1,6 @@
 package com.api.v1.medical_appointment.find_by.find_by_physician;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,13 +24,13 @@ public class FindMedicalAppointmentByPhysicianService implements FindMedicalAppo
     
     @Override
     @Transactional
-    public MedicalAppointment findByPhysician(@NotNull @Size(min = 7, max = 7) String ssn, @NotNull Date dateTime) {
-        Physician physician = findPhysicianByMln.findByMln(ssn);
+    public MedicalAppointment findByPhysician(@NotNull @Size(min = 7, max = 7) String mln, @NotNull LocalDateTime dateTime) {
+        Physician physician = findPhysicianByMln.findByMln(mln);
         validateInput(physician, dateTime);
         return repository.findMedicalAppointmentByPhysician(null, dateTime);
     }
 
-    private void validateInput(Physician physician, Date date) {
+    private void validateInput(Physician physician, LocalDateTime date) {
         if (repository.findMedicalAppointmentByPhysician(physician, date) == null) {
             throw new MedicalAppointmentNotFoundException(physician, date);
         }

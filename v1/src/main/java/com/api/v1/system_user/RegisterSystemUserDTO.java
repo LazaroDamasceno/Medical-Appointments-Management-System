@@ -1,6 +1,6 @@
 package com.api.v1.system_user;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -16,7 +16,7 @@ public record RegisterSystemUserDTO(
 		String ssn,
 		
 		@NotNull
-		Date birthDate,
+		LocalDateTime birthDate,
 		
 		@NotBlank
 		@Email

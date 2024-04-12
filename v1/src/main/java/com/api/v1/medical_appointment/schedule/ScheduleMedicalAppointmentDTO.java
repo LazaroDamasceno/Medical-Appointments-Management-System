@@ -1,6 +1,6 @@
 package com.api.v1.medical_appointment.schedule;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
@@ -17,7 +17,7 @@ public record ScheduleMedicalAppointmentDTO(
 
     @NotNull
     @Future
-    Date dateTime
+    LocalDateTime dateTime
 ) {
     
 }

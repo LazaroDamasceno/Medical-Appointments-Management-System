@@ -2,6 +2,7 @@ package com.api.v1.medical_appointment.transfer;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.api.v1.constants.HttpStatusCodes;
 import com.api.v1.medical_appointment.MedicalAppointment;
@@ -22,6 +23,7 @@ public class TransferMedicalAppointmentService implements TransferMedicalAppoint
     private final FindMedicalAppointmentByPhysician findMedicalAppointmentByPhysician;
     
     @Override
+    @Transactional
     public ResponseEntity<Void> transfer(TransferMedicalAppointmentDTO dto) {
         Physician physician = findPhysicianByMln.findByMln(dto.mln());
         MedicalAppointment oldMedicalAppointment = findMedicalAppointmentByPhysician.findByPhysician(dto.mln(), dto.newMedicalAppointmentDate());

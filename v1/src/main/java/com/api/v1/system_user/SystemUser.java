@@ -2,7 +2,7 @@
 package com.api.v1.system_user;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -38,7 +38,7 @@ public class SystemUser implements Serializable {
 	
 	@Column(nullable = false)
 	@JsonFormat(pattern = "dd/MM/yyyy")
-	private LocalDateTime birthDate;
+	private LocalDate birthDate;
 	
 	@Column(nullable = false)
 	private String email;

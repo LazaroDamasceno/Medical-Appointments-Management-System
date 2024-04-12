@@ -20,7 +20,7 @@ public class FindScheduledMedicalAppointmentsService implements FindScheduledMed
     @Override
     @Transactional
     public ResponseEntity<List<MedicalAppointment>> findAllScheduled() {
-        return ResponseEntity.ok(repository.findAll());
+        return ResponseEntity.ok(repository.findScheduledMedicalAppointments());
     }
     
 }

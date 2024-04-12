@@ -27,7 +27,7 @@ public class FindMedicalAppointmentByPhysicianService implements FindMedicalAppo
     public MedicalAppointment findByPhysician(@NotNull @Size(min = 7, max = 7) String mln, @NotNull LocalDateTime dateTime) {
         Physician physician = findPhysicianByMln.findByMln(mln);
         validateInput(physician, dateTime);
-        return repository.findMedicalAppointmentByPhysician(null, dateTime);
+        return repository.findMedicalAppointmentByPhysician(physician, dateTime);
     }
 
     private void validateInput(Physician physician, LocalDateTime date) {

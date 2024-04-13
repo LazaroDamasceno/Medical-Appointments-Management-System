@@ -8,6 +8,7 @@ import com.api.v1.constants.HttpStatusCodes;
 import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.MedicalAppointmentRepository;
 import com.api.v1.medical_appointment.find_by.find_by_date.FindMedicalAppointmentByDate;
+import com.api.v1.medical_record.create_or_add.MedicalRecordCreateOrAdd;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,7 @@ public class AddMedicalNotesService implements AddMedicalNotes {
     
     private final MedicalAppointmentRepository repository;
     private final FindMedicalAppointmentByDate findMedicalAppointmentByDate;
+    private final MedicalRecordCreateOrAdd medicalRecordCreateOrAdd;
     
     @Override
     @Transactional
@@ -27,6 +29,7 @@ public class AddMedicalNotesService implements AddMedicalNotes {
         medicalAppointment.addMedicalNotes(dto.notes());
         medicalAppointment.finish();
         repository.save(medicalAppointment);
+        medicalRecordCreateOrAdd.createOrAdd(medicalAppointment.getPhysician(), medicalAppointment.getPatient(), medicalAppointment);
         return HttpStatusCodes.NO_CONTENT_204;
     }
 

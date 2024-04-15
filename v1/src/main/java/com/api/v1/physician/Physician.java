@@ -32,7 +32,7 @@ public class Physician implements Serializable {
 	private UUID id;
 	
 	@Column(nullable = false, unique = true)
-	private String physicanLicenseNumber;
+	private String physicianLicenseNumber ;
 	
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	private final LocalDateTime inductionDateTime = LocalDateTime.now();
@@ -50,7 +50,7 @@ public class Physician implements Serializable {
 
 	public Physician(InductPhysicianDTO dto) {
 		super();
-		this.physicanLicenseNumber = dto.physicanLicenseNumber();
+		this.physicianLicenseNumber = dto.physicanLicenseNumber();
 		this.systemUser = new SystemUser(dto.systemUserDTO());
 	}
 

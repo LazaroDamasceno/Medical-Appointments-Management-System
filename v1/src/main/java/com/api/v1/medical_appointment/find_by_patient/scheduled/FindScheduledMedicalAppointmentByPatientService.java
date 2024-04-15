@@ -9,8 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.find_by_patient.NoMedicalAppointmentFoundException;
-import com.api.v1.medical_appointment.internal_user.find_between_dates.FindMedicalAppointmentsBetweenDates;
-import com.api.v1.patient.Patient;
 import com.api.v1.patient.find_by_ssn.FindPatientBySsn;
 import com.api.v1.physician.Physician;
 import com.api.v1.physician.find_by_mln.FindPhysicianByLicenseNumber;
@@ -25,7 +23,6 @@ public class FindScheduledMedicalAppointmentByPatientService implements FindSche
 
     private final FindPatientBySsn findPatientBySsn;
     private final FindPhysicianByLicenseNumber findPhysicianByLicenseNumber;
-    private final FindMedicalAppointmentsBetweenDates findMedicalAppointmentsBetweenDates;
     
     @Override
     @Transactional(readOnly = true)
@@ -33,16 +30,16 @@ public class FindScheduledMedicalAppointmentByPatientService implements FindSche
                                                             @NotNull LocalDateTime firstDateTime, 
                                                             @NotNull LocalDateTime lastDateTime
     ) {
-        Patient patient = findPatientBySsn.findBySsn(ssn);
-        List<MedicalAppointment> medicalAppointments = findMedicalAppointmentsBetweenDates.findAll(firstDateTime, lastDateTime);
+        List<MedicalAppointment> medicalAppointments = findPatientBySsn.findBySsn(ssn).getAppointmentList();
         validateInput(medicalAppointments);
         return ResponseEntity.ok(
             medicalAppointments
-                .stream()
-                .filter(e -> e.getPatient().equals(patient) 
-                    && e.getCancelationDateTime() == null
-                    && e.getFinishingDateTime() == null
-                ).toList()
+            .stream()
+            .filter(e -> e.getCancelationDateTime() == null
+                && e.getFinishingDateTime() == null 
+                && e.getScheduledDateTime().isAfter(firstDateTime)
+                && e.getScheduledDateTime().isBefore(lastDateTime)
+            ).toList()
         );
     }
 
@@ -53,15 +50,18 @@ public class FindScheduledMedicalAppointmentByPatientService implements FindSche
                                                                     @NotNull LocalDateTime firstDateTime, 
                                                                     @NotNull LocalDateTime lastDateTime
     ) {
-        Patient patient = findPatientBySsn.findBySsn(ssn);
         Physician physician = findPhysicianByLicenseNumber.findByPhysicanLicenseNumber(physicianLicenseNumber);
-        List<MedicalAppointment> medicalAppointments = findMedicalAppointmentsBetweenDates.findAll(firstDateTime, lastDateTime);
+        List<MedicalAppointment> medicalAppointments = findPatientBySsn.findBySsn(ssn).getAppointmentList();
         validateInput(medicalAppointments);
         return ResponseEntity.ok(
             medicalAppointments
-                .stream()
-                .filter(e -> e.getPatient().equals(patient) && e.getPhysician().equals(physician))
-                .toList()
+            .stream()
+            .filter(e -> e.getCancelationDateTime() == null
+                && e.getFinishingDateTime() == null 
+                && e.getPhysician().equals(physician)
+                && e.getScheduledDateTime().isAfter(firstDateTime)
+                && e.getScheduledDateTime().isBefore(lastDateTime)
+            ).toList()
         );
     }
 

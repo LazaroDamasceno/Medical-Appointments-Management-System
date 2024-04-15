@@ -9,8 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.find_by_patient.NoMedicalAppointmentFoundException;
-import com.api.v1.medical_appointment.internal_user.find_between_dates.FindMedicalAppointmentsBetweenDates;
-import com.api.v1.patient.Patient;
 import com.api.v1.patient.find_by_ssn.FindPatientBySsn;
 
 import jakarta.validation.constraints.NotNull;
@@ -22,7 +20,6 @@ import lombok.RequiredArgsConstructor;
 public class FindCanceledMedicalAppointmentByPatientService implements FindCanceledMedicalAppointmentByPatient {
 
     private final FindPatientBySsn findPatientBySsn;
-    private final FindMedicalAppointmentsBetweenDates findMedicalAppointmentsBetweenDates;
 
     @Override
     @Transactional(readOnly = true)
@@ -30,16 +27,18 @@ public class FindCanceledMedicalAppointmentByPatientService implements FindCance
                                                             @NotNull LocalDateTime firstDateTime, 
                                                             @NotNull LocalDateTime lastDateTime
     ) {
-        Patient patient = findPatientBySsn.findBySsn(ssn);
-        List<MedicalAppointment> medicalAppointments = findMedicalAppointmentsBetweenDates.findAll(firstDateTime, lastDateTime);
-        if (medicalAppointments.isEmpty()) throw new NoMedicalAppointmentFoundException();
+        List<MedicalAppointment> medicalAppointments = findPatientBySsn.findBySsn(ssn).getAppointmentList();
+        validateInput(medicalAppointments);
         return ResponseEntity.ok(
             medicalAppointments
-                .stream()
-                .filter(e -> e.getPatient().equals(patient) 
-                    && e.getCancelationDateTime() != null
-                ).toList()
+            .stream()
+            .filter(e -> e.getCancelationDateTime() != null)
+            .toList()
         );
+    }
+
+    private void validateInput(List<MedicalAppointment> medicalAppointments) {
+        if (medicalAppointments.isEmpty()) throw new NoMedicalAppointmentFoundException();
     }
     
 }

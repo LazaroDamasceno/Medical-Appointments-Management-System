@@ -1,7 +1,6 @@
 package com.api.v1.medical_appointment;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -36,12 +35,5 @@ public interface MedicalAppointmentRepository extends JpaRepository<MedicalAppoi
 			and ma.scheduledDateTime = :dateTime
 	""")
 	Optional<MedicalAppointment> findScheduledMedicalAppointmentByDate(@Param("patient") Patient patient, @Param("physician") Physician physician, @Param("dateTime") LocalDateTime dateTime);
-	
-	@Query("""
-			select ma from MedicalAppointment ma
-			where ma.scheduledDateTime >= :firtstDateTime
-			and ma.scheduledDateTime <= :lastDateTime
-	""")
-	List<MedicalAppointment> findMedicalAppointmentsBeetwenDates(@Param("firtstDateTime") LocalDateTime firtstDateTime, @Param("lastDateTime") LocalDateTime lastDateTime);
 
 }

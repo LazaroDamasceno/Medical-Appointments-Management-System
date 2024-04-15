@@ -35,7 +35,7 @@ public class FindScheduledMedicalAppointmentByPatientController implements FindS
 
     @Override
     @Transactional(readOnly = true)
-    @GetMapping("and-by-physician/{ssn}/{firstDateTime}/{lastDateTime}")
+    @GetMapping("and-by-physician/{ssn}/{physicianLicenseNumber}/{firstDateTime}/{lastDateTime}")
     public ResponseEntity<List<MedicalAppointment>> findByPhysician(@NotNull @PathVariable @Size(min=9, max=9) String ssn, 
                                                                     @NotNull @PathVariable @Size(min=7, max=7) String physicianLicenseNumber,
                                                                     @NotNull @PathVariable LocalDateTime firstDateTime, 

@@ -27,11 +27,11 @@ public class FindMedicalAppointmentByPhysicianService implements FindMedicalAppo
     public MedicalAppointment findByPhysician(@NotNull @Size(min = 7, max = 7) String physicanLicenseNumber, @NotNull LocalDateTime dateTime) {
         Physician physician = findPhysicianByLicenseNumber.findByPhysicanLicenseNumber(physicanLicenseNumber);
         validateInput(physician, dateTime);
-        return repository.findMedicalAppointmentByPhysician(physician, dateTime);
+        return repository.findScheduledMedicalAppointmentByPhysician(physician, dateTime);
     }
 
     private void validateInput(Physician physician, LocalDateTime date) {
-        if (repository.findMedicalAppointmentByPhysician(physician, date) == null) {
+        if (repository.findScheduledMedicalAppointmentByPhysician(physician, date) == null) {
             throw new MedicalAppointmentNotFoundException(physician, date);
         }
     }

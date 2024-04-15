@@ -45,7 +45,7 @@ public class ScheduleMedicalAppointmentService implements ScheduleMedicalAppoint
     }
 
     private void validateInput(Patient patient, Physician physician, LocalDateTime dateTime) {
-        if (medicalAppointmentRepository.findMedicalAppointmentByDate(patient, physician, dateTime) != null) {
+        if (medicalAppointmentRepository.findScheduledMedicalAppointmentByDate(patient, physician, dateTime) != null) {
             throw new DuplicatedMedicalAppointmentException(patient, physician, dateTime);
         }
     }

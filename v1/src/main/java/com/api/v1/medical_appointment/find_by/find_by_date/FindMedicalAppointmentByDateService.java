@@ -35,11 +35,11 @@ public class FindMedicalAppointmentByDateService implements FindMedicalAppointme
         Patient patient = findPatientBySsn.findBySsn(ssn);
         Physician physician = findPhysicianByLicenseNumber.findByPhysicanLicenseNumber(physicanLicenseNumber);
         validateInput(patient, physician, dateTime);
-        return repository.findMedicalAppointmentByDate(patient, physician, dateTime);
+        return repository.findScheduledMedicalAppointmentByDate(patient, physician, dateTime);
     }
 
     private void validateInput(Patient patient, Physician physician, LocalDateTime date) {
-        if (repository.findMedicalAppointmentByDate(patient, physician, date) == null) {
+        if (repository.findScheduledMedicalAppointmentByDate(patient, physician, date) == null) {
             throw new MedicalAppointmentNotFoundException(patient, physician, date);
         }
     }

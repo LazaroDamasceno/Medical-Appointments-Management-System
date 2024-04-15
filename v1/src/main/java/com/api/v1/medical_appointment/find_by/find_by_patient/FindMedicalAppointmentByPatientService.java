@@ -28,11 +28,11 @@ public class FindMedicalAppointmentByPatientService implements FindMedicalAppoin
     public MedicalAppointment findByPatient(@NotNull @Size(min = 9, max = 9) String ssn, @NotNull LocalDateTime dateTime) {
         Patient patient = findPatientBySsn.findBySsn(ssn);
         validateInput(patient, dateTime);
-        return repository.findMedicalAppointmentByPatient(patient, dateTime);
+        return repository.findScheduledMedicalAppointmentByPatient(patient, dateTime);
     }
     
     private void validateInput(Patient patient, LocalDateTime date) {
-        if (repository.findMedicalAppointmentByPatient(patient, date) == null) {
+        if (repository.findScheduledMedicalAppointmentByPatient(patient, date) == null) {
             throw new MedicalAppointmentNotFoundException(patient, date);
         }
     }

@@ -17,15 +17,16 @@ public interface MedicalAppointmentRepository extends JpaRepository<MedicalAppoi
 			select ma from MedicalAppointment ma
 			where ma.patient = :patient
 			and ma.scheduledDateTime = :dateTime
+			and ma.finishingDateTime is null
 	""")
-	MedicalAppointment findMedicalAppointmentByPatient(@Param("patient") Patient patient, @Param("dateTime") LocalDateTime dateTime);
+	MedicalAppointment findScheduledMedicalAppointmentByPatient(@Param("patient") Patient patient, @Param("dateTime") LocalDateTime dateTime);
 	
 	@Query("""
 			select ma from MedicalAppointment ma
 			where ma.physician = :physician
 			and ma.scheduledDateTime = :dateTime
 	""")
-	MedicalAppointment findMedicalAppointmentByPhysician(@Param("physician") Physician physician, @Param("dateTime") LocalDateTime dateTime);
+	MedicalAppointment findScheduledMedicalAppointmentByPhysician(@Param("physician") Physician physician, @Param("dateTime") LocalDateTime dateTime);
 	
 	@Query("""
 			select ma from MedicalAppointment ma
@@ -33,14 +34,14 @@ public interface MedicalAppointmentRepository extends JpaRepository<MedicalAppoi
 			and ma.patient = :patient
 			and ma.scheduledDateTime = :dateTime
 	""")
-	MedicalAppointment findMedicalAppointmentByDate(@Param("patient") Patient patient, @Param("physician") Physician physician, @Param("dateTime") LocalDateTime dateTime);
+	MedicalAppointment findScheduledMedicalAppointmentByDate(@Param("patient") Patient patient, @Param("physician") Physician physician, @Param("dateTime") LocalDateTime dateTime);
 	
 	@Query("""
 			select ma from MedicalAppointment ma
 			where ma.scheduledDateTime >= :firtstDateTime
 			and ma.scheduledDateTime <= :lastDateTime
 	""")
-	MedicalAppointment findMedicalAppointmentsBeetwenDates(@Param("firtstDateTime") LocalDateTime firtstDateTime, @Param("lastDateTime") LocalDateTime lastDateTime);
+	MedicalAppointment findScheduledMedicalAppointmentsBeetwenDates(@Param("firtstDateTime") LocalDateTime firtstDateTime, @Param("lastDateTime") LocalDateTime lastDateTime);
 	
 	@Query("""
 			select ma from MedicalAppointment ma

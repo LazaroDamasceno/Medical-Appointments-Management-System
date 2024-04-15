@@ -9,7 +9,7 @@ import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.MedicalAppointmentRepository;
 import com.api.v1.medical_appointment.find_by.MedicalAppointmentNotFoundException;
 import com.api.v1.physician.Physician;
-import com.api.v1.physician.find_by_mln.FindPhysicianByMlnService;
+import com.api.v1.physician.find_by_mln.FindPhysicianByLicenseNumberService;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -20,12 +20,12 @@ import lombok.RequiredArgsConstructor;
 public class FindMedicalAppointmentByPhysicianService implements FindMedicalAppointmentByPhysician {
     
     private final MedicalAppointmentRepository repository;
-    private final FindPhysicianByMlnService findPhysicianByMln;
+    private final FindPhysicianByLicenseNumberService findPhysicianByLicenseNumber;
     
     @Override
     @Transactional(readOnly = true)
     public MedicalAppointment findByPhysician(@NotNull @Size(min = 7, max = 7) String physicanLicenseNumber, @NotNull LocalDateTime dateTime) {
-        Physician physician = findPhysicianByMln.findByMln(physicanLicenseNumber);
+        Physician physician = findPhysicianByLicenseNumber.findByPhysicanLicenseNumber(physicanLicenseNumber);
         validateInput(physician, dateTime);
         return repository.findMedicalAppointmentByPhysician(physician, dateTime);
     }

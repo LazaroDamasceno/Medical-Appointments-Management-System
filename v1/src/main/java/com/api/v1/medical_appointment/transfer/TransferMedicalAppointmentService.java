@@ -10,7 +10,7 @@ import com.api.v1.medical_appointment.MedicalAppointmentRepository;
 import com.api.v1.medical_appointment.find_by.find_by_physician.FindMedicalAppointmentByPhysician;
 import com.api.v1.patient.Patient;
 import com.api.v1.physician.Physician;
-import com.api.v1.physician.find_by_mln.FindPhysicianByMln;
+import com.api.v1.physician.find_by_mln.FindPhysicianByLicenseNumber;
 
 import lombok.RequiredArgsConstructor;
 
@@ -19,13 +19,13 @@ import lombok.RequiredArgsConstructor;
 public class TransferMedicalAppointmentService implements TransferMedicalAppointment {
     
     private final MedicalAppointmentRepository repository;
-    private final FindPhysicianByMln findPhysicianByMln;
+    private final FindPhysicianByLicenseNumber findPhysicianByLicenseNumber;
     private final FindMedicalAppointmentByPhysician findMedicalAppointmentByPhysician;
     
     @Override
     @Transactional
     public ResponseEntity<Void> transfer(TransferMedicalAppointmentDTO dto) {
-        Physician physician = findPhysicianByMln.findByMln(dto.physicanLicenseNumber());
+        Physician physician = findPhysicianByLicenseNumber.findByPhysicanLicenseNumber(dto.physicanLicenseNumber());
         MedicalAppointment oldMedicalAppointment = findMedicalAppointmentByPhysician.findByPhysician(dto.physicanLicenseNumber(), dto.oldMedicalAppointmentDate());
         Patient patient = oldMedicalAppointment.getPatient();
         System.out.println(patient);

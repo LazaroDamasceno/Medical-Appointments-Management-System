@@ -14,7 +14,7 @@ import com.api.v1.patient.PatientRepository;
 import com.api.v1.patient.find_by_ssn.FindPatientBySsnService;
 import com.api.v1.physician.Physician;
 import com.api.v1.physician.PhysicianRepository;
-import com.api.v1.physician.find_by_mln.FindPhysicianByMlnService;
+import com.api.v1.physician.find_by_mln.FindPhysicianByLicenseNumberService;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
@@ -27,13 +27,13 @@ public class ScheduleMedicalAppointmentService implements ScheduleMedicalAppoint
     private final PatientRepository patientRepository;
     private final MedicalAppointmentRepository medicalAppointmentRepository;
     private final FindPatientBySsnService findPatientBySsn;
-    private final FindPhysicianByMlnService findPhysicianByMln;
+    private final FindPhysicianByLicenseNumberService findPhysicianByLicenseNumber;
     
     @Override
     @Transactional
     public ResponseEntity<Void> schedule(@NotNull ScheduleMedicalAppointmentDTO dto) {
         Patient patient = findPatientBySsn.findBySsn(dto.ssn());
-        Physician physician = findPhysicianByMln.findByMln(dto.physicanLicenseNumber());
+        Physician physician = findPhysicianByLicenseNumber.findByPhysicanLicenseNumber(dto.physicanLicenseNumber());
         validateInput(patient, physician, dto.dateTime());
         MedicalAppointment medicalAppointment = new MedicalAppointment(dto.dateTime(), patient, physician);
         medicalAppointmentRepository.save(medicalAppointment);

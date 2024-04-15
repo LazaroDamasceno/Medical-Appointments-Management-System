@@ -18,7 +18,7 @@ public class FindPhysicianByLicenseNumberService implements FindPhysicianByLicen
 	
 	@Override
 	@Transactional(readOnly = true)
-	public Physician findByphysicanLicenseNumber(@NotNull @Size(min = 7, max = 7) String physicanLicenseNumber) {
+	public Physician findByPhysicanLicenseNumber(@NotNull @Size(min = 7, max = 7) String physicanLicenseNumber) {
 		validatedInput(physicanLicenseNumber);
 		return repository.findByPhysicianLicenseNumber(physicanLicenseNumber).get();
 	}

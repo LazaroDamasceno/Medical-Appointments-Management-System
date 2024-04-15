@@ -11,7 +11,7 @@ import com.api.v1.medical_appointment.find_by.MedicalAppointmentNotFoundExceptio
 import com.api.v1.patient.Patient;
 import com.api.v1.patient.find_by_ssn.FindPatientBySsnService;
 import com.api.v1.physician.Physician;
-import com.api.v1.physician.find_by_mln.FindPhysicianByMlnService;
+import com.api.v1.physician.find_by_mln.FindPhysicianByLicenseNumberService;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -23,7 +23,7 @@ public class FindMedicalAppointmentByDateService implements FindMedicalAppointme
 
     private final MedicalAppointmentRepository repository;
     private final FindPatientBySsnService findPatientBySsn;
-    private final FindPhysicianByMlnService findPhysicianByMln;
+    private final FindPhysicianByLicenseNumberService findPhysicianByLicenseNumber;
 
     @Override
     @Transactional(readOnly = true)
@@ -33,7 +33,7 @@ public class FindMedicalAppointmentByDateService implements FindMedicalAppointme
         @NotNull LocalDateTime dateTime
     ) {
         Patient patient = findPatientBySsn.findBySsn(ssn);
-        Physician physician = findPhysicianByMln.findByMln(physicanLicenseNumber);
+        Physician physician = findPhysicianByLicenseNumber.findByPhysicanLicenseNumber(physicanLicenseNumber);
         validateInput(patient, physician, dateTime);
         return repository.findMedicalAppointmentByDate(patient, physician, dateTime);
     }

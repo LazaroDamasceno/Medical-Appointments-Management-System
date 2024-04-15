@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.api.v1.constants.HttpStatusCodes;
 import com.api.v1.physician.Physician;
 import com.api.v1.physician.PhysicianRepository;
-import com.api.v1.physician.find_by_mln.FindPhysicianByMln;
+import com.api.v1.physician.find_by_mln.FindPhysicianByLicenseNumber;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
@@ -17,12 +17,12 @@ import lombok.RequiredArgsConstructor;
 public class UpdatePhysicianService implements UpdatePhysician {
     
     private final PhysicianRepository repository;
-    private final FindPhysicianByMln findPhysicianByMln;
+    private final FindPhysicianByLicenseNumber findPhysicianByLicenseNumber;
     
     @Override
     @Transactional
     public ResponseEntity<Void> update(@NotNull UpdatePhysicianDTO dto) {
-        Physician physician = findPhysicianByMln.findByMln(dto.physicanLicenseNumber());
+        Physician physician = findPhysicianByLicenseNumber.findByPhysicanLicenseNumber(dto.physicanLicenseNumber());
         physician.update(dto);
         repository.save(physician);
         return HttpStatusCodes.NO_CONTENT_204;

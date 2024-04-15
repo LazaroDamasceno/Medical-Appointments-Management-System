@@ -42,7 +42,7 @@ public interface MedicalAppointmentRepository extends JpaRepository<MedicalAppoi
 			where ma.scheduledDateTime >= :firtstDateTime
 			and ma.scheduledDateTime <= :lastDateTime
 	""")
-	Optional<MedicalAppointment> findScheduledMedicalAppointmentsBeetwenDates(@Param("firtstDateTime") LocalDateTime firtstDateTime, @Param("lastDateTime") LocalDateTime lastDateTime);
+	List<MedicalAppointment> findScheduledMedicalAppointmentsBeetwenDates(@Param("firtstDateTime") LocalDateTime firtstDateTime, @Param("lastDateTime") LocalDateTime lastDateTime);
 	
 	@Query("""
 			select ma from MedicalAppointment ma

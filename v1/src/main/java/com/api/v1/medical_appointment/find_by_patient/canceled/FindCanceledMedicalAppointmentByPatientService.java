@@ -1,5 +1,6 @@
 package com.api.v1.medical_appointment.find_by_patient.canceled;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -7,13 +8,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.api.v1.medical_appointment.MedicalAppointment;
-import com.api.v1.medical_appointment.find_by_patient.MedicalAppointmentInputDTO;
 import com.api.v1.medical_appointment.find_by_patient.NoMedicalAppointmentFoundException;
 import com.api.v1.medical_appointment.internal_user.find_between_dates.FindMedicalAppointmentsBetweenDates;
 import com.api.v1.patient.Patient;
 import com.api.v1.patient.find_by_ssn.FindPatientBySsn;
 
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -24,10 +25,13 @@ public class FindCanceledMedicalAppointmentByPatientService implements FindCance
     private final FindMedicalAppointmentsBetweenDates findMedicalAppointmentsBetweenDates;
 
     @Override
-    @Transactional
-    public ResponseEntity<List<MedicalAppointment>> findAll(@NotNull MedicalAppointmentInputDTO dto) {
-        Patient patient = findPatientBySsn.findBySsn(dto.ssn());
-        List<MedicalAppointment> medicalAppointments = findMedicalAppointmentsBetweenDates.findAll(dto.betweenDatesDTO());
+    @Transactional(readOnly = true)
+    public ResponseEntity<List<MedicalAppointment>> findAll(@NotNull @Size(min=9, max=9) String ssn, 
+                                                            @NotNull LocalDateTime firstDateTime, 
+                                                            @NotNull LocalDateTime lastDateTime
+    ) {
+        Patient patient = findPatientBySsn.findBySsn(ssn);
+        List<MedicalAppointment> medicalAppointments = findMedicalAppointmentsBetweenDates.findAll(firstDateTime, lastDateTime);
         if (medicalAppointments.isEmpty()) throw new NoMedicalAppointmentFoundException();
         return ResponseEntity.ok(
             medicalAppointments

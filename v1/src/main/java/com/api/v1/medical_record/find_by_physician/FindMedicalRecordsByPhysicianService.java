@@ -12,6 +12,7 @@ import com.api.v1.physician.Physician;
 import com.api.v1.physician.find_by_mln.FindPhysicianByLicenseNumber;
 
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -23,10 +24,10 @@ public class FindMedicalRecordsByPhysicianService implements FindMedicalRecordsB
 
     @Override
     @Transactional(readOnly = true)
-    public ResponseEntity<List<MedicalRecord>> findByPhysicianLicenseNumber(@NotNull PhysicianLicenseNumberDTO dto) {
-        Physician physician = findPhysicianByLicenseNumber.findByPhysicanLicenseNumber(dto.physicianLicenseNumber());
+    public ResponseEntity<List<MedicalRecord>> findByPhysicianLicenseNumber(@NotNull @Size(min=7, max=7) String physicianLicenseNumber) {
+        Physician physician = findPhysicianByLicenseNumber.findByPhysicanLicenseNumber(physicianLicenseNumber);
         List<MedicalRecord> medicalRecords = repository.findAll();
-        if (medicalRecords.isEmpty()) throw new NoMedicalRecordFoundException(dto.physicianLicenseNumber());
+        if (medicalRecords.isEmpty()) throw new NoMedicalRecordFoundException(physicianLicenseNumber);
         return ResponseEntity.ok(
             repository
                 .findAll()

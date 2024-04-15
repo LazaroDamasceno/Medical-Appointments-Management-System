@@ -1,19 +1,25 @@
 package com.api.v1.medical_appointment.find_by_patient.finished;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
 import com.api.v1.medical_appointment.MedicalAppointment;
-import com.api.v1.medical_appointment.find_by_patient.MedicalAppointmentInputDTO;
-import com.api.v1.medical_appointment.find_by_patient.MedicalAppointmentInputWithPhysicianDTO;
+
 
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 public interface FindFinishedMedicalAppointmentsByPatient {
     
-    ResponseEntity<List<MedicalAppointment>> find(@NotNull MedicalAppointmentInputDTO dto);
+    ResponseEntity<List<MedicalAppointment>> find(@NotNull @Size(min=9, max=9) String ssn, 
+                                                    @NotNull LocalDateTime firstDateTime, 
+                                                    @NotNull LocalDateTime lastDateTime);
 
-    ResponseEntity<List<MedicalAppointment>> findByPhysician(@NotNull MedicalAppointmentInputWithPhysicianDTO dto);
+    ResponseEntity<List<MedicalAppointment>> findByPhysician(@NotNull @Size(min=9, max=9) String ssn, 
+                                                            @NotNull @Size(min=7, max=7) String physicianLicenseNumber,
+                                                            @NotNull LocalDateTime firstDateTime, 
+                                                            @NotNull LocalDateTime lastDateTime);
 
 }

@@ -1,5 +1,6 @@
 package com.api.v1.medical_appointment.find_by_patient.scheduled;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -7,8 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.api.v1.medical_appointment.MedicalAppointment;
-import com.api.v1.medical_appointment.find_by_patient.MedicalAppointmentInputDTO;
-import com.api.v1.medical_appointment.find_by_patient.MedicalAppointmentInputWithPhysicianDTO;
 import com.api.v1.medical_appointment.find_by_patient.NoMedicalAppointmentFoundException;
 import com.api.v1.medical_appointment.internal_user.find_between_dates.FindMedicalAppointmentsBetweenDates;
 import com.api.v1.patient.Patient;
@@ -17,6 +16,7 @@ import com.api.v1.physician.Physician;
 import com.api.v1.physician.find_by_mln.FindPhysicianByLicenseNumber;
 
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -28,10 +28,13 @@ public class FindScheduledMedicalAppointmentByPatientService implements FindSche
     private final FindMedicalAppointmentsBetweenDates findMedicalAppointmentsBetweenDates;
     
     @Override
-    @Transactional
-    public ResponseEntity<List<MedicalAppointment>> find(@NotNull MedicalAppointmentInputDTO dto) {
-        Patient patient = findPatientBySsn.findBySsn(dto.ssn());
-        List<MedicalAppointment> medicalAppointments = findMedicalAppointmentsBetweenDates.findAll(dto.betweenDatesDTO());
+    @Transactional(readOnly = true)
+    public ResponseEntity<List<MedicalAppointment>> find(@NotNull @Size(min=9, max=9) String ssn, 
+                                                            @NotNull LocalDateTime firstDateTime, 
+                                                            @NotNull LocalDateTime lastDateTime
+    ) {
+        Patient patient = findPatientBySsn.findBySsn(ssn);
+        List<MedicalAppointment> medicalAppointments = findMedicalAppointmentsBetweenDates.findAll(firstDateTime, lastDateTime);
         validateInput(medicalAppointments);
         return ResponseEntity.ok(
             medicalAppointments
@@ -44,11 +47,15 @@ public class FindScheduledMedicalAppointmentByPatientService implements FindSche
     }
 
     @Override
-    @Transactional
-    public ResponseEntity<List<MedicalAppointment>> findByPhysician(@NotNull MedicalAppointmentInputWithPhysicianDTO dto) {
-        Patient patient = findPatientBySsn.findBySsn(dto.ssn());
-        Physician physician = findPhysicianByLicenseNumber.findByPhysicanLicenseNumber(dto.physicianLicenseNumber());
-        List<MedicalAppointment> medicalAppointments = findMedicalAppointmentsBetweenDates.findAll(dto.betweenDatesDTO());
+    @Transactional(readOnly = true)
+    public ResponseEntity<List<MedicalAppointment>> findByPhysician(@NotNull @Size(min=9, max=9) String ssn, 
+                                                                    @NotNull @Size(min=7, max=7) String physicianLicenseNumber,
+                                                                    @NotNull LocalDateTime firstDateTime, 
+                                                                    @NotNull LocalDateTime lastDateTime
+    ) {
+        Patient patient = findPatientBySsn.findBySsn(ssn);
+        Physician physician = findPhysicianByLicenseNumber.findByPhysicanLicenseNumber(physicianLicenseNumber);
+        List<MedicalAppointment> medicalAppointments = findMedicalAppointmentsBetweenDates.findAll(firstDateTime, lastDateTime);
         validateInput(medicalAppointments);
         return ResponseEntity.ok(
             medicalAppointments

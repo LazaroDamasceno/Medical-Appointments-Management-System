@@ -7,6 +7,6 @@ import jakarta.validation.constraints.Size;
 
 public interface FindPhysicianByLicenseNumber {
 
-	Physician findByPhysicanLicenseNumber(@NotNull @Size(min=9, max=9) String physicanLicenseNumber);
+	Physician findByPhysicanLicenseNumber(@NotNull @Size(min=7, max=7) String physicanLicenseNumber);
 	
 }

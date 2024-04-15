@@ -22,7 +22,7 @@ public class UpdatePhysicianService implements UpdatePhysician {
     @Override
     @Transactional
     public ResponseEntity<Void> update(@NotNull UpdatePhysicianDTO dto) {
-        Physician physician = findPhysicianByMln.findByMln(dto.mln());
+        Physician physician = findPhysicianByMln.findByMln(dto.physicanLicenseNumber());
         physician.update(dto);
         repository.save(physician);
         return HttpStatusCodes.NO_CONTENT_204;

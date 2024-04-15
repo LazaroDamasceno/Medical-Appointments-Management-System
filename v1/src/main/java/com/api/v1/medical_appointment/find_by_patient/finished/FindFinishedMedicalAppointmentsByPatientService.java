@@ -1,4 +1,4 @@
-package com.api.v1.medical_appointment.find_by_patient.scheduled;
+package com.api.v1.medical_appointment.find_by_patient.finished;
 
 import java.util.List;
 
@@ -21,24 +21,23 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class FindScheduledMedicalAppointmentByPatientService implements FindScheduledMedicalAppointmentByPatient {
+public class FindFinishedMedicalAppointmentsByPatientService implements FindFinishedMedicalAppointmentsByPatient {
 
+    private final FindMedicalAppointmentsBetweenDates findMedicalAppointmentsBetweenDates;
     private final FindPatientBySsn findPatientBySsn;
     private final FindPhysicianByLicenseNumber findPhysicianByLicenseNumber;
-    private final FindMedicalAppointmentsBetweenDates findMedicalAppointmentsBetweenDates;
-    
+
     @Override
     @Transactional
     public ResponseEntity<List<MedicalAppointment>> find(@NotNull MedicalAppointmentInputDTO dto) {
         Patient patient = findPatientBySsn.findBySsn(dto.ssn());
         List<MedicalAppointment> medicalAppointments = findMedicalAppointmentsBetweenDates.findAll(dto.betweenDatesDTO());
-        validateInput(medicalAppointments);
+        noMedicalAppointmentWasFound(medicalAppointments);
         return ResponseEntity.ok(
             medicalAppointments
                 .stream()
-                .filter(e -> e.getPatient().equals(patient) 
-                    && e.getCancelationDateTime() == null
-                    && e.getFinishingDateTime() == null
+                .filter(e -> e.getFinishingDateTime() != null 
+                    && e.getPatient().equals(patient)
                 ).toList()
         );
     }
@@ -49,17 +48,19 @@ public class FindScheduledMedicalAppointmentByPatientService implements FindSche
         Patient patient = findPatientBySsn.findBySsn(dto.ssn());
         Physician physician = findPhysicianByLicenseNumber.findByPhysicanLicenseNumber(dto.physicianLicenseNumber());
         List<MedicalAppointment> medicalAppointments = findMedicalAppointmentsBetweenDates.findAll(dto.betweenDatesDTO());
-        validateInput(medicalAppointments);
+        noMedicalAppointmentWasFound(medicalAppointments);
         return ResponseEntity.ok(
             medicalAppointments
                 .stream()
-                .filter(e -> e.getPatient().equals(patient) && e.getPhysician().equals(physician))
-                .toList()
+                .filter(e -> e.getFinishingDateTime() != null 
+                    && e.getPatient().equals(patient)
+                    && e.getPhysician().equals(physician)
+                ).toList()
         );
     }
 
-    private void validateInput(List<MedicalAppointment> list) {
-        if (list.isEmpty()) throw new NoMedicalAppointmentFoundException();
+    private void noMedicalAppointmentWasFound(List<MedicalAppointment> medicalAppointments) {
+        if (medicalAppointments.isEmpty()) throw new NoMedicalAppointmentFoundException();
     }
     
 }

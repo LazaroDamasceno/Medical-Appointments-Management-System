@@ -23,17 +23,17 @@ import lombok.RequiredArgsConstructor;
     @Transactional
     public void createOrAdd(Physician physician, Patient patient, MedicalAppointment medicalAppointment) {
         Optional<MedicalRecord> optional = repository.findByPatient(patient);
-        if (optional.isPresent()) add(patient, medicalAppointment);
-        else createAndAdd(physician, patient, medicalAppointment);
+        if (optional.isPresent()) addMedicalAppointment(patient, medicalAppointment);
+        else createMedicalRecordAndAddMedicalAppointment(physician, patient, medicalAppointment);
     }
 
-    private void add(Patient patient, MedicalAppointment medicalAppointment) {
+    private void addMedicalAppointment(Patient patient, MedicalAppointment medicalAppointment) {
         MedicalRecord medicalRecord = repository.findByPatient(patient).get();
         medicalRecord.addMedicalappointment(medicalAppointment);
         repository.save(medicalRecord);
     }
 
-    private void createAndAdd(Physician physician, Patient patient, MedicalAppointment medicalAppointment) {
+    private void createMedicalRecordAndAddMedicalAppointment(Physician physician, Patient patient, MedicalAppointment medicalAppointment) {
         MedicalRecord medicalRecord = new MedicalRecord(physician, patient);
         medicalRecord.addMedicalappointment(medicalAppointment);
         repository.save(medicalRecord);

@@ -1,4 +1,4 @@
-package com.api.v1.medical_appointment.find_by.find_by_physician;
+package com.api.v1.medical_appointment.find_for_internal_user.find_by_physician;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.MedicalAppointmentRepository;
-import com.api.v1.medical_appointment.find_by.MedicalAppointmentNotFoundException;
+import com.api.v1.medical_appointment.find_for_internal_user.MedicalAppointmentNotFoundException;
 import com.api.v1.physician.Physician;
 import com.api.v1.physician.find_by_mln.FindPhysicianByLicenseNumberService;
 

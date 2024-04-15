@@ -11,7 +11,7 @@ import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.find_by_patient.NoMedicalAppointmentFoundException;
 import com.api.v1.patient.find_by_ssn.FindPatientBySsn;
 import com.api.v1.physician.Physician;
-import com.api.v1.physician.find_by_mln.FindPhysicianByLicenseNumber;
+import com.api.v1.physician.internal_use.FindPhysicianByLicenseNumber;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;

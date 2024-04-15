@@ -10,7 +10,7 @@ import com.api.v1.medical_appointment.MedicalAppointmentRepository;
 import com.api.v1.medical_appointment.internal_user.find_by_physician.FindMedicalAppointmentByPhysician;
 import com.api.v1.patient.Patient;
 import com.api.v1.physician.Physician;
-import com.api.v1.physician.find_by_mln.FindPhysicianByLicenseNumber;
+import com.api.v1.physician.internal_use.FindPhysicianByLicenseNumber;
 
 import lombok.RequiredArgsConstructor;
 

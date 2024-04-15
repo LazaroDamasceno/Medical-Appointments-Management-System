@@ -14,7 +14,7 @@ import com.api.v1.patient.PatientRepository;
 import com.api.v1.patient.find_by_ssn.FindPatientBySsnService;
 import com.api.v1.physician.Physician;
 import com.api.v1.physician.PhysicianRepository;
-import com.api.v1.physician.find_by_mln.FindPhysicianByLicenseNumberService;
+import com.api.v1.physician.internal_use.FindPhysicianByLicenseNumberService;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;

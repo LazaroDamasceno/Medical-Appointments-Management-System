@@ -1,4 +1,4 @@
-package com.api.v1.physician.find_by_mln;
+package com.api.v1.physician.internal_use;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

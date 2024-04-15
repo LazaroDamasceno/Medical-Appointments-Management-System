@@ -1,4 +1,4 @@
-package com.api.v1.physician.find_by_mln;
+package com.api.v1.physician.internal_use;
 
 public class PhysicianNotFoundException extends  RuntimeException {
 

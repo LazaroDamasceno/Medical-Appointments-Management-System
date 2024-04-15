@@ -8,7 +8,7 @@ import com.api.v1.constants.HttpStatusCodes;
 import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.MedicalAppointmentRepository;
 import com.api.v1.medical_appointment.internal_user.find_by_date.FindMedicalAppointmentByDate;
-import com.api.v1.medical_record.create_or_add.MedicalRecordCreateOrAdd;
+import com.api.v1.medical_record.internal_usr.MedicalRecordCreateOrAdd;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;

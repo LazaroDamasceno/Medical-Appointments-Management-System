@@ -42,25 +42,6 @@ public interface MedicalAppointmentRepository extends JpaRepository<MedicalAppoi
 			where ma.scheduledDateTime >= :firtstDateTime
 			and ma.scheduledDateTime <= :lastDateTime
 	""")
-	List<MedicalAppointment> findScheduledMedicalAppointmentsBeetwenDates(@Param("firtstDateTime") LocalDateTime firtstDateTime, @Param("lastDateTime") LocalDateTime lastDateTime);
-	
-	@Query("""
-			select ma from MedicalAppointment ma
-			where ma.cancelationDateTime is null
-			and ma.finishingDateTime is null
-	""")
-	List<MedicalAppointment> findScheduledMedicalAppointments();
-	
-	@Query("""
-			select ma from MedicalAppointment ma
-			where ma.cancelationDateTime is not null
-	""")
-	List<MedicalAppointment> findCanceledMedicalAppointments();
-
-	@Query("""
-		select ma from MedicalAppointment ma
-		where ma.finishingDateTime is not null
-	""")
-	List<MedicalAppointment> findFinishedMedicalAppointments();
+	List<MedicalAppointment> findMedicalAppointmentsBeetwenDates(@Param("firtstDateTime") LocalDateTime firtstDateTime, @Param("lastDateTime") LocalDateTime lastDateTime);
 
 }

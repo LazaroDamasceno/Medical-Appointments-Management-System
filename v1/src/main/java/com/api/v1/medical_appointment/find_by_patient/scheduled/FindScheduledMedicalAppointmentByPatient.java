@@ -10,7 +10,7 @@ import com.api.v1.medical_appointment.find_by_patient.MedicalAppointmentInputWit
 
 import jakarta.validation.constraints.NotNull;
 
-public interface FindScheduledMedicalAppointment {
+public interface FindScheduledMedicalAppointmentByPatient {
 
     ResponseEntity<List<MedicalAppointment>> find(@NotNull MedicalAppointmentInputDTO dto);
 

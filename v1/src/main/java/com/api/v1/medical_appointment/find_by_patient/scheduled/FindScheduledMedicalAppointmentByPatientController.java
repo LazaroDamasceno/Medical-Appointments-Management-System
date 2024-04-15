@@ -19,9 +19,9 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("api/v1/medical-appointments/scheduled/by-patient")
 @RequiredArgsConstructor
-public class FindScheduledMedicalAppointmentController implements FindScheduledMedicalAppointment {
+public class FindScheduledMedicalAppointmentByPatientController implements FindScheduledMedicalAppointmentByPatient {
 
-    private final FindScheduledMedicalAppointmentService service;
+    private final FindScheduledMedicalAppointmentByPatientService service;
 
     @Override
     @GetMapping

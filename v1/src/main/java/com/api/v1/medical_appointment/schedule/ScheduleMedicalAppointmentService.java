@@ -33,7 +33,7 @@ public class ScheduleMedicalAppointmentService implements ScheduleMedicalAppoint
     @Transactional
     public ResponseEntity<Void> schedule(@NotNull ScheduleMedicalAppointmentDTO dto) {
         Patient patient = findPatientBySsn.findBySsn(dto.ssn());
-        Physician physician = findPhysicianByMln.findByMln(dto.mln());
+        Physician physician = findPhysicianByMln.findByMln(dto.physicanLicenseNumber());
         validateInput(patient, physician, dto.dateTime());
         MedicalAppointment medicalAppointment = new MedicalAppointment(dto.dateTime(), patient, physician);
         medicalAppointmentRepository.save(medicalAppointment);

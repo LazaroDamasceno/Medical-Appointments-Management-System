@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.api.v1.medical_appointment.MedicalAppointment;
-import com.api.v1.medical_appointment.find_by_patient.MedicalAppointmentInputWithoutPhysicianDTO;
+import com.api.v1.medical_appointment.find_by_patient.MedicalAppointmentInputDTO;
 import com.api.v1.medical_appointment.find_by_patient.MedicalAppointmentInputWithPhysicianDTO;
 import com.api.v1.medical_appointment.find_by_patient.NoMedicalAppointmentFoundException;
 import com.api.v1.medical_appointment.internal_user.find_between_dates.FindMedicalAppointmentsBetweenDates;
@@ -29,7 +29,7 @@ public class FindScheduledMedicalAppointmentService implements FindScheduledMedi
     
     @Override
     @Transactional
-    public ResponseEntity<List<MedicalAppointment>> find(@NotNull MedicalAppointmentInputWithoutPhysicianDTO dto) {
+    public ResponseEntity<List<MedicalAppointment>> find(@NotNull MedicalAppointmentInputDTO dto) {
         Patient patient = findPatientBySsn.findBySsn(dto.ssn());
         List<MedicalAppointment> medicalAppointments = findMedicalAppointmentsBetweenDates.findAll(dto.betweenDatesDTO());
         validateInput(medicalAppointments);

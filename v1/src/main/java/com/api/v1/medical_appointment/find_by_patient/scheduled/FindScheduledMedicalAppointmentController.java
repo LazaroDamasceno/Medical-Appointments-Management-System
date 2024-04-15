@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.v1.medical_appointment.MedicalAppointment;
-import com.api.v1.medical_appointment.find_by_patient.MedicalAppointmentInputWithoutPhysicianDTO;
+import com.api.v1.medical_appointment.find_by_patient.MedicalAppointmentInputDTO;
 import com.api.v1.medical_appointment.find_by_patient.MedicalAppointmentInputWithPhysicianDTO;
 
 import jakarta.validation.constraints.NotNull;
@@ -26,7 +26,7 @@ public class FindScheduledMedicalAppointmentController implements FindScheduledM
     @Override
     @GetMapping
     @Transactional
-    public ResponseEntity<List<MedicalAppointment>> find(@NotNull @RequestBody MedicalAppointmentInputWithoutPhysicianDTO dto) {
+    public ResponseEntity<List<MedicalAppointment>> find(@NotNull @RequestBody MedicalAppointmentInputDTO dto) {
         return service.find(dto);
     }
 

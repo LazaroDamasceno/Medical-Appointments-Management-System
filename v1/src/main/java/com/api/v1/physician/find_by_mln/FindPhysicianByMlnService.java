@@ -20,11 +20,11 @@ public class FindPhysicianByMlnService implements FindPhysicianByMln {
 	@Transactional(readOnly = true)
 	public Physician findByMln(@NotNull @Size(min = 7, max = 7) String physicanLicenseNumber) {
 		validatedInput(physicanLicenseNumber);
-		return repository.findByLicenseNumber(physicanLicenseNumber).get();
+		return repository.findByPhysicianLicenseNumber(physicanLicenseNumber).get();
 	}
 	
 	private void validatedInput(String physicanLicenseNumber) {
-		if (repository.findByLicenseNumber(physicanLicenseNumber).isEmpty()) throw new PhysicianNotFoundException(physicanLicenseNumber);
+		if (repository.findByPhysicianLicenseNumber(physicanLicenseNumber).isEmpty()) throw new PhysicianNotFoundException(physicanLicenseNumber);
 	}
 
 }

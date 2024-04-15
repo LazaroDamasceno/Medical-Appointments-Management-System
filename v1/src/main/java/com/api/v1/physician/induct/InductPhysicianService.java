@@ -27,7 +27,7 @@ public class InductPhysicianService implements InductPhysician {
 	}
 	
 	private void validateInput(String physicanLicenseNumber) {
-		if (repository.findByLicenseNumber(physicanLicenseNumber).isPresent()) {
+		if (repository.findByPhysicianLicenseNumber(physicanLicenseNumber).isPresent()) {
 			throw new DuplicatedPhysicianException(physicanLicenseNumber);
 		}
 	}

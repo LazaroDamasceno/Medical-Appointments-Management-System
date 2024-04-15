@@ -11,7 +11,7 @@ import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.MedicalAppointmentRepository;
 import com.api.v1.patient.Patient;
 import com.api.v1.patient.PatientRepository;
-import com.api.v1.patient.find_by_ssn.FindPatientBySsnService;
+import com.api.v1.patient.internal_use.FindPatientBySsnService;
 import com.api.v1.physician.Physician;
 import com.api.v1.physician.PhysicianRepository;
 import com.api.v1.physician.internal_use.FindPhysicianByLicenseNumberService;

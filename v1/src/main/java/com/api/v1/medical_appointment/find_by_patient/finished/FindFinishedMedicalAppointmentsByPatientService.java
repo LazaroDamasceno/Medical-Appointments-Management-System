@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.find_by_patient.NoMedicalAppointmentFoundException;
-import com.api.v1.patient.find_by_ssn.FindPatientBySsn;
+import com.api.v1.patient.internal_use.FindPatientBySsn;
 import com.api.v1.physician.Physician;
 import com.api.v1.physician.internal_use.FindPhysicianByLicenseNumber;
 

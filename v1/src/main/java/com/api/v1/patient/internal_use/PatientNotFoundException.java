@@ -1,4 +1,4 @@
-package com.api.v1.patient.find_by_ssn;
+package com.api.v1.patient.internal_use;
 
 public class PatientNotFoundException extends RuntimeException {
 

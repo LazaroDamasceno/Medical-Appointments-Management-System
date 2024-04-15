@@ -10,7 +10,7 @@ import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.MedicalAppointmentRepository;
 import com.api.v1.medical_appointment.internal_user.MedicalAppointmentNotFoundException;
 import com.api.v1.patient.Patient;
-import com.api.v1.patient.find_by_ssn.FindPatientBySsnService;
+import com.api.v1.patient.internal_use.FindPatientBySsnService;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;

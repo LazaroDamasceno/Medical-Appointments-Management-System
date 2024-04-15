@@ -9,6 +9,6 @@ import jakarta.validation.constraints.Size;
 
 public interface FindMedicalAppointmentByPhysician {
     
-    MedicalAppointment findByPhysician(@NotNull @Size(min=7, max=7) String mln, @NotNull LocalDateTime dateTime);
+    MedicalAppointment findByPhysician(@NotNull @Size(min=7, max=7) String physicanLicenseNumber, @NotNull LocalDateTime dateTime);
 
 }

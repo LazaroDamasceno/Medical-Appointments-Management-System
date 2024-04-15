@@ -24,8 +24,8 @@ public class TerminatePhysicianService implements TerminatePhysician {
 
 	@Override
 	@Transactional
-	public ResponseEntity<Void> terminate(@NotNull @Size(min = 7, max = 7) String mln) {
-		Physician physician = findPhysicianByMln.findByMln(mln);
+	public ResponseEntity<Void> terminate(@NotNull @Size(min = 7, max = 7) String physicanLicenseNumber) {
+		Physician physician = findPhysicianByMln.findByMln(physicanLicenseNumber);
 		LocalDateTime now = LocalDateTime.now();
 		physician.setTerminationDateTime(now);
 		repository.save(physician);

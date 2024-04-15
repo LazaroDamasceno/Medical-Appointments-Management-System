@@ -10,6 +10,6 @@ import jakarta.validation.constraints.Size;
 
 public interface PhysicianRepository extends JpaRepository<Physician, UUID> {
 	
-	Optional<Physician> findByMln(@NotNull @Size(min=9, max=9) String mln);
+	Optional<Physician> findByLicenseNumber(@NotNull @Size(min=9, max=9) String physicanLicenseNumber);
 
 }

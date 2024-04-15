@@ -21,8 +21,8 @@ public class TerminatePhysicianController implements TerminatePhysician {
 	@Override
 	@PatchMapping("{mln}")
 	@Transactional
-	public ResponseEntity<Void> terminate(@NotNull @Size(min = 7, max = 7) @PathVariable String mln) {
-		return service.terminate(mln);
+	public ResponseEntity<Void> terminate(@NotNull @Size(min = 7, max = 7) @PathVariable String physicanLicenseNumber) {
+		return service.terminate(physicanLicenseNumber);
 	}
 
 }

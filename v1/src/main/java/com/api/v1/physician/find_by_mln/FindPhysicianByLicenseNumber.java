@@ -5,8 +5,8 @@ import com.api.v1.physician.Physician;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-public interface FindPhysicianByMln {
+public interface FindPhysicianByLicenseNumber {
 
-	Physician findByMln(@NotNull @Size(min=9, max=9) String physicanLicenseNumber);
+	Physician findByphysicanLicenseNumber(@NotNull @Size(min=9, max=9) String physicanLicenseNumber);
 	
 }

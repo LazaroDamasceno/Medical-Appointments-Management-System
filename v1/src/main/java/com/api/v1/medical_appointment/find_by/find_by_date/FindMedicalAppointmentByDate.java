@@ -16,7 +16,7 @@ public interface FindMedicalAppointmentByDate {
 
         @NotNull 
         @Size(min=7, max=7)
-        String mln, 
+        String physicanLicenseNumber, 
 
         @NotNull
         LocalDateTime dateTime

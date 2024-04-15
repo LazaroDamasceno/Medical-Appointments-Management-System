@@ -31,9 +31,8 @@ public class Physician implements Serializable {
 	@GeneratedValue(strategy = GenerationType.UUID)
 	private UUID id;
 	
-	// MLN stands for medical license number
 	@Column(nullable = false, unique = true)
-	private String mln;
+	private String physicanLicenseNumber;
 	
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	private final LocalDateTime inductionDateTime = LocalDateTime.now();
@@ -51,7 +50,7 @@ public class Physician implements Serializable {
 
 	public Physician(InductPhysicianDTO dto) {
 		super();
-		this.mln = dto.mln();
+		this.physicanLicenseNumber = dto.physicanLicenseNumber();
 		this.systemUser = new SystemUser(dto.systemUserDTO());
 	}
 

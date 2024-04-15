@@ -7,6 +7,6 @@ import jakarta.validation.constraints.Size;
 
 public interface TerminatePhysician {
 
-	ResponseEntity<Void> terminate(@NotNull @Size(min=7, max=7) String mln);
+	ResponseEntity<Void> terminate(@NotNull @Size(min=7, max=7) String physicanLicenseNumber);
 	
 }

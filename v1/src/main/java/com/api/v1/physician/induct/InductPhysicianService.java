@@ -20,15 +20,15 @@ public class InductPhysicianService implements InductPhysician {
 	@Override
 	@Transactional
 	public ResponseEntity<Void> register(@NotNull InductPhysicianDTO dto) {
-		validateInput(dto.mln());
+		validateInput(dto.physicanLicenseNumber());
 		Physician physician = new Physician(dto);
 		repository.save(physician);
 		return HttpStatusCodes.CREATED_201;
 	}
 	
-	private void validateInput(String mln) {
-		if (repository.findByMln(mln).isPresent()) {
-			throw new DuplicatedPhysicianException(mln);
+	private void validateInput(String physicanLicenseNumber) {
+		if (repository.findByLicenseNumber(physicanLicenseNumber).isPresent()) {
+			throw new DuplicatedPhysicianException(physicanLicenseNumber);
 		}
 	}
 

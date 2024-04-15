@@ -12,13 +12,13 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class FindPhysicianByMlnService implements FindPhysicianByMln {
+public class FindPhysicianByLicenseNumberService implements FindPhysicianByLicenseNumber {
 
 	private final PhysicianRepository repository;
 	
 	@Override
 	@Transactional(readOnly = true)
-	public Physician findByMln(@NotNull @Size(min = 7, max = 7) String physicanLicenseNumber) {
+	public Physician findByphysicanLicenseNumber(@NotNull @Size(min = 7, max = 7) String physicanLicenseNumber) {
 		validatedInput(physicanLicenseNumber);
 		return repository.findByLicenseNumber(physicanLicenseNumber).get();
 	}

@@ -25,8 +25,8 @@ public class TransferMedicalAppointmentService implements TransferMedicalAppoint
     @Override
     @Transactional
     public ResponseEntity<Void> transfer(TransferMedicalAppointmentDTO dto) {
-        Physician physician = findPhysicianByMln.findByMln(dto.mln());
-        MedicalAppointment oldMedicalAppointment = findMedicalAppointmentByPhysician.findByPhysician(dto.mln(), dto.oldMedicalAppointmentDate());
+        Physician physician = findPhysicianByMln.findByMln(dto.physicanLicenseNumber());
+        MedicalAppointment oldMedicalAppointment = findMedicalAppointmentByPhysician.findByPhysician(dto.physicanLicenseNumber(), dto.oldMedicalAppointmentDate());
         Patient patient = oldMedicalAppointment.getPatient();
         System.out.println(patient);
         oldMedicalAppointment.cancel();

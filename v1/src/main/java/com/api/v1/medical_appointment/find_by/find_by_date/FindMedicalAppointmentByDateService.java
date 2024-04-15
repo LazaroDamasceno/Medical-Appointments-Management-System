@@ -29,11 +29,11 @@ public class FindMedicalAppointmentByDateService implements FindMedicalAppointme
     @Transactional(readOnly = true)
     public MedicalAppointment findByDate(
         @NotNull @Size(min = 9, max = 9) String ssn,
-        @NotNull @Size(min = 7, max = 7) String mln, 
+        @NotNull @Size(min = 7, max = 7) String physicanLicenseNumber, 
         @NotNull LocalDateTime dateTime
     ) {
         Patient patient = findPatientBySsn.findBySsn(ssn);
-        Physician physician = findPhysicianByMln.findByMln(mln);
+        Physician physician = findPhysicianByMln.findByMln(physicanLicenseNumber);
         validateInput(patient, physician, dateTime);
         return repository.findMedicalAppointmentByDate(patient, physician, dateTime);
     }

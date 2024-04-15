@@ -10,7 +10,7 @@ public class MedicalAppointmentNotFoundException extends RuntimeException {
     public MedicalAppointmentNotFoundException(Patient patient, Physician physician, LocalDateTime dateTime) {
         super("""
             Medical appointment whose patient's SSN is %s, physician's MLN iss %s and scheduled date is %s was not found.
-        """.formatted(patient.getSystemUser().getSsn(), physician.getMln(), dateTime));
+        """.formatted(patient.getSystemUser().getSsn(), physician.getPhysicanLicenseNumber(), dateTime));
     }
 
     public MedicalAppointmentNotFoundException(Patient patient, LocalDateTime dateTime) {
@@ -22,7 +22,7 @@ public class MedicalAppointmentNotFoundException extends RuntimeException {
     public MedicalAppointmentNotFoundException(Physician physician, LocalDateTime dateTime) {
         super("""
             Medical appointment whose physician's MLN is %s and scheduled date is %s was not found.
-        """.formatted(physician.getMln(), dateTime));
+        """.formatted(physician.getPhysicanLicenseNumber(), dateTime));
     }
     
 }

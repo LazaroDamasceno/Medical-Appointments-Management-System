@@ -4,8 +4,8 @@ public class DuplicatedPhysicianException extends RuntimeException {
 	
 	private static final long serialVersionUID = 1L;
 
-	public DuplicatedPhysicianException(String mln) {
-		super("Physician whose medical license number is %s is already persisted".formatted(mln));
+	public DuplicatedPhysicianException(String physicanLicenseNumber) {
+		super("Physician whose medical license number is %s is already persisted".formatted(physicanLicenseNumber));
 	}
 
 }

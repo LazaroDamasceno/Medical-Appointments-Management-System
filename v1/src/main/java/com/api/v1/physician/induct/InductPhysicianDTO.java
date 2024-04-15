@@ -8,7 +8,7 @@ import jakarta.validation.constraints.Size;
 public record InductPhysicianDTO(
 		@NotNull
 		@Size(min=7, max=7)
-		String mln,
+		String physicanLicenseNumber,
 	
 		@NotNull
 		RegisterSystemUserDTO systemUserDTO

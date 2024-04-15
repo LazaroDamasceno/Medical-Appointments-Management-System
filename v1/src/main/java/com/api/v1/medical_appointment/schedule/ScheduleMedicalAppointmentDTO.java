@@ -13,7 +13,7 @@ public record ScheduleMedicalAppointmentDTO(
 
     @NotNull
     @Size(min=7, max=7)
-    String mln,
+    String physicanLicenseNumber,
 
     @NotNull
     @Future

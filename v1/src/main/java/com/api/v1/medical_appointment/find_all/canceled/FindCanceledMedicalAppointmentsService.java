@@ -19,7 +19,7 @@ public class FindCanceledMedicalAppointmentsService implements FindCanceledMedic
     private final MedicalAppointmentRepository repository;
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public ResponseEntity<List<MedicalAppointment>> findAllCanceled() {
         List<MedicalAppointment> medicalAppointments = repository.findCanceledMedicalAppointments();
         if (medicalAppointments.isEmpty()) throw new NoMedicalAppointmentFoundException();

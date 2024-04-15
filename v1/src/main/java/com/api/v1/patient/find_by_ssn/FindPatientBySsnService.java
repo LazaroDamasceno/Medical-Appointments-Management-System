@@ -17,7 +17,7 @@ public class FindPatientBySsnService implements FindPatientBySsn {
 	private final PatientRepository repository;
 	
 	@Override
-	@Transactional
+	@Transactional(readOnly = true)
 	public Patient findBySsn(@NotNull @Size(min = 9, max = 9) String ssn) {
 		validateInput(ssn);
 		return repository.findPatientBySsn(ssn);

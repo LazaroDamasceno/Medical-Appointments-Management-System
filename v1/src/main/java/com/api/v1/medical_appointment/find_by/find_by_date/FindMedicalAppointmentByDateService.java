@@ -26,7 +26,7 @@ public class FindMedicalAppointmentByDateService implements FindMedicalAppointme
     private final FindPhysicianByMlnService findPhysicianByMln;
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public MedicalAppointment findByDate(
         @NotNull @Size(min = 9, max = 9) String ssn,
         @NotNull @Size(min = 7, max = 7) String mln, 

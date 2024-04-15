@@ -19,7 +19,7 @@ public class FindFinishedMedicalAppointmentsService implements FindFinishedMedic
     private final MedicalAppointmentRepository repository;
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public ResponseEntity<List<MedicalAppointment>> findAllFinished() {
         List<MedicalAppointment> medicalAppointments = repository.findFinishedMedicalAppointments();
         if (medicalAppointments.isEmpty()) throw new NoMedicalAppointmentFoundException();

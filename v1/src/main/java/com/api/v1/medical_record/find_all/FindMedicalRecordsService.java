@@ -18,7 +18,7 @@ public class FindMedicalRecordsService implements FindMedicalRecords {
     private final MedicalRecordRepository repository;
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public ResponseEntity<List<MedicalRecord>> findAll() {
         return ResponseEntity.ok(repository.findAll());
     }

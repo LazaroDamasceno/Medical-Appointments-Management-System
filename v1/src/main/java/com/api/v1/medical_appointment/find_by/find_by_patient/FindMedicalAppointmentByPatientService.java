@@ -24,7 +24,7 @@ public class FindMedicalAppointmentByPatientService implements FindMedicalAppoin
     private final FindPatientBySsnService findPatientBySsn;
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public MedicalAppointment findByPatient(@NotNull @Size(min = 9, max = 9) String ssn, @NotNull LocalDateTime dateTime) {
         Patient patient = findPatientBySsn.findBySsn(ssn);
         validateInput(patient, dateTime);

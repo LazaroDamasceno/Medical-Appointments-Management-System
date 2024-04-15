@@ -23,7 +23,7 @@ public class FindMedicalAppointmentByPhysicianService implements FindMedicalAppo
     private final FindPhysicianByMlnService findPhysicianByMln;
     
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public MedicalAppointment findByPhysician(@NotNull @Size(min = 7, max = 7) String mln, @NotNull LocalDateTime dateTime) {
         Physician physician = findPhysicianByMln.findByMln(mln);
         validateInput(physician, dateTime);

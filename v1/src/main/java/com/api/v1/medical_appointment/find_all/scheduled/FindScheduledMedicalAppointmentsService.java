@@ -19,7 +19,7 @@ public class FindScheduledMedicalAppointmentsService implements FindScheduledMed
     private final MedicalAppointmentRepository repository;
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public ResponseEntity<List<MedicalAppointment>> findAllScheduled() {
         List<MedicalAppointment> medicalAppointments = repository.findScheduledMedicalAppointments();
         if (medicalAppointments.isEmpty()) throw new NoMedicalAppointmentFoundException();

@@ -1,6 +1,7 @@
 package com.api.v1.medical_appointment.find_by.find_by_patient;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,14 +28,13 @@ public class FindMedicalAppointmentByPatientService implements FindMedicalAppoin
     @Transactional(readOnly = true)
     public MedicalAppointment findByPatient(@NotNull @Size(min = 9, max = 9) String ssn, @NotNull LocalDateTime dateTime) {
         Patient patient = findPatientBySsn.findBySsn(ssn);
-        validateInput(patient, dateTime);
-        return repository.findScheduledMedicalAppointmentByPatient(patient, dateTime);
+        Optional<MedicalAppointment> medicalAppointment = repository.findScheduledMedicalAppointmentByPatient(patient, dateTime);
+        validateInput(medicalAppointment);
+        return medicalAppointment.get();
     }
     
-    private void validateInput(Patient patient, LocalDateTime date) {
-        if (repository.findScheduledMedicalAppointmentByPatient(patient, date) == null) {
-            throw new MedicalAppointmentNotFoundException(patient, date);
-        }
+    private void validateInput(Optional<MedicalAppointment> optional) {
+        if (optional.isEmpty()) throw new MedicalAppointmentNotFoundException();
     }
 
 }

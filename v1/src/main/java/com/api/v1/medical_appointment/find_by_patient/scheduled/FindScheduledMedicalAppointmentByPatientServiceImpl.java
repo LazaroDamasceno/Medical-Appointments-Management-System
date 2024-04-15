@@ -35,8 +35,8 @@ public class FindScheduledMedicalAppointmentByPatientServiceImpl implements Find
             .stream()
             .filter(e -> e.getCancelationDateTime() == null
                 && e.getFinishingDateTime() == null 
-                && e.getScheduledDateTime().isAfter(firstDateTime)
-                && e.getScheduledDateTime().isBefore(lastDateTime)
+                && (e.getScheduledDateTime().isAfter(firstDateTime) || e.getScheduledDateTime().isEqual(firstDateTime))
+                && (e.getScheduledDateTime().isBefore(lastDateTime) || e.getScheduledDateTime().isEqual(firstDateTime))
             ).toList();
     }
 
@@ -55,8 +55,8 @@ public class FindScheduledMedicalAppointmentByPatientServiceImpl implements Find
             .filter(e -> e.getCancelationDateTime() == null
                 && e.getFinishingDateTime() == null 
                 && e.getPhysician().equals(physician)
-                && e.getScheduledDateTime().isAfter(firstDateTime)
-                && e.getScheduledDateTime().isBefore(lastDateTime)
+                && (e.getScheduledDateTime().isAfter(firstDateTime) || e.getScheduledDateTime().isEqual(firstDateTime))
+                && (e.getScheduledDateTime().isBefore(lastDateTime) || e.getScheduledDateTime().isEqual(firstDateTime))
             ).toList();
     }
 

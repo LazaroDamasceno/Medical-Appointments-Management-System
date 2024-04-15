@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.MedicalAppointmentRepository;
+import com.api.v1.medical_appointment.find_all.NoMedicalAppointmentFoundException;
 
 import lombok.RequiredArgsConstructor;
 
@@ -20,9 +21,9 @@ public class FindCanceledMedicalAppointmentsService implements FindCanceledMedic
     @Override
     @Transactional
     public ResponseEntity<List<MedicalAppointment>> findAllCanceled() {
-        return ResponseEntity.ok(
-            repository.findCanceledMedicalAppointments()
-        );
+        List<MedicalAppointment> medicalAppointments = repository.findCanceledMedicalAppointments();
+        if (medicalAppointments.isEmpty()) throw new NoMedicalAppointmentFoundException();
+        return ResponseEntity.ok(medicalAppointments);
     }
     
 }

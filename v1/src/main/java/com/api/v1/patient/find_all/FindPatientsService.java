@@ -20,7 +20,9 @@ public class FindPatientsService implements FindPatients {
 	@Override
 	@Transactional(readOnly = true)
 	public ResponseEntity<List<Patient>> findAll() {
-		return ResponseEntity.ok(repository.findAll());
+		List<Patient> patients = repository.findAll();
+		if (patients.isEmpty()) throw new NoPatientWasFoundException();
+		return ResponseEntity.ok(patients);
 	}
 	
 }

@@ -45,6 +45,7 @@ public interface MedicalAppointmentRepository extends JpaRepository<MedicalAppoi
 	@Query("""
 			select ma from MedicalAppointment ma
 			where ma.cancelationDateTime is null
+			and ma.finishingDateTime is null
 	""")
 	List<MedicalAppointment> findScheduledMedicalAppointments();
 	

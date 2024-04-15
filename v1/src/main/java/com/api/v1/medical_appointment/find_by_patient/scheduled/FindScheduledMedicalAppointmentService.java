@@ -10,7 +10,7 @@ import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.find_by_patient.MedicalAppointmentInputWithoutPhysicianDTO;
 import com.api.v1.medical_appointment.find_by_patient.MedicalAppointmentInputWithPhysicianDTO;
 import com.api.v1.medical_appointment.find_by_patient.NoMedicalAppointmentFoundException;
-import com.api.v1.medical_appointment.find_for_internal_user.find_between_dates.FindMedicalAppointmentsBetweenDates;
+import com.api.v1.medical_appointment.internal_user.find_between_dates.FindMedicalAppointmentsBetweenDates;
 import com.api.v1.patient.Patient;
 import com.api.v1.patient.find_by_ssn.FindPatientBySsn;
 import com.api.v1.physician.Physician;

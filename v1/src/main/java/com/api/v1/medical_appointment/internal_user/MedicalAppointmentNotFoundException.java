@@ -1,4 +1,4 @@
-package com.api.v1.medical_appointment.find_for_internal_user;
+package com.api.v1.medical_appointment.internal_user;
 
 public class MedicalAppointmentNotFoundException extends RuntimeException {
 

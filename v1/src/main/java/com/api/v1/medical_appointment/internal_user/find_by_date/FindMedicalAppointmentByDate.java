@@ -1,4 +1,4 @@
-package com.api.v1.medical_appointment.find_for_internal_user.find_by_date;
+package com.api.v1.medical_appointment.internal_user.find_by_date;
 
 import java.time.LocalDateTime;
 

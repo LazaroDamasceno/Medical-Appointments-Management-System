@@ -23,7 +23,7 @@ public class FindPhysiciansService implements FindPhysicians {
 	@Transactional(readOnly = true)
 	public ResponseEntity<List<Physician>> findAll() {
 		List<Physician> physicians = repository.findAll();
-		if (physicians.isEmpty()) throw new NoPhysicianWasFoundException();
+		if (physicians.isEmpty()) throw new NoPhysicianFoundException();
 		return ResponseEntity.ok(repository.findAll());
 	}
 	

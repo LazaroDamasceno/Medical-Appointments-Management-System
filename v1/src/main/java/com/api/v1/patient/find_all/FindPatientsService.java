@@ -21,7 +21,7 @@ public class FindPatientsService implements FindPatients {
 	@Transactional(readOnly = true)
 	public ResponseEntity<List<Patient>> findAll() {
 		List<Patient> patients = repository.findAll();
-		if (patients.isEmpty()) throw new NoPatientWasFoundException();
+		if (patients.isEmpty()) throw new NoPatienttFoundException();
 		return ResponseEntity.ok(patients);
 	}
 	

@@ -19,9 +19,9 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("api/v1/medical-appointments/finished/by-physician")
 @RequiredArgsConstructor
-public class FindFinishedMedicalAppointmentByPhysicianControllerImpl implements FindFinishedMedicalAppointmentByPhysicianController {
+public class FindFinishedMedicalAppointmentsByPhysicianControllerImpl implements FindFinishedMedicalAppointmentsByPhysicianController {
 
-    private final FindFinishedMedicalAppointmentByPhysicianService service;
+    private final FindFinishedMedicalAppointmentsByPhysicianService service;
 
     @Override
     @GetMapping("{physicianLicenseNumber}/{firstDateTime}/{lastDateTime}")

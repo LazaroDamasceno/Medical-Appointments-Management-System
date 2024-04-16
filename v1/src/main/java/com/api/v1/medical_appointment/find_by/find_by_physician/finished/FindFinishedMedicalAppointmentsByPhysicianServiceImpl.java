@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class FindFinishedMedicalAppointmentByPhysicianServiceImpl implements FindFinishedMedicalAppointmentByPhysicianService {
+public class FindFinishedMedicalAppointmentsByPhysicianServiceImpl implements FindFinishedMedicalAppointmentsByPhysicianService {
 
     private final FindPatientBySsn findPatientBySsn;
     private final FindPhysicianByLicenseNumber findPhysicianByLicenseNumber;

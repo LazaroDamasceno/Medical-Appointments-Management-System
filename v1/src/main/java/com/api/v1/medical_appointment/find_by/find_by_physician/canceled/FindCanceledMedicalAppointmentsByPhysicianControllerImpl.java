@@ -18,9 +18,9 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("api/v1/medical-appointments/canceled/by-physician")
 @RequiredArgsConstructor
-public class FindCanceledMedicalAppointmentByPhysicianControllerImpl implements FindCanceledMedicalAppointmentByPhysicianController {
+public class FindCanceledMedicalAppointmentsByPhysicianControllerImpl implements FindCanceledMedicalAppointmentsByPhysicianController {
 
-    private final FindCanceledMedicalAppointmentByPhysicianService service;
+    private final FindCanceledMedicalAppointmentsByPhysicianService service;
 
     @Override
     @Transactional(readOnly = true)

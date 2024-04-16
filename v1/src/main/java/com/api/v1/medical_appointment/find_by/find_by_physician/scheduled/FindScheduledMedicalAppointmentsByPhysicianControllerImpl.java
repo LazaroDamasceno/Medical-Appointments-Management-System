@@ -17,11 +17,11 @@ import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("api/v1/medical-appointment/scheduled/by-physician")
+@RequestMapping("api/v1/medical-appointments/scheduled/by-physician")
 @RequiredArgsConstructor
-public class FindScheduledMedicalAppointmentByPhysicianControllerImpl implements FindScheduledMedicalAppointmentByPhysicianController {
+public class FindScheduledMedicalAppointmentsByPhysicianControllerImpl implements FindScheduledMedicalAppointmentsByPhysicianController {
 
-    private final FindScheduledMedicalAppointmentByPhysicianService service;
+    private final FindScheduledMedicalAppointmentsByPhysicianService service;
 
     @Override
     @Transactional(readOnly = true)

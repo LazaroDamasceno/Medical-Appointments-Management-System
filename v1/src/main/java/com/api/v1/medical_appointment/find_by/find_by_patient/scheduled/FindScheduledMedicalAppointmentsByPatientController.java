@@ -10,7 +10,7 @@ import com.api.v1.medical_appointment.MedicalAppointment;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-public interface FindScheduledMedicalAppointmentByPatientController {
+public interface FindScheduledMedicalAppointmentsByPatientController {
 
     ResponseEntity<List<MedicalAppointment>> find(@NotNull @Size(min=9, max=9) String ssn, 
                                                     @NotNull LocalDateTime firstDateTime, 

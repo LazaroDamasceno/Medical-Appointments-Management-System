@@ -8,7 +8,7 @@ import com.api.v1.medical_appointment.MedicalAppointment;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-public interface FindFinishedMedicalAppointmentByPhysicianService {
+public interface FindFinishedMedicalAppointmentsByPhysicianService {
 
     List<MedicalAppointment> find(
         @NotNull @Size(min = 7, max = 7) String physicianLicenseNumber, 

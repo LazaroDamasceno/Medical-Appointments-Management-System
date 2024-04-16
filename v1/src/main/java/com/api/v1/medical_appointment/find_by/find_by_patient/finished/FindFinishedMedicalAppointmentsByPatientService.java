@@ -1,4 +1,4 @@
-package com.api.v1.medical_appointment.find_by_patient.finished;
+package com.api.v1.medical_appointment.find_by.find_by_patient.finished;
 
 import java.time.LocalDateTime;
 import java.util.List;

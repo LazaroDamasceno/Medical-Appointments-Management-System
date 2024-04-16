@@ -1,4 +1,4 @@
-package com.api.v1.medical_appointment.find_by_patient.finished;
+package com.api.v1.medical_appointment.find_by.find_by_patient.scheduled;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -17,25 +17,25 @@ import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("api/v1/medical-appointments/finished/by-patient")
+@RequestMapping("api/v1/medical-appointments/scheduled/by-patient")
 @RequiredArgsConstructor
-public class FindFinishedMedicalAppointmentsByPatientControllerImpl implements FindFinishedMedicalAppointmentsByPatientController {
+public class FindScheduledMedicalAppointmentByPatientControllerImpl implements FindScheduledMedicalAppointmentByPatientController {
 
-    private final FindFinishedMedicalAppointmentsByPatientService service;
+    private final FindScheduledMedicalAppointmentByPatientService service;
 
     @Override
-    @Transactional(readOnly = true)
     @GetMapping("{ssn}/{firstDateTime}/{lastDateTime}")
+    @Transactional(readOnly = true)
     public ResponseEntity<List<MedicalAppointment>> find(@NotNull @PathVariable @Size(min=9, max=9) String ssn, 
-                                                        @NotNull @PathVariable LocalDateTime firstDateTime, 
-                                                        @NotNull @PathVariable LocalDateTime lastDateTime
+                                                            @NotNull LocalDateTime firstDateTime, 
+                                                            @NotNull LocalDateTime lastDateTime
     ) {
         return ResponseEntity.ok(service.find(ssn, firstDateTime, lastDateTime));
     }
 
     @Override
     @Transactional(readOnly = true)
-    @GetMapping("/and-by-physician/{ssn}/{physicianLicenseNumber}/{firstDateTime}/{lastDateTime}")
+    @GetMapping("and-by-physician/{ssn}/{physicianLicenseNumber}/{firstDateTime}/{lastDateTime}")
     public ResponseEntity<List<MedicalAppointment>> findByPhysician(@NotNull @PathVariable @Size(min=9, max=9) String ssn, 
                                                                     @NotNull @PathVariable @Size(min=7, max=7) String physicianLicenseNumber,
                                                                     @NotNull @PathVariable LocalDateTime firstDateTime, 

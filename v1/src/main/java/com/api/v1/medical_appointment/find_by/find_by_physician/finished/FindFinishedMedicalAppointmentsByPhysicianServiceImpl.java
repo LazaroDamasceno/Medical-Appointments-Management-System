@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.api.v1.medical_appointment.MedicalAppointment;
-import com.api.v1.medical_appointment.find_by.NoMedicalAppointmentFoundException;
 import com.api.v1.patient.Patient;
 import com.api.v1.patient.internal_use.FindPatientBySsn;
 import com.api.v1.physician.internal_use.FindPhysicianByLicenseNumber;
@@ -30,11 +29,9 @@ public class FindFinishedMedicalAppointmentsByPhysicianServiceImpl implements Fi
             @NotNull LocalDateTime firstDateTime, 
             @NotNull LocalDateTime lastDateTime
      ) {
-        List<MedicalAppointment> medicalAppointments = findPhysicianByLicenseNumber
+        return findPhysicianByLicenseNumber
             .findByPhysicanLicenseNumber(physicianLicenseNumber)
-            .getAppointmentList();
-        validateInput(medicalAppointments);
-        return medicalAppointments
+            .getAppointmentList()
             .stream()
             .filter(e -> e.getFinishingDateTime() != null
                 && (e.getScheduledDateTime().isAfter(firstDateTime) || e.getScheduledDateTime().isEqual(firstDateTime))
@@ -52,11 +49,9 @@ public class FindFinishedMedicalAppointmentsByPhysicianServiceImpl implements Fi
             @NotNull LocalDateTime lastDateTime
     ) {
         Patient patient = findPatientBySsn.findBySsn(ssn);
-        List<MedicalAppointment> medicalAppointments = findPhysicianByLicenseNumber
+        return findPhysicianByLicenseNumber
             .findByPhysicanLicenseNumber(physicianLicenseNumber)
-            .getAppointmentList();
-        validateInput(medicalAppointments);
-        return medicalAppointments
+            .getAppointmentList()
             .stream()
             .filter(e -> e.getFinishingDateTime() != null
                 && e.getPatient().equals(patient)
@@ -65,8 +60,5 @@ public class FindFinishedMedicalAppointmentsByPhysicianServiceImpl implements Fi
             ).toList();
     }
 
-    private void validateInput(List<MedicalAppointment> medicalAppointments) {
-        if (medicalAppointments.isEmpty()) throw new NoMedicalAppointmentFoundException();
-    }
     
 }

@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.api.v1.medical_appointment.MedicalAppointment;
-import com.api.v1.medical_appointment.find_by.NoMedicalAppointmentFoundException;
 import com.api.v1.physician.internal_use.FindPhysicianByLicenseNumber;
 
 import jakarta.validation.constraints.NotNull;
@@ -22,18 +21,12 @@ public class FindCanceledMedicalAppointmentsByPhysicianServiceImpl implements Fi
     @Override
     @Transactional(readOnly = true)
     public List<MedicalAppointment> find(@NotNull @Size(min = 7, max = 7) String physicianLicenseNumber) {
-        List<MedicalAppointment> medicalAppointments = findPhysicianByLicenseNumber
+        return findPhysicianByLicenseNumber
             .findByPhysicanLicenseNumber(physicianLicenseNumber)
-            .getAppointmentList();
-        validateInput(medicalAppointments);
-        return medicalAppointments
+            .getAppointmentList()
             .stream()
             .filter(e -> e.getCancelationDateTime() != null)
             .toList();
-    }
-
-    private void validateInput(List<MedicalAppointment> medicalAppointments) {
-        if (medicalAppointments.isEmpty()) throw new NoMedicalAppointmentFoundException();
     }
     
 }

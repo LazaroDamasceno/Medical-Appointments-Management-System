@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.api.v1.medical_appointment.MedicalAppointment;
-import com.api.v1.medical_appointment.find_by.NoMedicalAppointmentFoundException;
 import com.api.v1.patient.internal_use.FindPatientBySsn;
 import com.api.v1.physician.Physician;
 import com.api.v1.physician.internal_use.FindPhysicianByLicenseNumber;
@@ -29,9 +28,9 @@ public class FindFinishedMedicalAppointmentsByPatientServiceImpl implements Find
                                         @NotNull LocalDateTime firstDateTime, 
                                         @NotNull LocalDateTime lastDateTime
     ) {
-        List<MedicalAppointment> medicalAppointments = findPatientBySsn.findBySsn(ssn).getAppointmentList();
-        validateInput(medicalAppointments);
-        return medicalAppointments
+        return findPatientBySsn.
+            findBySsn(ssn)
+            .getAppointmentList()
             .stream()
             .filter(e -> e.getFinishingDateTime() != null
                 && (e.getScheduledDateTime().isAfter(firstDateTime) || e.getScheduledDateTime().isEqual(firstDateTime))
@@ -47,19 +46,15 @@ public class FindFinishedMedicalAppointmentsByPatientServiceImpl implements Find
                                                     @NotNull LocalDateTime lastDateTime
     ) {
         Physician physician = findPhysicianByLicenseNumber.findByPhysicanLicenseNumber(physicianLicenseNumber);
-        List<MedicalAppointment> medicalAppointments = findPatientBySsn.findBySsn(ssn).getAppointmentList();
-        validateInput(medicalAppointments);
-        return medicalAppointments
+        return findPatientBySsn.
+            findBySsn(ssn)
+            .getAppointmentList()
             .stream()
             .filter(e -> e.getFinishingDateTime() != null
-            && (e.getScheduledDateTime().isAfter(firstDateTime) || e.getScheduledDateTime().isEqual(firstDateTime))
-            && (e.getScheduledDateTime().isBefore(lastDateTime) || e.getScheduledDateTime().isEqual(lastDateTime))
+                && (e.getScheduledDateTime().isAfter(firstDateTime) || e.getScheduledDateTime().isEqual(firstDateTime))
+                && (e.getScheduledDateTime().isBefore(lastDateTime) || e.getScheduledDateTime().isEqual(lastDateTime))
                 && e.getPhysician().equals(physician)
             ).toList();
-    }
-
-    private void validateInput(List<MedicalAppointment> list) {
-        if (list.isEmpty()) throw new NoMedicalAppointmentFoundException();
     }
     
 }

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.api.v1.medical_appointment.MedicalAppointment;
-import com.api.v1.medical_appointment.find_by.NoMedicalAppointmentFoundException;
 import com.api.v1.patient.internal_use.FindPatientBySsn;
 
 import jakarta.validation.constraints.NotNull;
@@ -26,16 +25,12 @@ public class FindCanceledMedicalAppointmentsByPatientServiceImpl implements Find
                                                             @NotNull LocalDateTime firstDateTime, 
                                                             @NotNull LocalDateTime lastDateTime
     ) {
-        List<MedicalAppointment> medicalAppointments = findPatientBySsn.findBySsn(ssn).getAppointmentList();
-        validateInput(medicalAppointments);
-        return medicalAppointments
+        return findPatientBySsn
+            .findBySsn(ssn)
+            .getAppointmentList()
             .stream()
             .filter(e -> e.getCancelationDateTime() != null)
             .toList();
-    }
-
-    private void validateInput(List<MedicalAppointment> medicalAppointments) {
-        if (medicalAppointments.isEmpty()) throw new NoMedicalAppointmentFoundException();
     }
     
 }

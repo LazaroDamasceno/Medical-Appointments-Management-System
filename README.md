@@ -9,7 +9,7 @@
 1. Open the CMD 
 2. Type `git clone https://github.com/LazaroDamasceno/Medical-Appointments-Management-API.git`
 3. Type `./mvnw clean spring-boot:run`
-4. Opean a web browser
+4. Open a web browser
 5. Search on the search bar `localhost:8080/swagger-ui/index.html`
 
 # API running

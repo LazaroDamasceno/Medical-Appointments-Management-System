@@ -35,7 +35,7 @@ public class FindFinishedMedicalAppointmentsByPatientServiceImpl implements Find
             .stream()
             .filter(e -> e.getFinishingDateTime() != null
                 && (e.getScheduledDateTime().isAfter(firstDateTime) || e.getScheduledDateTime().isEqual(firstDateTime))
-                && (e.getScheduledDateTime().isBefore(lastDateTime) || e.getScheduledDateTime().isEqual(firstDateTime))
+                && (e.getScheduledDateTime().isBefore(lastDateTime) || e.getScheduledDateTime().isEqual(lastDateTime))
             ).toList();
     }
 
@@ -53,7 +53,7 @@ public class FindFinishedMedicalAppointmentsByPatientServiceImpl implements Find
             .stream()
             .filter(e -> e.getFinishingDateTime() != null
             && (e.getScheduledDateTime().isAfter(firstDateTime) || e.getScheduledDateTime().isEqual(firstDateTime))
-            && (e.getScheduledDateTime().isBefore(lastDateTime) || e.getScheduledDateTime().isEqual(firstDateTime))
+            && (e.getScheduledDateTime().isBefore(lastDateTime) || e.getScheduledDateTime().isEqual(lastDateTime))
                 && e.getPhysician().equals(physician)
             ).toList();
     }

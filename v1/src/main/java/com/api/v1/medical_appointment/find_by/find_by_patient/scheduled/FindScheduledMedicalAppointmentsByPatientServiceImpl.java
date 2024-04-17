@@ -36,7 +36,7 @@ public class FindScheduledMedicalAppointmentsByPatientServiceImpl implements Fin
             .filter(e -> e.getCancelationDateTime() == null
                 && e.getFinishingDateTime() == null 
                 && (e.getScheduledDateTime().isAfter(firstDateTime) || e.getScheduledDateTime().isEqual(firstDateTime))
-                && (e.getScheduledDateTime().isBefore(lastDateTime) || e.getScheduledDateTime().isEqual(firstDateTime))
+                && (e.getScheduledDateTime().isBefore(lastDateTime) || e.getScheduledDateTime().isEqual(lastDateTime))
             ).toList();
     }
 
@@ -56,7 +56,7 @@ public class FindScheduledMedicalAppointmentsByPatientServiceImpl implements Fin
                 && e.getFinishingDateTime() == null 
                 && e.getPhysician().equals(physician)
                 && (e.getScheduledDateTime().isAfter(firstDateTime) || e.getScheduledDateTime().isEqual(firstDateTime))
-                && (e.getScheduledDateTime().isBefore(lastDateTime) || e.getScheduledDateTime().isEqual(firstDateTime))
+                && (e.getScheduledDateTime().isBefore(lastDateTime) || e.getScheduledDateTime().isEqual(lastDateTime))
             ).toList();
     }
 

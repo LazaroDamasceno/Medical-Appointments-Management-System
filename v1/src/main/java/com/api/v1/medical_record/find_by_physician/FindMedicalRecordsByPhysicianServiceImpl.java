@@ -25,8 +25,6 @@ public class FindMedicalRecordsByPhysicianServiceImpl implements FindMedicalReco
     @Transactional(readOnly = true)
     public List<MedicalRecord> findByPhysicianLicenseNumber(@NotNull @Size(min=7, max=7) String physicianLicenseNumber) {
         Physician physician = findPhysicianByLicenseNumber.findByPhysicanLicenseNumber(physicianLicenseNumber);
-        List<MedicalRecord> medicalRecords = repository.findAll();
-        if (medicalRecords.isEmpty()) throw new NoMedicalRecordFoundException(physicianLicenseNumber);
         return repository
                 .findAll()
                 .stream()

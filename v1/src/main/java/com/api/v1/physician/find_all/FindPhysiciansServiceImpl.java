@@ -20,9 +20,7 @@ public class FindPhysiciansServiceImpl implements FindPhysiciansService {
 	@Override
 	@Transactional(readOnly = true)
 	public List<Physician> findAll() {
-		List<Physician> physicians = repository.findAll();
-		if (physicians.isEmpty()) throw new NoPhysicianFoundException();
-		return physicians;
+		return repository.findAll();
 	}
 	
 }

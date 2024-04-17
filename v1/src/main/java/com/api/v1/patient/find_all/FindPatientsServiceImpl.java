@@ -19,9 +19,7 @@ public class FindPatientsServiceImpl implements FindPatientsService {
 	@Override
 	@Transactional(readOnly = true)
 	public List<Patient> findAll() {
-		List<Patient> patients = repository.findAll();
-		if (patients.isEmpty()) throw new NoPatienttFoundException();
-		return patients;
+		return repository.findAll();
 	}
 	
 }

@@ -38,7 +38,7 @@ public class FindScheduledMedicalAppointmentsByPhysicianServiceImpl implements F
             .filter(e -> e.getCancelationDateTime() == null
                 && e.getFinishingDateTime() == null
                 && (e.getScheduledDateTime().isAfter(firstDateTime) || e.getScheduledDateTime().isEqual(firstDateTime))
-                && (e.getScheduledDateTime().isAfter(lastDateTime) || e.getScheduledDateTime().isEqual(lastDateTime))
+                && (e.getScheduledDateTime().isBefore(lastDateTime) || e.getScheduledDateTime().isEqual(lastDateTime))
             )
             .toList();
     }

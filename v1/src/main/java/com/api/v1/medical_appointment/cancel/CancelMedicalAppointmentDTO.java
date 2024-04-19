@@ -1,7 +1,5 @@
 package com.api.v1.medical_appointment.cancel;
 
-import java.time.LocalDateTime;
-
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -12,7 +10,7 @@ public record CancelMedicalAppointmentDTO(
     String ssn,
 
     @NotNull
-    LocalDateTime dateTime
+    String dateTime
 ) {
     
 }

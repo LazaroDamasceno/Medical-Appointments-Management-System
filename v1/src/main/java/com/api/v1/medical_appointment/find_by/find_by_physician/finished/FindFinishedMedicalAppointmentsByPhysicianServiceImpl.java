@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.api.v1.auxiliary.DateTimeConverter;
 import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.patient.Patient;
 import com.api.v1.patient.internal_use.FindPatientBySsn;
@@ -26,16 +27,18 @@ public class FindFinishedMedicalAppointmentsByPhysicianServiceImpl implements Fi
     @Transactional(readOnly = true)
     public List<MedicalAppointment> find(
             @NotNull @Size(min = 7, max = 7) String physicianLicenseNumber,
-            @NotNull LocalDateTime firstDateTime, 
-            @NotNull LocalDateTime lastDateTime
+            @NotNull String firstDateTime, 
+            @NotNull String lastDateTime
      ) {
+        LocalDateTime ldt1 = DateTimeConverter.convert(firstDateTime);
+        LocalDateTime ldt2 = DateTimeConverter.convert(lastDateTime);
         return findPhysicianByLicenseNumber
             .findByPhysicanLicenseNumber(physicianLicenseNumber)
             .getAppointmentList()
             .stream()
             .filter(e -> e.getFinishingDateTime() != null
-                && (e.getScheduledDateTime().isAfter(firstDateTime) || e.getScheduledDateTime().isEqual(firstDateTime))
-                && (e.getScheduledDateTime().isBefore(lastDateTime) || e.getScheduledDateTime().isEqual(lastDateTime))
+                && (e.getScheduledDateTime().isAfter(ldt1) || e.getScheduledDateTime().isEqual(ldt1))
+                && (e.getScheduledDateTime().isBefore(ldt2) || e.getScheduledDateTime().isEqual(ldt2))
             ).toList();
 
     }
@@ -45,9 +48,11 @@ public class FindFinishedMedicalAppointmentsByPhysicianServiceImpl implements Fi
     public List<MedicalAppointment> findByPatient(
             @NotNull @Size(min = 7, max = 7) String physicianLicenseNumber,
             @NotNull @Size(min = 9, max = 9) String ssn, 
-            @NotNull LocalDateTime firstDateTime,
-            @NotNull LocalDateTime lastDateTime
+            @NotNull String firstDateTime,
+            @NotNull String lastDateTime
     ) {
+        LocalDateTime ldt1 = DateTimeConverter.convert(firstDateTime);
+        LocalDateTime ldt2 = DateTimeConverter.convert(lastDateTime);
         Patient patient = findPatientBySsn.findBySsn(ssn);
         return findPhysicianByLicenseNumber
             .findByPhysicanLicenseNumber(physicianLicenseNumber)
@@ -55,8 +60,8 @@ public class FindFinishedMedicalAppointmentsByPhysicianServiceImpl implements Fi
             .stream()
             .filter(e -> e.getFinishingDateTime() != null
                 && e.getPatient().equals(patient)
-                && (e.getScheduledDateTime().isAfter(firstDateTime) || e.getScheduledDateTime().isEqual(firstDateTime))
-                && (e.getScheduledDateTime().isAfter(lastDateTime) || e.getScheduledDateTime().isEqual(lastDateTime))
+                && (e.getScheduledDateTime().isAfter(ldt1) || e.getScheduledDateTime().isEqual(ldt1))
+                && (e.getScheduledDateTime().isBefore(ldt2) || e.getScheduledDateTime().isEqual(ldt2))
             ).toList();
     }
 

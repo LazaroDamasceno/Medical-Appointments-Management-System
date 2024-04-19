@@ -1,6 +1,5 @@
 package com.api.v1.medical_appointment.find_by.find_by_patient.canceled;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -21,10 +20,7 @@ public class FindCanceledMedicalAppointmentsByPatientServiceImpl implements Find
 
     @Override
     @Transactional(readOnly = true)
-    public List<MedicalAppointment> findAll(@NotNull @Size(min=9, max=9) String ssn, 
-                                                            @NotNull LocalDateTime firstDateTime, 
-                                                            @NotNull LocalDateTime lastDateTime
-    ) {
+    public List<MedicalAppointment> findAll(@NotNull @Size(min=9, max=9) String ssn) {
         return findPatientBySsn
             .findBySsn(ssn)
             .getAppointmentList()

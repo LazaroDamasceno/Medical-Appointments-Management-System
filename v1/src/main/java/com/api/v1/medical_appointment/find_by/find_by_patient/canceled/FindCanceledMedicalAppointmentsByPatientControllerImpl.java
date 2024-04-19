@@ -1,6 +1,5 @@
 package com.api.v1.medical_appointment.find_by.find_by_patient.canceled;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -26,11 +25,8 @@ public class FindCanceledMedicalAppointmentsByPatientControllerImpl implements F
     @Override
     @Transactional(readOnly = true)
     @GetMapping("{ssn}/{firstDateTime}/{lastDateTime}")
-    public ResponseEntity<List<MedicalAppointment>> findAll(@NotNull @PathVariable @Size(min=9, max=9) String ssn, 
-                                                            @NotNull @PathVariable  LocalDateTime firstDateTime, 
-                                                            @NotNull @PathVariable LocalDateTime lastDateTime
-    ) {
-        return ResponseEntity.ok(service.findAll(ssn, firstDateTime, lastDateTime));
+    public ResponseEntity<List<MedicalAppointment>> findAll(@NotNull @PathVariable @Size(min=9, max=9) String ssn) {
+        return ResponseEntity.ok(service.findAll(ssn));
     }
     
 }

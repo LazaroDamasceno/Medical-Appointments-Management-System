@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import com.api.v1.auxiliary.DateTimeConverter;
 import com.api.v1.patient.Patient;
 import com.api.v1.physician.Physician;
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -49,8 +50,8 @@ public class MedicalAppointment implements Serializable {
 
 	private String medicalNotes = "";
 
-	public MedicalAppointment(LocalDateTime scheduledDateTime, Patient patient, Physician physician) {
-		this.scheduledDateTime = scheduledDateTime;
+	public MedicalAppointment(String scheduledDateTime, Patient patient, Physician physician) {
+		this.scheduledDateTime = DateTimeConverter.convert(scheduledDateTime);
 		this.patient = patient;
 		this.physician = physician;
 	}

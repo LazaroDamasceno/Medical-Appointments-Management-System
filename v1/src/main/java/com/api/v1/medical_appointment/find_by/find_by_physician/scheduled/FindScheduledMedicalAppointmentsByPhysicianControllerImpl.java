@@ -1,6 +1,5 @@
 package com.api.v1.medical_appointment.find_by.find_by_physician.scheduled;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -27,8 +26,8 @@ public class FindScheduledMedicalAppointmentsByPhysicianControllerImpl implement
     @Transactional(readOnly = true)
     @GetMapping("{physicianLicenseNumber}/{firstDateTime}/{lastDateTime}")
     public ResponseEntity<List<MedicalAppointment>> find(@NotNull @PathVariable @Size(min = 7, max = 7) String physicianLicenseNumber,
-                                                        @NotNull @PathVariable LocalDateTime firstDateTime, 
-                                                        @NotNull @PathVariable LocalDateTime lastDateTime
+                                                        @NotNull @PathVariable String firstDateTime, 
+                                                        @NotNull @PathVariable String lastDateTime
     ) {
         return ResponseEntity.ok(service.find(physicianLicenseNumber, firstDateTime, lastDateTime));
     }
@@ -38,8 +37,8 @@ public class FindScheduledMedicalAppointmentsByPhysicianControllerImpl implement
     @GetMapping("and-by-patient/{physicianLicenseNumber}/{ssn}/{firstDateTime}/{lastDateTime}")
     public ResponseEntity<List<MedicalAppointment>> findByPatient(@NotNull @PathVariable @Size(min = 7, max = 7) String physicianLicenseNumber, 
                                                                 @NotNull @PathVariable @Size(min = 9, max = 9) String ssn,
-                                                                @NotNull @PathVariable LocalDateTime firstDateTime, 
-                                                                @NotNull @PathVariable LocalDateTime lastDateTime
+                                                                @NotNull @PathVariable String firstDateTime, 
+                                                                @NotNull @PathVariable String lastDateTime
     ) {
         return ResponseEntity.ok(service.findByPatient(physicianLicenseNumber, ssn, firstDateTime, lastDateTime));
     }

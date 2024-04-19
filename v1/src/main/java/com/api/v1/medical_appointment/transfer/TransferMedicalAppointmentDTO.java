@@ -1,7 +1,5 @@
 package com.api.v1.medical_appointment.transfer;
 
-import java.time.LocalDateTime;
-
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -12,10 +10,10 @@ public record TransferMedicalAppointmentDTO(
     String physicanLicenseNumber,
 
     @NotNull
-    LocalDateTime oldMedicalAppointmentDate,
+    String oldMedicalAppointmentDate,
 
     @NotNull
-    LocalDateTime newMedicalAppointmentDate
+    String newMedicalAppointmentDate
 ) {
     
 }

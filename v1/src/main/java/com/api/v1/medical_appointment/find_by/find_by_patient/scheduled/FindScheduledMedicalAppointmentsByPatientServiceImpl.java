@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.api.v1.auxiliary.DateTimeConverter;
 import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.patient.internal_use.FindPatientBySsn;
 import com.api.v1.physician.Physician;
@@ -25,17 +26,19 @@ public class FindScheduledMedicalAppointmentsByPatientServiceImpl implements Fin
     @Override
     @Transactional(readOnly = true)
     public List<MedicalAppointment> find(@NotNull @Size(min=9, max=9) String ssn, 
-                                                            @NotNull LocalDateTime firstDateTime, 
-                                                            @NotNull LocalDateTime lastDateTime
+                                                            @NotNull String firstDateTime, 
+                                                            @NotNull String lastDateTime
     ) {
+        LocalDateTime ldt1 = DateTimeConverter.convert(firstDateTime);
+        LocalDateTime ldt2 = DateTimeConverter.convert(lastDateTime);
         return findPatientBySsn
             .findBySsn(ssn)
             .getAppointmentList()
             .stream()
             .filter(e -> e.getCancelationDateTime() == null
                 && e.getFinishingDateTime() == null 
-                && (e.getScheduledDateTime().isAfter(firstDateTime) || e.getScheduledDateTime().isEqual(firstDateTime))
-                && (e.getScheduledDateTime().isBefore(lastDateTime) || e.getScheduledDateTime().isEqual(lastDateTime))
+                && (e.getScheduledDateTime().isAfter(ldt1) || e.getScheduledDateTime().isEqual(ldt1))
+                && (e.getScheduledDateTime().isBefore(ldt2) || e.getScheduledDateTime().isEqual(ldt2))
             ).toList();
     }
 
@@ -43,9 +46,11 @@ public class FindScheduledMedicalAppointmentsByPatientServiceImpl implements Fin
     @Transactional(readOnly = true)
     public List<MedicalAppointment> findByPhysician(@NotNull @Size(min=9, max=9) String ssn, 
                                                                     @NotNull @Size(min=7, max=7) String physicianLicenseNumber,
-                                                                    @NotNull LocalDateTime firstDateTime, 
-                                                                    @NotNull LocalDateTime lastDateTime
+                                                                    @NotNull String firstDateTime, 
+                                                                    @NotNull String lastDateTime
     ) {
+        LocalDateTime ldt1 = DateTimeConverter.convert(firstDateTime);
+        LocalDateTime ldt2 = DateTimeConverter.convert(lastDateTime);
         Physician physician = findPhysicianByLicenseNumber.findByPhysicanLicenseNumber(physicianLicenseNumber);
         return findPatientBySsn
             .findBySsn(ssn)
@@ -54,8 +59,8 @@ public class FindScheduledMedicalAppointmentsByPatientServiceImpl implements Fin
             .filter(e -> e.getCancelationDateTime() == null
                 && e.getFinishingDateTime() == null 
                 && e.getPhysician().equals(physician)
-                && (e.getScheduledDateTime().isAfter(firstDateTime) || e.getScheduledDateTime().isEqual(firstDateTime))
-                && (e.getScheduledDateTime().isBefore(lastDateTime) || e.getScheduledDateTime().isEqual(lastDateTime))
+                && (e.getScheduledDateTime().isAfter(ldt1) || e.getScheduledDateTime().isEqual(ldt1))
+                && (e.getScheduledDateTime().isBefore(ldt2) || e.getScheduledDateTime().isEqual(ldt2))
             ).toList();
     }
 

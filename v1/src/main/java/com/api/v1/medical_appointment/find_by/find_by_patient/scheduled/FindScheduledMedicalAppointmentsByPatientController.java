@@ -1,6 +1,5 @@
 package com.api.v1.medical_appointment.find_by.find_by_patient.scheduled;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -13,13 +12,13 @@ import jakarta.validation.constraints.Size;
 public interface FindScheduledMedicalAppointmentsByPatientController {
 
     ResponseEntity<List<MedicalAppointment>> find(@NotNull @Size(min=9, max=9) String ssn, 
-                                                    @NotNull LocalDateTime firstDateTime, 
-                                                    @NotNull LocalDateTime lastDateTime);
+                                                    @NotNull String firstDateTime, 
+                                                    @NotNull String lastDateTime);
 
     ResponseEntity<List<MedicalAppointment>> find(@NotNull @Size(min=9, max=9) String ssn);
 
     ResponseEntity<List<MedicalAppointment>> findByPhysician(@NotNull @Size(min=9, max=9) String ssn, 
                                                                 @NotNull @Size(min=7, max=7) String physicianLicenseNumber,
-                                                                @NotNull LocalDateTime firstDateTime, 
-                                                                @NotNull LocalDateTime lastDateTime);
+                                                                @NotNull String firstDateTime, 
+                                                                @NotNull String lastDateTime);
 }

@@ -3,6 +3,7 @@ package com.api.v1.medical_appointment.transfer;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.api.v1.auxiliary.DateTimeConverter;
 import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.MedicalAppointmentRepository;
 import com.api.v1.medical_appointment.internal_user.find_by_physician.FindMedicalAppointmentByPhysician;
@@ -25,7 +26,10 @@ public class TransferMedicalAppointmentServiceImpl implements TransferMedicalApp
     @Transactional
     public void transfer(@NotNull TransferMedicalAppointmentDTO dto) {
         Physician physician = findPhysicianByLicenseNumber.findByPhysicanLicenseNumber(dto.physicanLicenseNumber());
-        MedicalAppointment oldMedicalAppointment = findMedicalAppointmentByPhysician.findByPhysician(dto.physicanLicenseNumber(), dto.oldMedicalAppointmentDate());
+        MedicalAppointment oldMedicalAppointment = findMedicalAppointmentByPhysician.findByPhysician(
+            dto.physicanLicenseNumber(), 
+            DateTimeConverter.convert(dto.oldMedicalAppointmentDate())
+        );
         Patient patient = oldMedicalAppointment.getPatient();
         System.out.println(patient);
         oldMedicalAppointment.cancel();

@@ -1,7 +1,5 @@
 package com.api.v1.medical_appointment.add_medical_notes;
 
-import java.time.LocalDateTime;
-
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.NotNull;
@@ -16,7 +14,7 @@ public record MedicalNotesDTO(
     String physicanLicenseNumber,
 
     @NotNull
-    LocalDateTime dateTime,
+    String dateTime,
 
     @NotBlank
     String notes

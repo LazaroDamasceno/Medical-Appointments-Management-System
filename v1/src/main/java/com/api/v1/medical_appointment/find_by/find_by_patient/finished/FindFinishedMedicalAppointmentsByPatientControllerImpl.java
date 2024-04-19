@@ -1,6 +1,5 @@
 package com.api.v1.medical_appointment.find_by.find_by_patient.finished;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -27,8 +26,8 @@ public class FindFinishedMedicalAppointmentsByPatientControllerImpl implements F
     @Transactional(readOnly = true)
     @GetMapping("{ssn}/{firstDateTime}/{lastDateTime}")
     public ResponseEntity<List<MedicalAppointment>> find(@NotNull @PathVariable @Size(min=9, max=9) String ssn, 
-                                                        @NotNull @PathVariable LocalDateTime firstDateTime, 
-                                                        @NotNull @PathVariable LocalDateTime lastDateTime
+                                                        @NotNull @PathVariable String firstDateTime, 
+                                                        @NotNull @PathVariable String lastDateTime
     ) {
         return ResponseEntity.ok(service.find(ssn, firstDateTime, lastDateTime));
     }
@@ -38,8 +37,8 @@ public class FindFinishedMedicalAppointmentsByPatientControllerImpl implements F
     @GetMapping("/and-by-physician/{ssn}/{physicianLicenseNumber}/{firstDateTime}/{lastDateTime}")
     public ResponseEntity<List<MedicalAppointment>> findByPhysician(@NotNull @PathVariable @Size(min=9, max=9) String ssn, 
                                                                     @NotNull @PathVariable @Size(min=7, max=7) String physicianLicenseNumber,
-                                                                    @NotNull @PathVariable LocalDateTime firstDateTime, 
-                                                                    @NotNull @PathVariable LocalDateTime lastDateTime
+                                                                    @NotNull @PathVariable String firstDateTime, 
+                                                                    @NotNull @PathVariable String lastDateTime
     ) {
         return ResponseEntity.ok(service.findByPhysician(ssn, physicianLicenseNumber, firstDateTime, lastDateTime));
     }

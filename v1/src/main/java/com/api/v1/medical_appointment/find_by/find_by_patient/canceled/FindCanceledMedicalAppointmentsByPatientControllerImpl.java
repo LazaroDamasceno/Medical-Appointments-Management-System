@@ -18,11 +18,10 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("api/v1/medical-appoointments/canceled/by-patient")
 @RequiredArgsConstructor
-public class FindCanceledMedicalAppointmentsByPatientControllerImpl implements FindCanceledMedicalAppointmentsByPatientController {
+public class FindCanceledMedicalAppointmentsByPatientControllerImpl {
 
     private final FindCanceledMedicalAppointmentsByPatientService service;
-
-    @Override
+    
     @Transactional(readOnly = true)
     @GetMapping("{ssn}/{firstDateTime}/{lastDateTime}")
     public ResponseEntity<List<MedicalAppointment>> findAll(@NotNull @PathVariable @Size(min=9, max=9) String ssn) {

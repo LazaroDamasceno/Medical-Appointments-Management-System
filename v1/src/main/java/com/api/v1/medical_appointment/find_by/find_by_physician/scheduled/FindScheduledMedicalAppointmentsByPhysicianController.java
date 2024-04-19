@@ -17,6 +17,8 @@ public interface FindScheduledMedicalAppointmentsByPhysicianController {
                                         @NotNull LocalDateTime lastDateTime
     );
 
+    ResponseEntity<List<MedicalAppointment>> findAll(@NotNull @Size(min = 7, max = 7) String physicianLicenseNumber);
+    
     ResponseEntity<List<MedicalAppointment>> findByPatient(@NotNull @Size(min = 7, max = 7) String physicianLicenseNumber,
                                                 @NotNull @Size(min = 9, max = 9) String ssn, 
                                                 @NotNull LocalDateTime firstDateTime,

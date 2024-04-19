@@ -23,7 +23,7 @@ public class FindScheduledMedicalAppointmentsByPhysicianServiceImpl implements F
     private final FindPatientBySsn findPatientBySsn;
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public List<MedicalAppointment> find(@NotNull @Size(min = 7, max = 7) String physicianLicenseNumber,
                                         @NotNull LocalDateTime firstDateTime, 
                                         @NotNull LocalDateTime lastDateTime
@@ -41,7 +41,7 @@ public class FindScheduledMedicalAppointmentsByPhysicianServiceImpl implements F
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public List<MedicalAppointment> findByPatient(@NotNull @Size(min = 7, max = 7) String physicianLicenseNumber,
                                                 @NotNull @Size(min = 9, max = 9) String ssn, 
                                                 @NotNull LocalDateTime firstDateTime,
@@ -58,6 +58,17 @@ public class FindScheduledMedicalAppointmentsByPhysicianServiceImpl implements F
                 && (e.getScheduledDateTime().isAfter(firstDateTime) || e.getScheduledDateTime().isEqual(firstDateTime))
                 && (e.getScheduledDateTime().isAfter(lastDateTime) || e.getScheduledDateTime().isEqual(lastDateTime))
             )
+            .toList();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<MedicalAppointment> findAll(@NotNull @Size(min = 7, max = 7) String physicianLicenseNumber) {
+        return findPhysicianByLicenseNumber
+            .findByPhysicanLicenseNumber(physicianLicenseNumber)
+            .getAppointmentList()
+            .stream()
+            .filter(e -> e.getCancelationDateTime() == null && e.getFinishingDateTime() == null)
             .toList();
     }
     

@@ -56,5 +56,16 @@ public class FindFinishedMedicalAppointmentsByPatientServiceImpl implements Find
                 && e.getPhysician().equals(physician)
             ).toList();
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<MedicalAppointment> findAll(@NotNull @Size(min = 9, max = 9) String ssn) {
+        return findPatientBySsn.
+            findBySsn(ssn)
+            .getAppointmentList()
+            .stream()
+            .filter(e -> e.getFinishingDateTime() != null)
+            .toList();
+    }
     
 }

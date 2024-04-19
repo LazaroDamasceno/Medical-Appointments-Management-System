@@ -58,5 +58,16 @@ public class FindScheduledMedicalAppointmentsByPatientServiceImpl implements Fin
                 && (e.getScheduledDateTime().isBefore(lastDateTime) || e.getScheduledDateTime().isEqual(lastDateTime))
             ).toList();
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<MedicalAppointment> findAll(@NotNull @Size(min = 9, max = 9) String ssn) {
+        return findPatientBySsn
+        .findBySsn(ssn)
+        .getAppointmentList()
+        .stream()
+        .filter(e -> e.getCancelationDateTime() == null && e.getFinishingDateTime() == null)
+        .toList();
+    }
     
 }

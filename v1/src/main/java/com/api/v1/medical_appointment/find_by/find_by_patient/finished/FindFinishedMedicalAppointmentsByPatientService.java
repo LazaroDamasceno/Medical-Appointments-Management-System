@@ -10,6 +10,8 @@ import jakarta.validation.constraints.Size;
 
 public interface FindFinishedMedicalAppointmentsByPatientService {
 
+    List<MedicalAppointment> findAll(@NotNull @Size(min=9, max=9) String ssn);
+
     List<MedicalAppointment> find(@NotNull @Size(min=9, max=9) String ssn, 
                                 @NotNull LocalDateTime firstDateTime, 
                                 @NotNull LocalDateTime lastDateTime

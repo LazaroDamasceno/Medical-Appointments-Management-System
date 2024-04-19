@@ -16,6 +16,8 @@ public interface FindFinishedMedicalAppointmentsByPhysicianService {
         @NotNull LocalDateTime lastDateTime
     );
 
+    List<MedicalAppointment> findAll(@NotNull @Size(min = 7, max = 7) String physicianLicenseNumber);
+
     List<MedicalAppointment> findByPatient(
         @NotNull @Size(min = 7, max = 7) String physicianLicenseNumber, 
         @NotNull @Size(min = 9, max = 9) String ssn,

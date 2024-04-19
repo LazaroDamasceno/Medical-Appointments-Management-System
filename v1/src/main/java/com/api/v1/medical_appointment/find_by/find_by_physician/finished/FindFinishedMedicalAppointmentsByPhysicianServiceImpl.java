@@ -60,5 +60,15 @@ public class FindFinishedMedicalAppointmentsByPhysicianServiceImpl implements Fi
             ).toList();
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public List<MedicalAppointment> findAll(@NotNull @Size(min = 7, max = 7) String physicianLicenseNumber) {
+        return findPhysicianByLicenseNumber
+            .findByPhysicanLicenseNumber(physicianLicenseNumber)
+            .getAppointmentList()
+            .stream()
+            .toList();
+    }
+
     
 }

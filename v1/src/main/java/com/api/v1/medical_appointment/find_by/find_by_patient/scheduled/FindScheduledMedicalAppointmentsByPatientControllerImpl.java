@@ -43,5 +43,12 @@ public class FindScheduledMedicalAppointmentsByPatientControllerImpl implements 
     ) {
         return ResponseEntity.ok(service.findByPhysician(ssn, physicianLicenseNumber, firstDateTime, lastDateTime));
     }
+
+    @Override
+    @GetMapping("{ssn}")
+    @Transactional(readOnly = true)
+    public ResponseEntity<List<MedicalAppointment>> find(@NotNull @PathVariable @Size(min = 9, max = 9) String ssn) {
+        return ResponseEntity.ok(service.findAll(ssn));
+    }
     
 }

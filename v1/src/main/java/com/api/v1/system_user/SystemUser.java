@@ -54,7 +54,7 @@ public class SystemUser implements Serializable {
 		super();
 		this.fullName = dto.fullName();
 		this.ssn = dto.ssn();
-		this.birthDate = dto.birthDate();
+		this.birthDate = DateConverter.convert(dto.birthDate());
 		this.email = dto.email();
 		this.phoneNumber = dto.phoneNumber();
 		this.gender = dto.gender();

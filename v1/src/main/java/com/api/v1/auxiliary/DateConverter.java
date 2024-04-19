@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 public interface DateConverter {
     
     static LocalDate convert(String dateTime) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return LocalDate.parse(dateTime, dtf);
     }
 

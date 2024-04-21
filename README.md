@@ -7,7 +7,7 @@
 # How to dowload (using git) and run
 
 1. Open the CMD 
-2. Type `git clone https://github.com/LazaroDamasceno/Medical-Appointments-Management-API.git; cd Medical-Appointments-Management-API; ./mvnw clean spring-boot:run`
+2. Type `git clone https://github.com/LazaroDamasceno/Medical-Appointments-Management-API.git; cd Medical-Appointments-Management-API; cd v1;  ./mvnw clean spring-boot:run`
 3. Open a web browser
 4. Search on the search bar `localhost:8080/swagger-ui/index.html`
 

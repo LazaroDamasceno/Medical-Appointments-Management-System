@@ -1,6 +1,9 @@
 package com.api.v1.medical_appointment.schedule;
 
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 import com.api.v1.auxiliary.DateTimeConverter;
@@ -41,7 +44,9 @@ public class ScheduleMedicalAppointmentServiceImpl implements ScheduleMedicalApp
     }
 
     private void validateInput(Patient patient, Physician physician, String dateTime) {
-        if (medicalAppointmentRepository.findScheduledMedicalAppointmentByDate(patient, physician, DateTimeConverter.convert(dateTime)).isPresent()) {
+        Optional<MedicalAppointment> medicalAppointment = medicalAppointmentRepository.findScheduledMedicalAppointmentByDate(patient, physician, DateTimeConverter.convert(dateTime));
+        boolean isMedicalAppointmentScheduled = medicalAppointment.isPresent() && medicalAppointment.get().getCancelationDateTime() == null;
+        if (isMedicalAppointmentScheduled) {
             throw new DuplicatedMedicalAppointmentException();
         }
     }

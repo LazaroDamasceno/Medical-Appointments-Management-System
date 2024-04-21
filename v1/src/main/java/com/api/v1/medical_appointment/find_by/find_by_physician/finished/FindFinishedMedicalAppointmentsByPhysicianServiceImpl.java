@@ -72,6 +72,7 @@ public class FindFinishedMedicalAppointmentsByPhysicianServiceImpl implements Fi
             .findByPhysicanLicenseNumber(physicianLicenseNumber)
             .getAppointmentList()
             .stream()
+            .filter(e -> e.getFinishingDateTime() != null)
             .toList();
     }
 

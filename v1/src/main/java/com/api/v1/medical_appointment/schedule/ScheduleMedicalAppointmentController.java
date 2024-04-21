@@ -1,11 +1,30 @@
 package com.api.v1.medical_appointment.schedule;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.api.v1.constants.HttpStatusCodes;
+
+import org.springframework.web.bind.annotation.RequestBody;
 
 import jakarta.validation.constraints.NotNull;
+import lombok.RequiredArgsConstructor;
 
-public interface ScheduleMedicalAppointmentController {
+@RestController
+@RequestMapping("api/v1/new-medical-appointment")
+@RequiredArgsConstructor
+public class ScheduleMedicalAppointmentController {
 
-    ResponseEntity<Void> schedule(@NotNull ScheduleMedicalAppointmentDTO dto);
+    private final ScheduleMedicalAppointmentService service;
+
+    @PostMapping
+    @Transactional
+    public ResponseEntity<Void> schedule(@NotNull @RequestBody ScheduleMedicalAppointmentDTO dto) {
+        service.schedule(dto);
+        return HttpStatusCodes.CREATED_201;
+    }
     
 }

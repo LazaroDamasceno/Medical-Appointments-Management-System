@@ -1,11 +1,29 @@
 package com.api.v1.medical_appointment.add_medical_notes;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import com.api.v1.constants.HttpStatusCodes;
+
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import jakarta.validation.constraints.NotNull;
+import lombok.RequiredArgsConstructor;
 
-public interface AddMedicalNotesController {
+@RestController
+@RequestMapping("api/v1/medical-notes")
+@RequiredArgsConstructor
+public class AddMedicalNotesController {
 
-    public ResponseEntity<Void> add(@NotNull MedicalNotesDTO dto);
+    private final AddMedicalNotesService service;
+
+    @PatchMapping
+    @Transactional
+    public ResponseEntity<Void> add(@NotNull @RequestBody MedicalNotesDTO dto) {
+        service.add(dto);
+        return HttpStatusCodes.NO_CONTENT_204;
+    }
     
 }

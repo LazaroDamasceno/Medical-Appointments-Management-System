@@ -18,11 +18,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class TerminatePhysicianController {
 	
-	private final TerminatePhysicianService service;
+	private final TerminatePhysicianServiceImpl service;
 	
-	@PatchMapping("{mln}")
+	@PatchMapping("{physicanLicenseNumber}")
 	@Transactional
-	public ResponseEntity<Void> terminate(@NotNull @Size(min = 7, max = 7) @PathVariable String physicanLicenseNumber) {
+	public ResponseEntity<Void> terminate(@PathVariable @NotNull @Size(min = 7, max = 7) String physicanLicenseNumber) {
 		service.terminate(physicanLicenseNumber);
 		return HttpStatusCodes.NO_CONTENT_204;
 	}

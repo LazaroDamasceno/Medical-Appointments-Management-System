@@ -1,0 +1,80 @@
+package com.api.v1.medical_appointment.find_by.find_by_physician.finished;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.api.v1.auxiliary.DateTimeConverter;
+import com.api.v1.medical_appointment.MedicalAppointment;
+import com.api.v1.patient.Patient;
+import com.api.v1.patient.internal_use.FindPatientBySsn;
+import com.api.v1.physician.internal_use.FindPhysicianByLicenseNumber;
+
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class FindFinishedMedicalAppointmentsByPhysicianServiceImpl implements FindFinishedMedicalAppointmentsByPhysicianService {
+
+    private final FindPatientBySsn findPatientBySsn;
+    private final FindPhysicianByLicenseNumber findPhysicianByLicenseNumber;
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<MedicalAppointment> find(
+            @NotNull @Size(min = 7, max = 7) String physicianLicenseNumber,
+            @NotNull String firstDateTime, 
+            @NotNull String lastDateTime
+     ) {
+        LocalDateTime ldt1 = DateTimeConverter.convert(firstDateTime);
+        LocalDateTime ldt2 = DateTimeConverter.convert(lastDateTime);
+        return findPhysicianByLicenseNumber
+            .findByPhysicanLicenseNumber(physicianLicenseNumber)
+            .getAppointmentList()
+            .stream()
+            .filter(e -> e.getFinishingDateTime() != null
+                && (e.getScheduledDateTime().isAfter(ldt1) || e.getScheduledDateTime().isEqual(ldt1))
+                && (e.getScheduledDateTime().isBefore(ldt2) || e.getScheduledDateTime().isEqual(ldt2))
+            ).toList();
+
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<MedicalAppointment> findByPatient(
+            @NotNull @Size(min = 7, max = 7) String physicianLicenseNumber,
+            @NotNull @Size(min = 9, max = 9) String ssn, 
+            @NotNull String firstDateTime,
+            @NotNull String lastDateTime
+    ) {
+        LocalDateTime ldt1 = DateTimeConverter.convert(firstDateTime);
+        LocalDateTime ldt2 = DateTimeConverter.convert(lastDateTime);
+        Patient patient = findPatientBySsn.findBySsn(ssn);
+        return findPhysicianByLicenseNumber
+            .findByPhysicanLicenseNumber(physicianLicenseNumber)
+            .getAppointmentList()
+            .stream()
+            .filter(e -> e.getFinishingDateTime() != null
+                && e.getPatient().equals(patient)
+                && (e.getScheduledDateTime().isAfter(ldt1) || e.getScheduledDateTime().isEqual(ldt1))
+                && (e.getScheduledDateTime().isBefore(ldt2) || e.getScheduledDateTime().isEqual(ldt2))
+            ).toList();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<MedicalAppointment> findAll(@NotNull @Size(min = 7, max = 7) String physicianLicenseNumber) {
+        return findPhysicianByLicenseNumber
+            .findByPhysicanLicenseNumber(physicianLicenseNumber)
+            .getAppointmentList()
+            .stream()
+            .filter(e -> e.getFinishingDateTime() != null)
+            .toList();
+    }
+
+    
+}

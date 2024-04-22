@@ -5,12 +5,17 @@ import java.time.format.DateTimeFormatter;
 
 public interface DateTimeConverter {
     
-    static LocalDateTime convert(String dateTime) {
-        if (dateTime.contains("/")) {
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-            return LocalDateTime.parse(dateTime, dtf);
-        }
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+    public static LocalDateTime convert(String dateTime) {
+        return dateTime.contains("/") ? withSlash(dateTime) : withHifen(dateTime);
+    }
+
+    private static LocalDateTime withSlash(String dateTime) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return LocalDateTime.parse(dateTime, dtf);
+    }
+
+    private static LocalDateTime withHifen(String dateTime) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         return LocalDateTime.parse(dateTime, dtf);
     }
 

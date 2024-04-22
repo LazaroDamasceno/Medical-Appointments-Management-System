@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.UUID;
 
-import com.api.v1.auxiliary.DateConverter;
+import com.api.v1.auxiliary.DateTimeConverter;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Column;
@@ -54,7 +54,7 @@ public class SystemUser implements Serializable {
 		super();
 		this.fullName = dto.fullName();
 		this.ssn = dto.ssn();
-		this.birthDate = DateConverter.convert(dto.birthDate());
+		this.birthDate = DateTimeConverter.convertToLocalDate(dto.birthDate());
 		this.email = dto.email();
 		this.phoneNumber = dto.phoneNumber();
 		this.gender = dto.gender();
@@ -62,7 +62,7 @@ public class SystemUser implements Serializable {
 
 	public void update(UpdateSystemUserDTO dto) {
 		this.fullName = dto.fullName();
-		this.birthDate = DateConverter.convert(dto.birthDate());
+		this.birthDate = DateTimeConverter.convertToLocalDate(dto.birthDate());
 		this.email = dto.email();
 		this.phoneNumber = dto.phoneNumber();
 		this.gender = dto.gender();

@@ -1,11 +1,17 @@
 package com.api.v1.auxiliary;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public interface DateTimeConverter {
+
+    static LocalDate convertToLocalDate(String dateTime) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return LocalDate.parse(dateTime, dtf);
+    }
     
-    public static LocalDateTime convert(String dateTime) {
+    static LocalDateTime convert(String dateTime) {
         return dateTime.contains("/") ? withSlash(dateTime) : withHifen(dateTime);
     }
 

@@ -11,7 +11,7 @@
 3. Open a web browser
 4. Search on the search bar `localhost:8080/swagger-ui/index.html`
 
-# How to download(without git) and run
+# How to download (without git) and run
 
 1. Press on `Code`
 2. Press in `Download zip`

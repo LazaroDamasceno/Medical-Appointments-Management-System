@@ -16,12 +16,12 @@ public interface DateTimeConverter {
     }
 
     private static LocalDateTime withSlash(String dateTime) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         return LocalDateTime.parse(dateTime, dtf);
     }
 
     private static LocalDateTime withHifen(String dateTime) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         return LocalDateTime.parse(dateTime, dtf);
     }
 

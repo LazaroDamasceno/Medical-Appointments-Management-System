@@ -7,8 +7,6 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.api.v1.auxiliary.DateTimeConverter;
-import com.api.v1.auxiliary.PhysicianLicenseNumber;
-import com.api.v1.auxiliary.SSN;
 import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.MedicalAppointmentRepository;
 import com.api.v1.patient.Patient;
@@ -18,7 +16,6 @@ import com.api.v1.physician.Physician;
 import com.api.v1.physician.PhysicianRepository;
 import com.api.v1.physician.internal_use.FindPhysicianByLicenseNumberService;
 
-import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 
@@ -34,11 +31,11 @@ public class ScheduleMedicalAppointmentServiceImpl implements ScheduleMedicalApp
     
     @Override
     @Transactional
-    public void schedule(@SSN String ssn, @PhysicianLicenseNumber String physicianLicenseNumber, @NotNull @Future String dateTime) {
-        Patient patient = findPatientBySsn.findBySsn(ssn);
-        Physician physician = findPhysicianByLicenseNumber.findByphysicianLicenseNumber(physicianLicenseNumber);
-        validateInput(patient, physician, dateTime);
-        MedicalAppointment medicalAppointment = new MedicalAppointment(dateTime, patient, physician);
+    public void schedule(@NotNull ScheduleMedicalAppointmentDTO dto) {
+        Patient patient = findPatientBySsn.findBySsn(dto.ssn());
+        Physician physician = findPhysicianByLicenseNumber.findByphysicianLicenseNumber(dto.physicianLicenseNumber());
+        validateInput(patient, physician, dto.dateTime());
+        MedicalAppointment medicalAppointment = new MedicalAppointment(dto.dateTime(), patient, physician);
         medicalAppointmentRepository.save(medicalAppointment);
         patient.addMedicalAppointment(medicalAppointment);
         patientRepository.save(patient);

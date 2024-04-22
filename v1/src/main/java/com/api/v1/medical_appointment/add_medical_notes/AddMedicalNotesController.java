@@ -6,11 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.v1.auxiliary.HttpStatusCodes;
-import com.api.v1.auxiliary.PhysicianLicenseNumber;
-import com.api.v1.auxiliary.SSN;
-
 import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
@@ -24,12 +20,8 @@ public class AddMedicalNotesController {
 
     @PatchMapping("{ssn}/{physicianLicenseNumber}/dateTime")
     @Transactional
-    public ResponseEntity<Void> add(@SSN @PathVariable String ssn, 
-                                    @PhysicianLicenseNumber @PathVariable String physicianLicenseNumber, 
-                                    @NotNull @PathVariable String dateTime, 
-                                    @NotNull @RequestBody MedicalNotesDTO dto
-    ) {
-        service.add(ssn, physicianLicenseNumber, dateTime, dto);
+    public ResponseEntity<Void> add(@NotNull @RequestBody MedicalNotesDTO dto) {
+        service.add(dto);
         return HttpStatusCodes.NO_CONTENT_204;
     }
     

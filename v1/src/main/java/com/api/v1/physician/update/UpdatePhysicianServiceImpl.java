@@ -3,7 +3,6 @@ package com.api.v1.physician.update;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.api.v1.auxiliary.PhysicianLicenseNumber;
 import com.api.v1.physician.Physician;
 import com.api.v1.physician.PhysicianRepository;
 import com.api.v1.physician.internal_use.FindPhysicianByLicenseNumber;
@@ -20,8 +19,8 @@ public class UpdatePhysicianServiceImpl implements UpdatePhysicianService {
     
     @Override
     @Transactional
-    public void update(@PhysicianLicenseNumber String physicianLicenseNumber, @NotNull UpdatePhysicianDTO dto) {
-        Physician physician = findPhysicianByLicenseNumber.findByphysicianLicenseNumber(physicianLicenseNumber);
+    public void update(@NotNull UpdatePhysicianDTO dto) {
+        Physician physician = findPhysicianByLicenseNumber.findByphysicianLicenseNumber(dto.physicianLicenseNumber());
         physician.update(dto);
         repository.save(physician);
         

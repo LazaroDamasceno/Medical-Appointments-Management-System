@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.api.v1.auxiliary.DateTimeConverter;
-import com.api.v1.auxiliary.PhysicianLicenseNumber;
 import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.MedicalAppointmentRepository;
 import com.api.v1.medical_appointment.internal_user.find_by_physician.FindMedicalAppointmentByPhysician;
@@ -25,20 +24,17 @@ public class TransferMedicalAppointmentServiceImpl implements TransferMedicalApp
     
     @Override
     @Transactional
-    public void transfer(@PhysicianLicenseNumber String physicianLicenseNumber, 
-                        @NotNull String oldMedicalAppointmentDate,  
-                        @NotNull String newMedicalAppointmentDate
-    ) {
-        Physician physician = findPhysicianByLicenseNumber.findByphysicianLicenseNumber(physicianLicenseNumber);
+    public void transfer(@NotNull TransferMedicalAppointmentDTO dto) {
+        Physician physician = findPhysicianByLicenseNumber.findByphysicianLicenseNumber(dto.physicianLicenseNumber());
         MedicalAppointment oldMedicalAppointment = findMedicalAppointmentByPhysician.findByPhysician(
-            physicianLicenseNumber, 
-            DateTimeConverter.convert(oldMedicalAppointmentDate)
+            dto.physicianLicenseNumber(), 
+            DateTimeConverter.convert(dto.newMedicalAppointmentDate())
         );
         Patient patient = oldMedicalAppointment.getPatient();
         System.out.println(patient);
         oldMedicalAppointment.cancel();
         repository.save(oldMedicalAppointment);
-        MedicalAppointment newMedicalAppointment = new MedicalAppointment(newMedicalAppointmentDate, patient, physician);
+        MedicalAppointment newMedicalAppointment = new MedicalAppointment(dto.newMedicalAppointmentDate(), patient, physician);
         repository.save(newMedicalAppointment);
     }
     

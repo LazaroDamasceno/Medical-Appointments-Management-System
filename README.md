@@ -4,14 +4,16 @@
 |:-:|:-:|:-:|
 |17|Amazon Corretto|https://aws.amazon.com/pt/corretto/?filtered-posts.sort-by=item.additionalFields.createdDate&filtered-posts.sort-order=desc|
 
-# How to dowload (using git) and run
+# How to dowload and run
+
+## With git
 
 1. Open the CMD 
 2. Type `git clone https://github.com/LazaroDamasceno/Medical-Appointments-Management-API.git; cd Medical-Appointments-Management-API; cd v1; ./mvnw clean spring-boot:run`
 3. Open a web browser
 4. Search on the search bar `localhost:8080/swagger-ui/index.html`
 
-# How to download (without git) and run
+## Without git
 
 1. Press on `Code`
 2. Press in `Download zip`

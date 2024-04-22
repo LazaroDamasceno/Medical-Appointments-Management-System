@@ -11,4 +11,13 @@
 3. Open a web browser
 4. Search on the search bar `localhost:8080/swagger-ui/index.html`
 
+# Warnings
+
+For GET methods, the date time format must be `dd-MM-yyyy HH:mm:ss`. 
+
+For POST, PUT and PATCH methods, the date time format must be `dd/MM/yyyy HH:mm:ss`. 
+
+For the methods `registerPatientController` and `registerPhysicianController`, the date time format must be `dd/MM/yyyy`.
+
 # API running
+  

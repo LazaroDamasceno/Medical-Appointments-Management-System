@@ -11,6 +11,19 @@
 3. Open a web browser
 4. Search on the search bar `localhost:8080/swagger-ui/index.html`
 
+# How to download(without git) and run
+
+1. Press on `Code`
+2. Press in `Download zip`
+3. Select a directory to save the zipped file.
+4. Unzip it.
+5. Get the path of file.
+6. Open the CMD 
+7. Copy the path on CMD.
+8. Type `./mvnw clean spring-boot:run`
+9. Open a web browser
+10. Search on the search bar `localhost:8080/swagger-ui/index.html`
+
 # Warnings
 
 For GET methods, the date time format must be `dd-MM-yyyy HH:mm:ss`. 

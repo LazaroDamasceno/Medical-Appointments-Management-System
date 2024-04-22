@@ -9,10 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.api.v1.auxiliary.PhysicianLicenseNumber;
 import com.api.v1.medical_appointment.MedicalAppointment;
 
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -24,7 +23,7 @@ public class FindCanceledMedicalAppointmentsByPhysicianController {
 
     @Transactional(readOnly = true)
     @GetMapping("{physicianLicenseNumber}")
-    public ResponseEntity<List<MedicalAppointment>> find(@NotNull @PathVariable @Size(min = 7, max = 7) String physicianLicenseNumber) {
+    public ResponseEntity<List<MedicalAppointment>> find(@PhysicianLicenseNumber @PathVariable String physicianLicenseNumber) {
         return ResponseEntity.ok(service.find(physicianLicenseNumber));
     }
     

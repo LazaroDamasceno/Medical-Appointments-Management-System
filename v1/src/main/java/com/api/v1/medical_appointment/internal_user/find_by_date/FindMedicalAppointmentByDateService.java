@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.api.v1.auxiliary.PhysicianLicenseNumber;
+import com.api.v1.auxiliary.SSN;
 import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.MedicalAppointmentRepository;
 import com.api.v1.medical_appointment.internal_user.MedicalAppointmentNotFoundException;
@@ -15,7 +17,6 @@ import com.api.v1.physician.Physician;
 import com.api.v1.physician.internal_use.FindPhysicianByLicenseNumberService;
 
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -29,12 +30,12 @@ public class FindMedicalAppointmentByDateService implements FindMedicalAppointme
     @Override
     @Transactional(readOnly = true)
     public MedicalAppointment findByDate(
-        @NotNull @Size(min = 9, max = 9) String ssn,
-        @NotNull @Size(min = 7, max = 7) String physicanLicenseNumber, 
+        @SSN String ssn, 
+        @NotNull @PhysicianLicenseNumber String physicianLicenseNumber, 
         @NotNull LocalDateTime dateTime
     ) {
         Patient patient = findPatientBySsn.findBySsn(ssn);
-        Physician physician = findPhysicianByLicenseNumber.findByPhysicanLicenseNumber(physicanLicenseNumber);
+        Physician physician = findPhysicianByLicenseNumber.findByphysicianLicenseNumber(physicianLicenseNumber);
         Optional<MedicalAppointment> medicalAppointment = repository.findScheduledMedicalAppointmentByDate(patient, physician, dateTime);
         validateInput(medicalAppointment);
         return medicalAppointment.get();

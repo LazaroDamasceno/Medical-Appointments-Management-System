@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.api.v1.auxiliary.DateTimeConverter;
+import com.api.v1.auxiliary.SSN;
 import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.MedicalAppointmentRepository;
 import com.api.v1.medical_appointment.internal_user.find_by_patient.FindMedicalAppointmentByPatient;
@@ -20,8 +21,8 @@ public class CancelMedicalAppointmentServiceImpl implements CancelMedicalAppoint
 
     @Override
     @Transactional
-    public void cancel(@NotNull CancelMedicalAppointmentDTO dto) {
-        MedicalAppointment medicalAppointment = findMedicalAppointmentByPatient.findByPatient(dto.ssn(), DateTimeConverter.convert(dto.dateTime()));
+    public void cancel(@SSN String ssn, @NotNull String dateTime) {
+        MedicalAppointment medicalAppointment = findMedicalAppointmentByPatient.findByPatient(ssn, DateTimeConverter.convert(dateTime));
         validateInput(medicalAppointment);
         medicalAppointment.cancel();
         repository.save(medicalAppointment);

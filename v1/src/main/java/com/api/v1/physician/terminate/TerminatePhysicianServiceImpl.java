@@ -4,13 +4,12 @@ import java.time.LocalDateTime;
 
 import org.springframework.stereotype.Service;
 
+import com.api.v1.auxiliary.PhysicianLicenseNumber;
 import com.api.v1.physician.Physician;
 import com.api.v1.physician.PhysicianRepository;
 import com.api.v1.physician.internal_use.FindPhysicianByLicenseNumberService;
 
 import jakarta.transaction.Transactional;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -22,8 +21,8 @@ public class TerminatePhysicianServiceImpl implements TerminatePhysicianService 
 
 	@Override
 	@Transactional
-	public void terminate(@NotNull @Size(min = 7, max = 7) String physicanLicenseNumber) {
-		Physician physician = findPhysicianByLicenseNumber.findByPhysicanLicenseNumber(physicanLicenseNumber);
+	public void terminate(@PhysicianLicenseNumber String physicianLicenseNumber) {
+		Physician physician = findPhysicianByLicenseNumber.findByphysicianLicenseNumber(physicianLicenseNumber);
 		LocalDateTime now = LocalDateTime.now();
 		physician.setTerminationDateTime(now);
 		repository.save(physician);

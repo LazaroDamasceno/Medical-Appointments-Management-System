@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.api.v1.auxiliary.SSN;
 import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.MedicalAppointmentRepository;
 import com.api.v1.medical_appointment.internal_user.MedicalAppointmentNotFoundException;
@@ -13,7 +14,6 @@ import com.api.v1.patient.Patient;
 import com.api.v1.patient.internal_use.FindPatientBySsnService;
 
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
 
 
@@ -26,7 +26,7 @@ public class FindMedicalAppointmentByPatientService implements FindMedicalAppoin
 
     @Override
     @Transactional(readOnly = true)
-    public MedicalAppointment findByPatient(@NotNull @Size(min = 9, max = 9) String ssn, @NotNull LocalDateTime dateTime) {
+    public MedicalAppointment findByPatient(@SSN String ssn, @NotNull LocalDateTime dateTime) {
         Patient patient = findPatientBySsn.findBySsn(ssn);
         Optional<MedicalAppointment> medicalAppointment = repository.findScheduledMedicalAppointmentByPatient(patient, dateTime);
         validateInput(medicalAppointment);

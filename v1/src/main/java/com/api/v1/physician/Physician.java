@@ -50,7 +50,7 @@ public class Physician implements Serializable {
 
 	public Physician(InductPhysicianDTO dto) {
 		super();
-		this.physicianLicenseNumber = dto.physicanLicenseNumber();
+		this.physicianLicenseNumber = dto.physicianLicenseNumber();
 		this.systemUser = new SystemUser(dto.systemUserDTO());
 	}
 

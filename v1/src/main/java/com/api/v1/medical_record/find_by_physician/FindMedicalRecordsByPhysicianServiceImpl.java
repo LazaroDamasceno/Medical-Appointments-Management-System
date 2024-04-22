@@ -5,13 +5,12 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.api.v1.auxiliary.PhysicianLicenseNumber;
 import com.api.v1.medical_record.MedicalRecord;
 import com.api.v1.medical_record.MedicalRecordRepository;
 import com.api.v1.physician.Physician;
 import com.api.v1.physician.internal_use.FindPhysicianByLicenseNumber;
 
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -23,8 +22,8 @@ public class FindMedicalRecordsByPhysicianServiceImpl implements FindMedicalReco
 
     @Override
     @Transactional(readOnly = true)
-    public List<MedicalRecord> findByPhysicianLicenseNumber(@NotNull @Size(min=7, max=7) String physicianLicenseNumber) {
-        Physician physician = findPhysicianByLicenseNumber.findByPhysicanLicenseNumber(physicianLicenseNumber);
+    public List<MedicalRecord> findByPhysicianLicenseNumber(@PhysicianLicenseNumber String physicianLicenseNumber) {
+        Physician physician = findPhysicianByLicenseNumber.findByphysicianLicenseNumber(physicianLicenseNumber);
         return repository
                 .findAll()
                 .stream()

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.api.v1.auxiliary.PhysicianLicenseNumber;
+import com.api.v1.auxiliary.SSN;
 import com.api.v1.medical_appointment.MedicalAppointment;
 
 import jakarta.validation.constraints.NotNull;
@@ -25,7 +27,7 @@ public class FindFinishedMedicalAppointmentsByPhysicianController {
     @GetMapping("{physicianLicenseNumber}/{firstDateTime}/{lastDateTime}")
     @Transactional(readOnly = true)
     public ResponseEntity<List<MedicalAppointment>> find(
-            @NotNull @PathVariable @Size(min = 7, max = 7) String physicianLicenseNumber,
+            @PhysicianLicenseNumber @PathVariable String physicianLicenseNumber,
             @NotNull @PathVariable String firstDateTime, 
             @NotNull @PathVariable String lastDateTime
     ) {
@@ -35,8 +37,8 @@ public class FindFinishedMedicalAppointmentsByPhysicianController {
     @GetMapping("and-by-patient/{physicianLicenseNumber}/{ssn}/{firstDateTime}/{lastDateTime}")
     @Transactional(readOnly = true)
     public ResponseEntity<List<MedicalAppointment>> findByPatient(
-            @NotNull @PathVariable @Size(min = 7, max = 7) String physicianLicenseNumber, 
-            @NotNull @PathVariable @Size(min = 9, max = 9) String ssn,
+            @PhysicianLicenseNumber @PathVariable String physicianLicenseNumber, 
+            @SSN @PathVariable @Size(min = 9, max = 9) String ssn,
             @NotNull @PathVariable String firstDateTime, 
             @NotNull @PathVariable String lastDateTime
     ) {
@@ -45,7 +47,7 @@ public class FindFinishedMedicalAppointmentsByPhysicianController {
 
     @GetMapping("{physicianLicenseNumber}")
     @Transactional(readOnly = true)
-    public ResponseEntity<List<MedicalAppointment>> findAll(@NotNull @PathVariable @Size(min = 7, max = 7) String physicianLicenseNumber) {
+    public ResponseEntity<List<MedicalAppointment>> findAll(@PhysicianLicenseNumber @PathVariable String physicianLicenseNumber) {
         return ResponseEntity.ok(service.findAll(physicianLicenseNumber));
     }
     

@@ -9,10 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.api.v1.auxiliary.SSN;
 import com.api.v1.medical_appointment.MedicalAppointment;
 
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -24,7 +23,7 @@ public class FindCanceledMedicalAppointmentsByPatientControllerImpl {
     
     @Transactional(readOnly = true)
     @GetMapping("{ssn}/{firstDateTime}/{lastDateTime}")
-    public ResponseEntity<List<MedicalAppointment>> findAll(@NotNull @PathVariable @Size(min=9, max=9) String ssn) {
+    public ResponseEntity<List<MedicalAppointment>> findAll(@SSN @PathVariable String ssn) {
         return ResponseEntity.ok(service.findAll(ssn));
     }
     

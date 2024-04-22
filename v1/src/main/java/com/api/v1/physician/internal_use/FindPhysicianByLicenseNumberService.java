@@ -3,11 +3,10 @@ package com.api.v1.physician.internal_use;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.api.v1.auxiliary.PhysicianLicenseNumber;
 import com.api.v1.physician.Physician;
 import com.api.v1.physician.PhysicianRepository;
 
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -18,13 +17,13 @@ public class FindPhysicianByLicenseNumberService implements FindPhysicianByLicen
 	
 	@Override
 	@Transactional(readOnly = true)
-	public Physician findByPhysicanLicenseNumber(@NotNull @Size(min = 7, max = 7) String physicanLicenseNumber) {
-		validatedInput(physicanLicenseNumber);
-		return repository.findByPhysicianLicenseNumber(physicanLicenseNumber).get();
+	public Physician findByphysicianLicenseNumber(@PhysicianLicenseNumber String physicianLicenseNumber) {
+		validatedInput(physicianLicenseNumber);
+		return repository.findByPhysicianLicenseNumber(physicianLicenseNumber).get();
 	}
 	
-	private void validatedInput(String physicanLicenseNumber) {
-		if (repository.findByPhysicianLicenseNumber(physicanLicenseNumber).isEmpty()) throw new PhysicianNotFoundException(physicanLicenseNumber);
+	private void validatedInput(String physicianLicenseNumber) {
+		if (repository.findByPhysicianLicenseNumber(physicianLicenseNumber).isEmpty()) throw new PhysicianNotFoundException(physicianLicenseNumber);
 	}
 
 }

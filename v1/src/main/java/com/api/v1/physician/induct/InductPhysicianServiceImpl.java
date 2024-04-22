@@ -18,14 +18,14 @@ public class InductPhysicianServiceImpl implements InductPhysicianService {
 	@Override
 	@Transactional
 	public void register(@NotNull InductPhysicianDTO dto) {
-		validateInput(dto.physicanLicenseNumber());
+		validateInput(dto.physicianLicenseNumber());
 		Physician physician = new Physician(dto);
 		repository.save(physician);
 	}
 	
-	private void validateInput(String physicanLicenseNumber) {
-		if (repository.findByPhysicianLicenseNumber(physicanLicenseNumber).isPresent()) {
-			throw new DuplicatedPhysicianException(physicanLicenseNumber);
+	private void validateInput(String physicianLicenseNumber) {
+		if (repository.findByPhysicianLicenseNumber(physicianLicenseNumber).isPresent()) {
+			throw new DuplicatedPhysicianException(physicianLicenseNumber);
 		}
 	}
 

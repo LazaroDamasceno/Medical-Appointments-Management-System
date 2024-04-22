@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.api.v1.auxiliary.DateTimeConverter;
+import com.api.v1.auxiliary.PhysicianLicenseNumber;
+import com.api.v1.auxiliary.SSN;
 import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.MedicalAppointmentRepository;
 import com.api.v1.medical_appointment.internal_user.find_by_date.FindMedicalAppointmentByDate;
@@ -22,8 +24,8 @@ public class AddMedicalNotesServiceImpl implements AddMedicalNotesService {
     
     @Override
     @Transactional
-    public void add(@NotNull MedicalNotesDTO dto) {
-        MedicalAppointment medicalAppointment = findMedicalAppointmentByDate.findByDate(dto.ssn(), dto.physicanLicenseNumber(), DateTimeConverter.convert(dto.dateTime()));
+    public void add(@SSN String ssn, @PhysicianLicenseNumber String physicianLicenseNumber, @NotNull String dateTime, @NotNull MedicalNotesDTO dto) {
+        MedicalAppointment medicalAppointment = findMedicalAppointmentByDate.findByDate(ssn, physicianLicenseNumber, DateTimeConverter.convert(dateTime));
         validateInput(medicalAppointment);
         medicalAppointment.addMedicalNotes(dto.notes());
         medicalAppointment.finish();

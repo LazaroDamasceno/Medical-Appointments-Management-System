@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.api.v1.auxiliary.PhysicianLicenseNumber;
+import com.api.v1.auxiliary.SSN;
 import com.api.v1.medical_appointment.MedicalAppointment;
 
 import jakarta.validation.constraints.NotNull;
@@ -24,7 +26,7 @@ public class FindScheduledMedicalAppointmentsByPhysicianController {
 
     @Transactional(readOnly = true)
     @GetMapping("{physicianLicenseNumber}/{firstDateTime}/{lastDateTime}")
-    public ResponseEntity<List<MedicalAppointment>> find(@NotNull @PathVariable @Size(min = 7, max = 7) String physicianLicenseNumber,
+    public ResponseEntity<List<MedicalAppointment>> find(@PhysicianLicenseNumber String physicianLicenseNumber,
                                                         @NotNull @PathVariable String firstDateTime, 
                                                         @NotNull @PathVariable String lastDateTime
     ) {
@@ -33,8 +35,8 @@ public class FindScheduledMedicalAppointmentsByPhysicianController {
 
     @Transactional(readOnly = true)
     @GetMapping("and-by-patient/{physicianLicenseNumber}/{ssn}/{firstDateTime}/{lastDateTime}")
-    public ResponseEntity<List<MedicalAppointment>> findByPatient(@NotNull @PathVariable @Size(min = 7, max = 7) String physicianLicenseNumber, 
-                                                                @NotNull @PathVariable @Size(min = 9, max = 9) String ssn,
+    public ResponseEntity<List<MedicalAppointment>> findByPatient(@PhysicianLicenseNumber String physicianLicenseNumber, 
+                                                                @SSN String ssn,
                                                                 @NotNull @PathVariable String firstDateTime, 
                                                                 @NotNull @PathVariable String lastDateTime
     ) {

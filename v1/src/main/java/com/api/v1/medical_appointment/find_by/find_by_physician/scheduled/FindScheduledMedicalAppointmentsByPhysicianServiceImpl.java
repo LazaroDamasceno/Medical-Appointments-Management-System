@@ -7,13 +7,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.api.v1.auxiliary.DateTimeConverter;
+import com.api.v1.auxiliary.PhysicianLicenseNumber;
+import com.api.v1.auxiliary.SSN;
 import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.patient.Patient;
 import com.api.v1.patient.internal_use.FindPatientBySsn;
 import com.api.v1.physician.internal_use.FindPhysicianByLicenseNumber;
 
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -25,14 +26,14 @@ public class FindScheduledMedicalAppointmentsByPhysicianServiceImpl implements F
 
     @Override
     @Transactional(readOnly = true)
-    public List<MedicalAppointment> find(@NotNull @Size(min = 7, max = 7) String physicianLicenseNumber,
+    public List<MedicalAppointment> find(@PhysicianLicenseNumber String physicianLicenseNumber,
                                         @NotNull String firstDateTime, 
                                         @NotNull String lastDateTime
     ) {
         LocalDateTime ldt1 = DateTimeConverter.convert(firstDateTime);
         LocalDateTime ldt2 = DateTimeConverter.convert(lastDateTime);
         return findPhysicianByLicenseNumber
-        .findByPhysicanLicenseNumber(physicianLicenseNumber)
+        .findByphysicianLicenseNumber(physicianLicenseNumber)
             .getAppointmentList()
             .stream()
             .filter(e -> e.getCancelationDateTime() == null
@@ -45,8 +46,8 @@ public class FindScheduledMedicalAppointmentsByPhysicianServiceImpl implements F
 
     @Override
     @Transactional(readOnly = true)
-    public List<MedicalAppointment> findByPatient(@NotNull @Size(min = 7, max = 7) String physicianLicenseNumber,
-                                                @NotNull @Size(min = 9, max = 9) String ssn, 
+    public List<MedicalAppointment> findByPatient(@PhysicianLicenseNumber String physicianLicenseNumber,
+                                                @SSN String ssn, 
                                                 @NotNull String firstDateTime,
                                                 @NotNull String lastDateTime
     ) {
@@ -54,7 +55,7 @@ public class FindScheduledMedicalAppointmentsByPhysicianServiceImpl implements F
         LocalDateTime ldt2 = DateTimeConverter.convert(lastDateTime);
         Patient patient = findPatientBySsn.findBySsn(ssn);
         return findPhysicianByLicenseNumber
-            .findByPhysicanLicenseNumber(physicianLicenseNumber)
+            .findByphysicianLicenseNumber(physicianLicenseNumber)
             .getAppointmentList()
             .stream()
             .filter(e -> e.getCancelationDateTime() == null
@@ -68,9 +69,9 @@ public class FindScheduledMedicalAppointmentsByPhysicianServiceImpl implements F
 
     @Override
     @Transactional(readOnly = true)
-    public List<MedicalAppointment> findAll(@NotNull @Size(min = 7, max = 7) String physicianLicenseNumber) {
+    public List<MedicalAppointment> findAll(@PhysicianLicenseNumber String physicianLicenseNumber) {
         return findPhysicianByLicenseNumber
-            .findByPhysicanLicenseNumber(physicianLicenseNumber)
+            .findByphysicianLicenseNumber(physicianLicenseNumber)
             .getAppointmentList()
             .stream()
             .filter(e -> e.getCancelationDateTime() == null && e.getFinishingDateTime() == null)

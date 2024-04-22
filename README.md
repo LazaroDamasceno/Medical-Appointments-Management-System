@@ -20,7 +20,7 @@
 5. Get the path of file.
 6. Open the CMD 
 7. Copy the path on CMD.
-8. Type `./mvnw clean spring-boot:run`
+8. Type `cd v1; ./mvnw clean spring-boot:run`
 9. Open a web browser
 10. Search on the search bar `localhost:8080/swagger-ui/index.html`
 

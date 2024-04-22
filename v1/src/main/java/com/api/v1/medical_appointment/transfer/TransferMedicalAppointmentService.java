@@ -6,6 +6,8 @@ import jakarta.validation.constraints.NotNull;
 
 public interface TransferMedicalAppointmentService {
 
-    void transfer(@PhysicianLicenseNumber String physicianLicenseNumber, @NotNull TransferMedicalAppointmentDTO dto);
+    void transfer(@PhysicianLicenseNumber String physicianLicenseNumber, 
+                    @NotNull String oldMedicalAppointmentDate,  
+                    @NotNull String newMedicalAppointmentDate);
         
 }

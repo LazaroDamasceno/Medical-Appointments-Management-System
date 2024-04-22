@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.api.v1.auxiliary.HttpStatusCodes;
 import com.api.v1.auxiliary.SSN;
-import com.api.v1.constants.HttpStatusCodes;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +21,7 @@ public class UpdatePatientController {
 
     private final UpdatePatientService service;
 
-    @PutMapping
+    @PutMapping("{ssn}")
     @Transactional
     public ResponseEntity<Void> update(@SSN  @PathVariable String ssn, @NotNull @RequestBody UpdatePatientDTO dto) {
         service.update(ssn, dto);

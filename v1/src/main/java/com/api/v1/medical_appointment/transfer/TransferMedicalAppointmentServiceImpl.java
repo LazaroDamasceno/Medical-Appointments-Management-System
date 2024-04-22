@@ -25,17 +25,20 @@ public class TransferMedicalAppointmentServiceImpl implements TransferMedicalApp
     
     @Override
     @Transactional
-    public void transfer(@PhysicianLicenseNumber String physicianLicenseNumber, @NotNull TransferMedicalAppointmentDTO dto) {
+    public void transfer(@PhysicianLicenseNumber String physicianLicenseNumber, 
+                        @NotNull String oldMedicalAppointmentDate,  
+                        @NotNull String newMedicalAppointmentDate
+    ) {
         Physician physician = findPhysicianByLicenseNumber.findByphysicianLicenseNumber(physicianLicenseNumber);
         MedicalAppointment oldMedicalAppointment = findMedicalAppointmentByPhysician.findByPhysician(
             physicianLicenseNumber, 
-            DateTimeConverter.convert(dto.oldMedicalAppointmentDate())
+            DateTimeConverter.convert(oldMedicalAppointmentDate)
         );
         Patient patient = oldMedicalAppointment.getPatient();
         System.out.println(patient);
         oldMedicalAppointment.cancel();
         repository.save(oldMedicalAppointment);
-        MedicalAppointment newMedicalAppointment = new MedicalAppointment(dto.newMedicalAppointmentDate(), patient, physician);
+        MedicalAppointment newMedicalAppointment = new MedicalAppointment(newMedicalAppointmentDate, patient, physician);
         repository.save(newMedicalAppointment);
     }
     

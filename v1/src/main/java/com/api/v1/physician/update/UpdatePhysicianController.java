@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.api.v1.auxiliary.HttpStatusCodes;
 import com.api.v1.auxiliary.PhysicianLicenseNumber;
-import com.api.v1.constants.HttpStatusCodes;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;

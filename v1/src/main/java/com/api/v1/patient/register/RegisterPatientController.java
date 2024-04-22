@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.v1.constants.HttpStatusCodes;
+import com.api.v1.auxiliary.HttpStatusCodes;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.constraints.NotNull;

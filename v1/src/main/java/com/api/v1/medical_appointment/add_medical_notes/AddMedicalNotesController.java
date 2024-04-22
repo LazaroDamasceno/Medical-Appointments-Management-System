@@ -5,9 +5,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.api.v1.auxiliary.HttpStatusCodes;
 import com.api.v1.auxiliary.PhysicianLicenseNumber;
 import com.api.v1.auxiliary.SSN;
-import com.api.v1.constants.HttpStatusCodes;
 
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +22,7 @@ public class AddMedicalNotesController {
 
     private final AddMedicalNotesService service;
 
-    @PatchMapping
+    @PatchMapping("{ssn}/{physicianLicenseNumber}/dateTime")
     @Transactional
     public ResponseEntity<Void> add(@SSN @PathVariable String ssn, 
                                     @PhysicianLicenseNumber @PathVariable String physicianLicenseNumber, 

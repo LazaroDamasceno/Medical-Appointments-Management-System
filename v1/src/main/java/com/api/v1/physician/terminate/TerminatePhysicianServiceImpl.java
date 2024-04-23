@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import com.api.v1.auxiliary.PhysicianLicenseNumber;
 import com.api.v1.physician.Physician;
 import com.api.v1.physician.PhysicianRepository;
-import com.api.v1.physician.internal_use.FindPhysicianByLicenseNumberService;
+import com.api.v1.physician.internal_use.FindPhysicianByLicenseNumber;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 public class TerminatePhysicianServiceImpl implements TerminatePhysicianService {
 	
 	private final PhysicianRepository repository;
-	private final FindPhysicianByLicenseNumberService findPhysicianByLicenseNumber;
+	private final FindPhysicianByLicenseNumber findPhysicianByLicenseNumber;
 
 	@Override
 	@Transactional

@@ -11,7 +11,7 @@ import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.MedicalAppointmentRepository;
 import com.api.v1.medical_appointment.internal_user.MedicalAppointmentNotFoundException;
 import com.api.v1.patient.Patient;
-import com.api.v1.patient.internal_use.FindPatientBySsnService;
+import com.api.v1.patient.internal_use.FindPatientBySsn;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 public class FindMedicalAppointmentByPatientService implements FindMedicalAppointmentByPatient {
 
     private final MedicalAppointmentRepository repository;
-    private final FindPatientBySsnService findPatientBySsn;
+    private final FindPatientBySsn findPatientBySsn;
 
     @Override
     @Transactional(readOnly = true)

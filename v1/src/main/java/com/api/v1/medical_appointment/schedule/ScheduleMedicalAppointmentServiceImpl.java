@@ -11,10 +11,10 @@ import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.MedicalAppointmentRepository;
 import com.api.v1.patient.Patient;
 import com.api.v1.patient.PatientRepository;
-import com.api.v1.patient.internal_use.FindPatientBySsnService;
+import com.api.v1.patient.internal_use.FindPatientBySsn;
 import com.api.v1.physician.Physician;
 import com.api.v1.physician.PhysicianRepository;
-import com.api.v1.physician.internal_use.FindPhysicianByLicenseNumberService;
+import com.api.v1.physician.internal_use.FindPhysicianByLicenseNumber;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
@@ -26,8 +26,8 @@ public class ScheduleMedicalAppointmentServiceImpl implements ScheduleMedicalApp
     private final PhysicianRepository physicianRepository;
     private final PatientRepository patientRepository;
     private final MedicalAppointmentRepository medicalAppointmentRepository;
-    private final FindPatientBySsnService findPatientBySsn;
-    private final FindPhysicianByLicenseNumberService findPhysicianByLicenseNumber;
+    private final FindPatientBySsn findPatientBySsn;
+    private final FindPhysicianByLicenseNumber findPhysicianByLicenseNumber;
     
     @Override
     @Transactional

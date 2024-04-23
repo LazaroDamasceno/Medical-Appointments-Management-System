@@ -2,7 +2,7 @@ package com.api.v1.medical_appointment.schedule;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -44,17 +44,17 @@ public class ScheduleMedicalAppointmentServiceImpl implements ScheduleMedicalApp
         physicianRepository.save(physician);
     }
 
-    private LocalDateTime dateTime;
-    private int year = LocalDateTime.now().getYear();
-    private int month = LocalDateTime.now().getMonthValue();
-    private int day = LocalDateTime.now().getDayOfWeek().getValue();
-    private LocalDateTime today = LocalDateTime.of(year, month, day, 0, 0, 0);
+    private LocalDate dateTime;
+    private int year = LocalDate.now().getYear();
+    private int month = LocalDate.now().getMonthValue();
+    private int day = LocalDate.now().getDayOfWeek().getValue();
+    private LocalDate today = LocalDate.of(year, month, day);
 
     private void validateInput(Patient patient, Physician physician, String dateTime) {
         Optional<MedicalAppointment> medicalAppointment = medicalAppointmentRepository.findScheduledMedicalAppointmentByDate(patient, physician, DateTimeConverter.convert(dateTime));
         boolean isMedicalAppointmentScheduled = medicalAppointment.isPresent() && medicalAppointment.get().getCancelationDateTime() == null;
         if (isMedicalAppointmentScheduled) throw new DuplicatedMedicalAppointmentException();
-        this.dateTime = DateTimeConverter.convert(dateTime);
+        this.dateTime = DateTimeConverter.convertToLocalDate(dateTime.split(" ")[0]);
         if (this.dateTime.isEqual(today) || this.dateTime.isBefore(today)) throw new ScheduledMedicalAppointmentException(dateTime.toString());
     }
     

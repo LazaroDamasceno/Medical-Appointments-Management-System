@@ -33,7 +33,7 @@ public class AddMedicalNotesServiceImpl implements AddMedicalNotesService {
 
     private void validateInput(MedicalAppointment medicalAppointment) {
         if (medicalAppointment.getCancelationDateTime() != null) {
-            throw new MedicalAppointmentCancelationException();
+            throw new CanceledMedicalAppointmentException();
         }
     }
     

@@ -1,8 +1,8 @@
 package com.api.v1.medical_appointment.add_medical_notes;
 
-public class MedicalAppointmentCancelationException extends RuntimeException {
+public class CanceledMedicalAppointmentException extends RuntimeException {
 
-    public MedicalAppointmentCancelationException() {
+    public CanceledMedicalAppointmentException() {
         super("Medical appointment's medical notes cannot be added because the medical appointment is canceled.");
     }
     

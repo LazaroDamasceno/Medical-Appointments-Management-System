@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.api.v1.physician.Physician;
 
-public interface FindPhysiciansService {
+interface FindPhysiciansService {
 	
 	List<Physician> findAll();
 

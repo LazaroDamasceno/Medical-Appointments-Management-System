@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.api.v1.patient.Patient;
 
-public interface FindPatientsService {
+interface FindPatientsService {
 	
 	List<Patient> findAll();
 

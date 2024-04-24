@@ -5,7 +5,7 @@ import java.util.List;
 import com.api.v1.auxiliary.PhysicianLicenseNumber;
 import com.api.v1.medical_record.MedicalRecord;
 
-public interface FindMedicalRecordsByPhysicianService {
+interface FindMedicalRecordsByPhysicianService {
 
     List<MedicalRecord> findByPhysicianLicenseNumber(@PhysicianLicenseNumber String physicianLicenseNumber);
     

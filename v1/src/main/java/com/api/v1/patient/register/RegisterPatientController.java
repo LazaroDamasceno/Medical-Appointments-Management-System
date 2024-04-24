@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("api/v1/patient")
 @RequiredArgsConstructor
-public class RegisterPatientController {
+class RegisterPatientController {
 	
 	private final RegisterPatientService service;
 	

@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class AddMedicalNotesServiceImpl implements AddMedicalNotesService {
+class AddMedicalNotesServiceImpl implements AddMedicalNotesService {
     
     private final MedicalAppointmentRepository repository;
     private final FindMedicalAppointmentByDate findMedicalAppointmentByDate;

@@ -1,5 +1,7 @@
 package com.api.v1.system_user;
 
+import com.api.v1.auxiliary.DateFormat;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -9,7 +11,7 @@ public record UpdateSystemUserDTO(
     @NotBlank
     String fullName,
     
-    @NotNull
+    @DateFormat
     String birthDate,
     
     @NotBlank

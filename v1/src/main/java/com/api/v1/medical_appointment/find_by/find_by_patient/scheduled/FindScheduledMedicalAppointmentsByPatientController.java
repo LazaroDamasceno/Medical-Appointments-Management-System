@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.api.v1.auxiliary.DateTimeFormatForGET;
 import com.api.v1.auxiliary.PhysicianLicenseNumber;
 import com.api.v1.auxiliary.SSN;
 import com.api.v1.medical_appointment.MedicalAppointment;
@@ -27,8 +28,8 @@ public class FindScheduledMedicalAppointmentsByPatientController {
     @GetMapping("{ssn}/{firstDateTime}/{lastDateTime}")
     @Transactional(readOnly = true)
     public ResponseEntity<List<MedicalAppointment>> find(@SSN @PathVariable String ssn, 
-                                                        @NotNull String firstDateTime, 
-                                                        @NotNull String lastDateTime
+                                                        @DateTimeFormatForGET String firstDateTime, 
+                                                        @DateTimeFormatForGET String lastDateTime
     ) {
         return ResponseEntity.ok(service.find(ssn, firstDateTime, lastDateTime));
     }

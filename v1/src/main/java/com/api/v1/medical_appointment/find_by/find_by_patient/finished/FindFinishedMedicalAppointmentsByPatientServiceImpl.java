@@ -7,14 +7,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.api.v1.auxiliary.DateTimeConverter;
-import com.api.v1.auxiliary.DateTimeFormatForGET;
 import com.api.v1.auxiliary.PhysicianLicenseNumber;
 import com.api.v1.auxiliary.SSN;
 import com.api.v1.medical_appointment.MedicalAppointment;
+import com.api.v1.medical_appointment.find_by.BetweenDatesTimesDTO;
 import com.api.v1.patient.internal_use.FindPatientBySsn;
 import com.api.v1.physician.Physician;
 import com.api.v1.physician.internal_use.FindPhysicianByLicenseNumber;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -26,12 +27,9 @@ public class FindFinishedMedicalAppointmentsByPatientServiceImpl implements Find
 
     @Override
     @Transactional(readOnly = true)
-    public List<MedicalAppointment> find(@SSN String ssn, 
-                                            @DateTimeFormatForGET String firstDateTime, 
-                                            @DateTimeFormatForGET String lastDateTime
-    ) {
-        LocalDateTime ldt1 = DateTimeConverter.convert(firstDateTime);
-        LocalDateTime ldt2 = DateTimeConverter.convert(lastDateTime);
+    public List<MedicalAppointment> find(@SSN String ssn, @NotNull BetweenDatesTimesDTO dto) {
+        LocalDateTime ldt1 = DateTimeConverter.convert(dto.firstDateTime());
+        LocalDateTime ldt2 = DateTimeConverter.convert(dto.lastDateTime());
         return findPatientBySsn.
             findBySsn(ssn)
             .getAppointmentList()
@@ -46,11 +44,10 @@ public class FindFinishedMedicalAppointmentsByPatientServiceImpl implements Find
     @Transactional(readOnly = true)
     public List<MedicalAppointment> findByPhysician(@SSN String ssn, 
                                                     @PhysicianLicenseNumber String physicianLicenseNumber,
-                                                    @DateTimeFormatForGET String firstDateTime, 
-                                                    @DateTimeFormatForGET String lastDateTime
+                                                    @NotNull BetweenDatesTimesDTO dto
     ) {
-        LocalDateTime ldt1 = DateTimeConverter.convert(firstDateTime);
-        LocalDateTime ldt2 = DateTimeConverter.convert(lastDateTime);
+        LocalDateTime ldt1 = DateTimeConverter.convert(dto.firstDateTime());
+        LocalDateTime ldt2 = DateTimeConverter.convert(dto.lastDateTime());
         Physician physician = findPhysicianByLicenseNumber.findByphysicianLicenseNumber(physicianLicenseNumber);
         return findPatientBySsn.
             findBySsn(ssn)

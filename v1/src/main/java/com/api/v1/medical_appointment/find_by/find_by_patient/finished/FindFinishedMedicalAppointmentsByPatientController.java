@@ -6,12 +6,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.v1.auxiliary.PhysicianLicenseNumber;
 import com.api.v1.auxiliary.SSN;
 import com.api.v1.medical_appointment.MedicalAppointment;
+import com.api.v1.medical_appointment.find_by.BetweenDatesTimesDTO;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
@@ -24,26 +26,21 @@ public class FindFinishedMedicalAppointmentsByPatientController {
     private final FindFinishedMedicalAppointmentsByPatientService service;
 
     @Transactional(readOnly = true)
-    @GetMapping("{ssn}/{firstDateTime}/{lastDateTime}")
-    public ResponseEntity<List<MedicalAppointment>> find(@SSN @PathVariable String ssn, 
-                                                        @NotNull @PathVariable String firstDateTime, 
-                                                        @NotNull @PathVariable String lastDateTime
-    ) {
-        return ResponseEntity.ok(service.find(ssn, firstDateTime, lastDateTime));
+    @GetMapping("{ssn}")
+    public ResponseEntity<List<MedicalAppointment>> find(@SSN @PathVariable String ssn, @NotNull @RequestBody BetweenDatesTimesDTO dto) {
+        return ResponseEntity.ok(service.find(ssn, dto));
     }
 
     @Transactional(readOnly = true)
-    @GetMapping("/and-by-physician/{ssn}/{physicianLicenseNumber}/{firstDateTime}/{lastDateTime}")
+    @GetMapping("{ssn}/{physicianLicenseNumber}")
     public ResponseEntity<List<MedicalAppointment>> findByPhysician(@SSN @PathVariable String ssn, 
                                                                     @PhysicianLicenseNumber @PathVariable String physicianLicenseNumber,
-                                                                    @NotNull @PathVariable String firstDateTime, 
-                                                                    @NotNull @PathVariable String lastDateTime
-    ) {
-        return ResponseEntity.ok(service.findByPhysician(ssn, physicianLicenseNumber, firstDateTime, lastDateTime));
+                                                                    @NotNull @RequestBody BetweenDatesTimesDTO dto) {
+        return ResponseEntity.ok(service.findByPhysician(ssn, physicianLicenseNumber, dto));
     }
 
     @Transactional(readOnly = true)
-    @GetMapping("{ssn}")
+    @GetMapping("ssn/{ssn}")
     public ResponseEntity<List<MedicalAppointment>> findAll(@SSN @PathVariable String ssn) {
         return ResponseEntity.ok(service.findAll(ssn));
     }

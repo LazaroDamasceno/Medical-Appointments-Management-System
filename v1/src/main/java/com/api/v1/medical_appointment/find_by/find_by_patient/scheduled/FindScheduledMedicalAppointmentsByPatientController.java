@@ -16,7 +16,6 @@ import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.find_by.BetweenDatesTimesDTO;
 
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -43,7 +42,7 @@ public class FindScheduledMedicalAppointmentsByPatientController {
 
     @GetMapping("ssn/{ssn}")
     @Transactional(readOnly = true)
-    public ResponseEntity<List<MedicalAppointment>> find(@SSN @PathVariable @Size(min = 9, max = 9) String ssn) {
+    public ResponseEntity<List<MedicalAppointment>> find(@SSN @PathVariable String ssn) {
         return ResponseEntity.ok(service.findAll(ssn));
     }
     

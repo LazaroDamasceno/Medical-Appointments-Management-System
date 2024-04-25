@@ -16,7 +16,6 @@ import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.find_by.BetweenDatesTimesDTO;
 
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -39,7 +38,7 @@ public class FindFinishedMedicalAppointmentsByPhysicianController {
     @Transactional(readOnly = true)
     public ResponseEntity<List<MedicalAppointment>> findByPatient(
             @PhysicianLicenseNumber @PathVariable String physicianLicenseNumber, 
-            @SSN @PathVariable @Size(min = 9, max = 9) String ssn,
+            @SSN @PathVariable String ssn,
             @NotNull @RequestBody BetweenDatesTimesDTO dto
     ) {
         return ResponseEntity.ok(service.findByPatient(physicianLicenseNumber, ssn, dto));

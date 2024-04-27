@@ -1,4 +1,4 @@
-package com.api.v1.physician.induct;
+package com.api.v1.physician.hire;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,13 +15,13 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("api/v1/physician")
 @RequiredArgsConstructor
-class InductPhysicianController {
+class HirePhysicianController {
 	
-	private final InductPhysicianService service;
+	private final HirePhysicianService service;
 
 	@PostMapping
 	@Transactional
-	public ResponseEntity<Void> register(@NotNull @RequestBody InductPhysicianDTO dto) {
+	public ResponseEntity<Void> register(@NotNull @RequestBody HirePhysicianDTO dto) {
 		service.register(dto);
 		return HttpStatusCodes.CREATED_201;
 	}

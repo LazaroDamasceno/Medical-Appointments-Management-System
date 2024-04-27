@@ -1,4 +1,4 @@
-package com.api.v1.physician.induct;
+package com.api.v1.physician.hire;
 
 class DuplicatedPhysicianException extends RuntimeException {
 	

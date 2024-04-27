@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.UUID;
 
 import com.api.v1.medical_appointment.MedicalAppointment;
-import com.api.v1.physician.induct.InductPhysicianDTO;
+import com.api.v1.physician.hire.HirePhysicianDTO;
 import com.api.v1.physician.update.UpdatePhysicianDTO;
 import com.api.v1.system_user.SystemUser;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -48,7 +48,7 @@ public class Physician implements Serializable {
 	@JsonManagedReference
 	private List<MedicalAppointment> appointmentList;
 
-	public Physician(InductPhysicianDTO dto) {
+	public Physician(HirePhysicianDTO dto) {
 		super();
 		this.physicianLicenseNumber = dto.physicianLicenseNumber();
 		this.systemUser = new SystemUser(dto.systemUserDTO());

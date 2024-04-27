@@ -1,4 +1,4 @@
-package com.api.v1.physician.induct;
+package com.api.v1.physician.hire;
 
 import org.springframework.stereotype.Service;
 
@@ -11,13 +11,13 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-class InductPhysicianServiceImpl implements InductPhysicianService {
+class HirePhysicianServiceImpl implements HirePhysicianService {
 	
 	private final PhysicianRepository repository;
 	
 	@Override
 	@Transactional
-	public void register(@NotNull InductPhysicianDTO dto) {
+	public void register(@NotNull HirePhysicianDTO dto) {
 		validateInput(dto.physicianLicenseNumber());
 		Physician physician = new Physician(dto);
 		repository.save(physician);

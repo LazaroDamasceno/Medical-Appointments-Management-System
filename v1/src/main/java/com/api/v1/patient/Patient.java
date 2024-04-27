@@ -46,7 +46,7 @@ public class Patient implements Serializable {
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "patient")
 	@JsonManagedReference
-	private List<MedicalAppointment> appointmentList;
+	private List<MedicalAppointment> medicalAppointments;
 
 	public Patient(RegisterPatientDTO dto) {
 		this.address = dto.address();
@@ -59,7 +59,7 @@ public class Patient implements Serializable {
 	}
 
 	public void addMedicalAppointment(MedicalAppointment medicalAppointment) {
-		appointmentList.add(medicalAppointment);
+		medicalAppointments.add(medicalAppointment);
 	}
 	
 }

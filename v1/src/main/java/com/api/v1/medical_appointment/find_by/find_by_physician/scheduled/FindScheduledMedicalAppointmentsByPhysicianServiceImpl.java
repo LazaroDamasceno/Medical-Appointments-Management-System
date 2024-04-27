@@ -11,6 +11,7 @@ import com.api.v1.helper.customized_annotations.PhysicianLicenseNumber;
 import com.api.v1.helper.customized_annotations.SSN;
 import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.find_by.dto.BetweenDatesTimesDTO;
+import com.api.v1.medical_appointment.find_by.helper.CheckIfDateTimesAreValid;
 import com.api.v1.patient.Patient;
 import com.api.v1.patient.helper.FindPatientBySsn;
 import com.api.v1.physician.helper.FindPhysicianByLicenseNumber;
@@ -24,12 +25,14 @@ public class FindScheduledMedicalAppointmentsByPhysicianServiceImpl implements F
 
     private final FindPhysicianByLicenseNumber findPhysicianByLicenseNumber;
     private final FindPatientBySsn findPatientBySsn;
+    private final CheckIfDateTimesAreValid checkIfDateTimesAreValid;
 
     @Override
     @Transactional(readOnly = true)
     public List<MedicalAppointment> find(@PhysicianLicenseNumber String physicianLicenseNumber,
                                             @NotNull BetweenDatesTimesDTO dto   
     ) {
+        validateDateTimes(dto);
         LocalDateTime ldt1 = DateTimeConverter.convertToDateTime(dto.firstDateTime());
         LocalDateTime ldt2 = DateTimeConverter.convertToDateTime(dto.lastDateTime());
         return findPhysicianByLicenseNumber
@@ -50,6 +53,7 @@ public class FindScheduledMedicalAppointmentsByPhysicianServiceImpl implements F
                                                 @SSN String ssn, 
                                                 @NotNull BetweenDatesTimesDTO dto
     ) {
+        validateDateTimes(dto);
         LocalDateTime ldt1 = DateTimeConverter.convertToDateTime(dto.firstDateTime());
         LocalDateTime ldt2 = DateTimeConverter.convertToDateTime(dto.lastDateTime());
         Patient patient = findPatientBySsn.findBySsn(ssn);
@@ -75,6 +79,11 @@ public class FindScheduledMedicalAppointmentsByPhysicianServiceImpl implements F
             .stream()
             .filter(e -> e.getCancelationDateTime() == null && e.getFinishingDateTime() == null)
             .toList();
+    }
+
+    private void validateDateTimes(BetweenDatesTimesDTO dto) {
+        checkIfDateTimesAreValid.checkIfFirstDateTimeIsBeyondLastDateTime(dto);
+        checkIfDateTimesAreValid.checkIfLastDateTimeIsBeyondFirstDateTime(dto);
     }
     
 }

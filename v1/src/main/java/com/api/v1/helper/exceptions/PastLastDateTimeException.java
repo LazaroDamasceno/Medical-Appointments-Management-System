@@ -1,4 +1,4 @@
-package com.api.v1.medical_appointment.find_by.exceptions;
+package com.api.v1.helper.exceptions;
 
 public class PastLastDateTimeException  extends RuntimeException {
 

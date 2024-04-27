@@ -6,21 +6,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.api.v1.helper.DateTimeConverter;
+import com.api.v1.helper.exceptions.FutureFirstDateTimeException;
+import com.api.v1.helper.exceptions.PastLastDateTimeException;
 import com.api.v1.medical_appointment.find_by.dto.BetweenDatesTimesDTO;
-import com.api.v1.medical_appointment.find_by.exceptions.DateTimesEqualityException;
-import com.api.v1.medical_appointment.find_by.exceptions.FutureFirstDateTimeException;
-import com.api.v1.medical_appointment.find_by.exceptions.PastLastDateTimeException;
 
 @Service
 public class CheckIfDateTimesAreValidImpl implements CheckIfDateTimesAreValid {
-
-    @Override
-    @Transactional(readOnly = true)
-    public void checkEquality(BetweenDatesTimesDTO dto) {
-        if (getFirstDateTime(dto).isEqual(getLastDateTime(dto))) {
-            throw new DateTimesEqualityException();
-        }
-    }
 
     @Override
     @Transactional(readOnly = true)

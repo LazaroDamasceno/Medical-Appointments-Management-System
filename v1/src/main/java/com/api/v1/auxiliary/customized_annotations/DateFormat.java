@@ -1,4 +1,4 @@
-package com.api.v1.auxiliary;
+package com.api.v1.auxiliary.customized_annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

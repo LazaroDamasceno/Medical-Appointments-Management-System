@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.api.v1.auxiliary.PhysicianLicenseNumber;
-import com.api.v1.auxiliary.SSN;
+import com.api.v1.auxiliary.customized_annotations.PhysicianLicenseNumber;
+import com.api.v1.auxiliary.customized_annotations.SSN;
 import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.MedicalAppointmentRepository;
 import com.api.v1.medical_appointment.internal_user.MedicalAppointmentNotFoundException;

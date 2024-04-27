@@ -51,7 +51,7 @@ public class MedicalAppointment implements Serializable {
 	private String medicalNotes = "";
 
 	public MedicalAppointment(String scheduledDateTime, Patient patient, Physician physician) {
-		this.scheduledDateTime = DateTimeConverter.convert(scheduledDateTime);
+		this.scheduledDateTime = DateTimeConverter.convertToDateTime(scheduledDateTime);
 		this.patient = patient;
 		this.physician = physician;
 	}

@@ -1,10 +1,9 @@
 package com.api.v1.patient.internal_use;
 
-import com.api.v1.auxiliary.SSN;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.api.v1.auxiliary.customized_annotations.SSN;
 import com.api.v1.patient.Patient;
 import com.api.v1.patient.PatientRepository;
 

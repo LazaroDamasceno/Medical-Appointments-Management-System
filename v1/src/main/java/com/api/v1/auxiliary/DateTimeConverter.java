@@ -6,24 +6,14 @@ import java.time.format.DateTimeFormatter;
 
 public interface DateTimeConverter {
 
-    static LocalDate convertToLocalDate(String dateTime) {
+    static LocalDate convertToDate(String dateTime) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return LocalDate.parse(dateTime, dtf);
     }
     
-    static LocalDateTime convert(String dateTime) {
-        return dateTime.contains("/") ? withSlash(dateTime) : withHifen(dateTime);
-    }
-
-    private static LocalDateTime withSlash(String dateTime) {
+    static LocalDateTime convertToDateTime(String dateTime) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         return LocalDateTime.parse(dateTime, dtf);
     }
-
-    private static LocalDateTime withHifen(String dateTime) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-        return LocalDateTime.parse(dateTime, dtf);
-    }
-
 
 }

@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.api.v1.auxiliary.DateTimeConverter;
-import com.api.v1.auxiliary.PhysicianLicenseNumber;
-import com.api.v1.auxiliary.SSN;
+import com.api.v1.auxiliary.customized_annotations.PhysicianLicenseNumber;
+import com.api.v1.auxiliary.customized_annotations.SSN;
 import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.find_by.BetweenDatesTimesDTO;
 import com.api.v1.patient.Patient;
@@ -30,8 +30,8 @@ public class FindScheduledMedicalAppointmentsByPhysicianServiceImpl implements F
     public List<MedicalAppointment> find(@PhysicianLicenseNumber String physicianLicenseNumber,
                                             @NotNull BetweenDatesTimesDTO dto   
     ) {
-        LocalDateTime ldt1 = DateTimeConverter.convert(dto.firstDateTime());
-        LocalDateTime ldt2 = DateTimeConverter.convert(dto.lastDateTime());
+        LocalDateTime ldt1 = DateTimeConverter.convertToDateTime(dto.firstDateTime());
+        LocalDateTime ldt2 = DateTimeConverter.convertToDateTime(dto.lastDateTime());
         return findPhysicianByLicenseNumber
         .findByphysicianLicenseNumber(physicianLicenseNumber)
             .getAppointmentList()
@@ -50,8 +50,8 @@ public class FindScheduledMedicalAppointmentsByPhysicianServiceImpl implements F
                                                 @SSN String ssn, 
                                                 @NotNull BetweenDatesTimesDTO dto
     ) {
-        LocalDateTime ldt1 = DateTimeConverter.convert(dto.firstDateTime());
-        LocalDateTime ldt2 = DateTimeConverter.convert(dto.lastDateTime());
+        LocalDateTime ldt1 = DateTimeConverter.convertToDateTime(dto.firstDateTime());
+        LocalDateTime ldt2 = DateTimeConverter.convertToDateTime(dto.lastDateTime());
         Patient patient = findPatientBySsn.findBySsn(ssn);
         return findPhysicianByLicenseNumber
             .findByphysicianLicenseNumber(physicianLicenseNumber)

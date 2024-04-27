@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.api.v1.auxiliary.PhysicianLicenseNumber;
+import com.api.v1.auxiliary.customized_annotations.PhysicianLicenseNumber;
 import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.physician.internal_use.FindPhysicianByLicenseNumber;
 

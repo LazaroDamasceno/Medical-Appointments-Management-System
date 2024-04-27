@@ -44,7 +44,7 @@ class ScheduleMedicalAppointmentServiceImpl implements ScheduleMedicalAppointmen
     }
 
     private void validateInput(Patient patient, Physician physician, String dateTime) {
-        Optional<MedicalAppointment> medicalAppointment = medicalAppointmentRepository.findScheduledMedicalAppointmentByDate(patient, physician, DateTimeConverter.convert(dateTime));
+        Optional<MedicalAppointment> medicalAppointment = medicalAppointmentRepository.findScheduledMedicalAppointmentByDate(patient, physician, DateTimeConverter.convertToDateTime(dateTime));
         boolean isMedicalAppointmentScheduled = medicalAppointment.isPresent() && medicalAppointment.get().getCancelationDateTime() == null;
         if (isMedicalAppointmentScheduled) throw new DuplicatedMedicalAppointmentException();
     }

@@ -2,8 +2,8 @@ package com.api.v1.medical_appointment.internal_user.find_by_date;
 
 import java.time.LocalDateTime;
 
-import com.api.v1.auxiliary.SSN;
-import com.api.v1.auxiliary.PhysicianLicenseNumber;
+import com.api.v1.auxiliary.customized_annotations.PhysicianLicenseNumber;
+import com.api.v1.auxiliary.customized_annotations.SSN;
 import com.api.v1.medical_appointment.MedicalAppointment;
 
 import jakarta.validation.constraints.NotNull;

@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.api.v1.auxiliary.DateTimeConverter;
-import com.api.v1.auxiliary.PhysicianLicenseNumber;
-import com.api.v1.auxiliary.SSN;
+import com.api.v1.auxiliary.customized_annotations.PhysicianLicenseNumber;
+import com.api.v1.auxiliary.customized_annotations.SSN;
 import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.find_by.BetweenDatesTimesDTO;
 import com.api.v1.patient.internal_use.FindPatientBySsn;
@@ -28,8 +28,8 @@ public class FindScheduledMedicalAppointmentsByPatientServiceImpl implements Fin
     @Override
     @Transactional(readOnly = true)
     public List<MedicalAppointment> find(@SSN String ssn, @NotNull BetweenDatesTimesDTO dto) {
-        LocalDateTime ldt1 = DateTimeConverter.convert(dto.firstDateTime());
-        LocalDateTime ldt2 = DateTimeConverter.convert(dto.lastDateTime());
+        LocalDateTime ldt1 = DateTimeConverter.convertToDateTime(dto.firstDateTime());
+        LocalDateTime ldt2 = DateTimeConverter.convertToDateTime(dto.lastDateTime());
         return findPatientBySsn
             .findBySsn(ssn)
             .getAppointmentList()
@@ -47,8 +47,8 @@ public class FindScheduledMedicalAppointmentsByPatientServiceImpl implements Fin
                                                     @PhysicianLicenseNumber String physicianLicenseNumber,
                                                     @NotNull BetweenDatesTimesDTO dto
     ) {
-        LocalDateTime ldt1 = DateTimeConverter.convert(dto.firstDateTime());
-        LocalDateTime ldt2 = DateTimeConverter.convert(dto.lastDateTime());
+        LocalDateTime ldt1 = DateTimeConverter.convertToDateTime(dto.firstDateTime());
+        LocalDateTime ldt2 = DateTimeConverter.convertToDateTime(dto.lastDateTime());
         Physician physician = findPhysicianByLicenseNumber.findByphysicianLicenseNumber(physicianLicenseNumber);
         return findPatientBySsn
             .findBySsn(ssn)

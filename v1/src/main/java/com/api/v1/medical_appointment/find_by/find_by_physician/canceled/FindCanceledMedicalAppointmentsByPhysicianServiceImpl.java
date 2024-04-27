@@ -22,7 +22,7 @@ public class FindCanceledMedicalAppointmentsByPhysicianServiceImpl implements Fi
     public List<MedicalAppointment> find(@PhysicianLicenseNumber String physicianLicenseNumber) {
         return findPhysicianByLicenseNumber
             .findByphysicianLicenseNumber(physicianLicenseNumber)
-            .getAppointmentList()
+            .getMedicalAppointments()
             .stream()
             .filter(e -> e.getCancelationDateTime() != null)
             .toList();

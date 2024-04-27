@@ -2,7 +2,7 @@ package com.api.v1.physician;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import com.api.v1.medical_appointment.MedicalAppointment;
@@ -46,7 +46,7 @@ public class Physician implements Serializable {
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "physician")
 	@JsonManagedReference
-	private List<MedicalAppointment> appointmentList;
+	private Set<MedicalAppointment> medicalAppointments;
 
 	public Physician(InductPhysicianDTO dto) {
 		super();
@@ -59,7 +59,7 @@ public class Physician implements Serializable {
 	}
 
 	public void addMedicalAppointment(MedicalAppointment medicalAppointment) {
-		appointmentList.add(medicalAppointment);
+		medicalAppointments.add(medicalAppointment);
 	}
 
 }

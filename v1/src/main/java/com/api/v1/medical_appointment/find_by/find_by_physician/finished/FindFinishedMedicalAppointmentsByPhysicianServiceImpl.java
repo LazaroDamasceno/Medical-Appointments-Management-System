@@ -35,7 +35,7 @@ public class FindFinishedMedicalAppointmentsByPhysicianServiceImpl implements Fi
         LocalDateTime ldt2 = DateTimeConverter.convert(dto.lastDateTime());
         return findPhysicianByLicenseNumber
             .findByphysicianLicenseNumber(physicianLicenseNumber)
-            .getAppointmentList()
+            .getMedicalAppointments()
             .stream()
             .filter(e -> e.getFinishingDateTime() != null
                 && (e.getScheduledDateTime().isAfter(ldt1) || e.getScheduledDateTime().isEqual(ldt1))
@@ -56,7 +56,7 @@ public class FindFinishedMedicalAppointmentsByPhysicianServiceImpl implements Fi
         Patient patient = findPatientBySsn.findBySsn(ssn);
         return findPhysicianByLicenseNumber
             .findByphysicianLicenseNumber(physicianLicenseNumber)
-            .getAppointmentList()
+            .getMedicalAppointments()
             .stream()
             .filter(e -> e.getFinishingDateTime() != null
                 && e.getPatient().equals(patient)
@@ -70,7 +70,7 @@ public class FindFinishedMedicalAppointmentsByPhysicianServiceImpl implements Fi
     public List<MedicalAppointment> findAll(@PhysicianLicenseNumber  String physicianLicenseNumber) {
         return findPhysicianByLicenseNumber
             .findByphysicianLicenseNumber(physicianLicenseNumber)
-            .getAppointmentList()
+            .getMedicalAppointments()
             .stream()
             .filter(e -> e.getFinishingDateTime() != null)
             .toList();

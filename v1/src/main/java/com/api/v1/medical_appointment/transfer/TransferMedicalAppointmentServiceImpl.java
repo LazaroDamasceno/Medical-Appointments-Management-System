@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.api.v1.helper.DateTimeConverter;
 import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.MedicalAppointmentRepository;
-import com.api.v1.medical_appointment.find_by.exception.DateTimesEqualityException;
+import com.api.v1.medical_appointment.find_by.exceptions.DateTimesEqualityException;
 import com.api.v1.medical_appointment.helper.find_by_physician.FindMedicalAppointmentByPhysician;
 import com.api.v1.patient.Patient;
 import com.api.v1.physician.Physician;

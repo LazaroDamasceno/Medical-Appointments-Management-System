@@ -7,9 +7,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.api.v1.helper.DateTimeConverter;
 import com.api.v1.medical_appointment.find_by.dto.BetweenDatesTimesDTO;
-import com.api.v1.medical_appointment.find_by.exception.DateTimesEqualityException;
-import com.api.v1.medical_appointment.find_by.exception.FutureFirstDateTimeException;
-import com.api.v1.medical_appointment.find_by.exception.PastLastDateTimeException;
+import com.api.v1.medical_appointment.find_by.exceptions.DateTimesEqualityException;
+import com.api.v1.medical_appointment.find_by.exceptions.FutureFirstDateTimeException;
+import com.api.v1.medical_appointment.find_by.exceptions.PastLastDateTimeException;
 
 @Service
 public class CheckIfDateTimesAreValidImpl implements CheckIfDateTimesAreValid {

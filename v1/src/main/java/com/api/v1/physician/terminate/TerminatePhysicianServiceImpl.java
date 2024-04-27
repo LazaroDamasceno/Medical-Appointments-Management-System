@@ -4,10 +4,10 @@ import java.time.LocalDateTime;
 
 import org.springframework.stereotype.Service;
 
-import com.api.v1.auxiliary.customized_annotations.PhysicianLicenseNumber;
+import com.api.v1.helper.customized_annotations.PhysicianLicenseNumber;
 import com.api.v1.physician.Physician;
 import com.api.v1.physician.PhysicianRepository;
-import com.api.v1.physician.internal_use.FindPhysicianByLicenseNumber;
+import com.api.v1.physician.helper.FindPhysicianByLicenseNumber;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

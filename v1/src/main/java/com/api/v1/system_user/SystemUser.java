@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.UUID;
 
-import com.api.v1.auxiliary.DateTimeConverter;
+import com.api.v1.helper.DateTimeConverter;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Column;

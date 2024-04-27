@@ -3,10 +3,10 @@ package com.api.v1.medical_appointment.add_medical_notes;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.api.v1.auxiliary.DateTimeConverter;
+import com.api.v1.helper.DateTimeConverter;
 import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.MedicalAppointmentRepository;
-import com.api.v1.medical_appointment.internal_user.find_by_date.FindMedicalAppointmentByDate;
+import com.api.v1.medical_appointment.helper.find_by_date.FindMedicalAppointmentByDate;
 import com.api.v1.medical_record.internal_usr.MedicalRecordCreateOrAdd;
 
 import jakarta.validation.constraints.NotNull;

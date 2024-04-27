@@ -5,7 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.api.v1.physician.Physician;
 import com.api.v1.physician.PhysicianRepository;
-import com.api.v1.physician.internal_use.FindPhysicianByLicenseNumber;
+import com.api.v1.physician.helper.FindPhysicianByLicenseNumber;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;

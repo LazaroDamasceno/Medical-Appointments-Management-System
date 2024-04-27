@@ -5,7 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.api.v1.patient.Patient;
 import com.api.v1.patient.PatientRepository;
-import com.api.v1.patient.internal_use.FindPatientBySsn;
+import com.api.v1.patient.helper.FindPatientBySsn;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;

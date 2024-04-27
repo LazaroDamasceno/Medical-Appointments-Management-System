@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.api.v1.auxiliary.customized_annotations.SSN;
+import com.api.v1.helper.customized_annotations.SSN;
 import com.api.v1.medical_appointment.MedicalAppointment;
-import com.api.v1.patient.internal_use.FindPatientBySsn;
+import com.api.v1.patient.helper.FindPatientBySsn;
 
 import lombok.RequiredArgsConstructor;
 

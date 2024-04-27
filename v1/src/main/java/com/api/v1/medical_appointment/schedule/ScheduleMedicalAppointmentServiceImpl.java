@@ -6,15 +6,15 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.api.v1.auxiliary.DateTimeConverter;
+import com.api.v1.helper.DateTimeConverter;
 import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.MedicalAppointmentRepository;
 import com.api.v1.patient.Patient;
 import com.api.v1.patient.PatientRepository;
-import com.api.v1.patient.internal_use.FindPatientBySsn;
+import com.api.v1.patient.helper.FindPatientBySsn;
 import com.api.v1.physician.Physician;
 import com.api.v1.physician.PhysicianRepository;
-import com.api.v1.physician.internal_use.FindPhysicianByLicenseNumber;
+import com.api.v1.physician.helper.FindPhysicianByLicenseNumber;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;

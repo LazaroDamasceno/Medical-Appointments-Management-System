@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.v1.auxiliary.customized_annotations.PhysicianLicenseNumber;
-import com.api.v1.auxiliary.customized_annotations.SSN;
+import com.api.v1.helper.customized_annotations.PhysicianLicenseNumber;
+import com.api.v1.helper.customized_annotations.SSN;
 import com.api.v1.medical_appointment.MedicalAppointment;
-import com.api.v1.medical_appointment.find_by.BetweenDatesTimesDTO;
+import com.api.v1.medical_appointment.find_by.dto.BetweenDatesTimesDTO;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;

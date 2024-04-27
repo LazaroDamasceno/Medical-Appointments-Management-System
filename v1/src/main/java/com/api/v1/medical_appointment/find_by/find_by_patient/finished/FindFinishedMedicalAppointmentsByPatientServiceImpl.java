@@ -6,14 +6,14 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.api.v1.auxiliary.DateTimeConverter;
-import com.api.v1.auxiliary.customized_annotations.PhysicianLicenseNumber;
-import com.api.v1.auxiliary.customized_annotations.SSN;
+import com.api.v1.helper.DateTimeConverter;
+import com.api.v1.helper.customized_annotations.PhysicianLicenseNumber;
+import com.api.v1.helper.customized_annotations.SSN;
 import com.api.v1.medical_appointment.MedicalAppointment;
-import com.api.v1.medical_appointment.find_by.BetweenDatesTimesDTO;
-import com.api.v1.patient.internal_use.FindPatientBySsn;
+import com.api.v1.medical_appointment.find_by.dto.BetweenDatesTimesDTO;
+import com.api.v1.patient.helper.FindPatientBySsn;
 import com.api.v1.physician.Physician;
-import com.api.v1.physician.internal_use.FindPhysicianByLicenseNumber;
+import com.api.v1.physician.helper.FindPhysicianByLicenseNumber;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;

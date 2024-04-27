@@ -2,10 +2,10 @@ package com.api.v1.medical_appointment.find_by.find_by_patient.scheduled;
 
 import java.util.List;
 
-import com.api.v1.auxiliary.customized_annotations.PhysicianLicenseNumber;
-import com.api.v1.auxiliary.customized_annotations.SSN;
+import com.api.v1.helper.customized_annotations.PhysicianLicenseNumber;
+import com.api.v1.helper.customized_annotations.SSN;
 import com.api.v1.medical_appointment.MedicalAppointment;
-import com.api.v1.medical_appointment.find_by.BetweenDatesTimesDTO;
+import com.api.v1.medical_appointment.find_by.dto.BetweenDatesTimesDTO;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;

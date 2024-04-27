@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.v1.auxiliary.customized_annotations.SSN;
+import com.api.v1.helper.customized_annotations.SSN;
 import com.api.v1.medical_appointment.MedicalAppointment;
 
 import lombok.RequiredArgsConstructor;

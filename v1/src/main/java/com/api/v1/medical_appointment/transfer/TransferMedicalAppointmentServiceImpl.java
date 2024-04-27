@@ -36,6 +36,5 @@ class TransferMedicalAppointmentServiceImpl implements TransferMedicalAppointmen
         repository.save(oldMedicalAppointment);
         MedicalAppointment newMedicalAppointment = new MedicalAppointment(dto.newMedicalAppointmentDate(), patient, physician);
         repository.save(newMedicalAppointment);
-    }   
-
+    }
 }

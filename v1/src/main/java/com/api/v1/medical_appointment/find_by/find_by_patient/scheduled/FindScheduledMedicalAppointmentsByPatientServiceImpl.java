@@ -32,7 +32,7 @@ public class FindScheduledMedicalAppointmentsByPatientServiceImpl implements Fin
         LocalDateTime ldt2 = DateTimeConverter.convert(dto.lastDateTime());
         return findPatientBySsn
             .findBySsn(ssn)
-            .getMedicalAppointments()
+            .getAppointmentList()
             .stream()
             .filter(e -> e.getCancelationDateTime() == null
                 && e.getFinishingDateTime() == null 
@@ -52,7 +52,7 @@ public class FindScheduledMedicalAppointmentsByPatientServiceImpl implements Fin
         Physician physician = findPhysicianByLicenseNumber.findByphysicianLicenseNumber(physicianLicenseNumber);
         return findPatientBySsn
             .findBySsn(ssn)
-            .getMedicalAppointments()
+            .getAppointmentList()
             .stream()
             .filter(e -> e.getCancelationDateTime() == null
                 && e.getFinishingDateTime() == null 
@@ -67,7 +67,7 @@ public class FindScheduledMedicalAppointmentsByPatientServiceImpl implements Fin
     public List<MedicalAppointment> findAll(@SSN String ssn) {
         return findPatientBySsn
         .findBySsn(ssn)
-        .getMedicalAppointments()
+        .getAppointmentList()
         .stream()
         .filter(e -> e.getCancelationDateTime() == null && e.getFinishingDateTime() == null)
         .toList();

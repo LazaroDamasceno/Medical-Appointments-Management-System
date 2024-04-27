@@ -22,7 +22,7 @@ public class FindCanceledMedicalAppointmentsByPatientServiceImpl implements Find
     public List<MedicalAppointment> findAll(@SSN String ssn) {
         return findPatientBySsn
             .findBySsn(ssn)
-            .getMedicalAppointments()
+            .getAppointmentList()
             .stream()
             .filter(e -> e.getCancelationDateTime() != null)
             .toList();

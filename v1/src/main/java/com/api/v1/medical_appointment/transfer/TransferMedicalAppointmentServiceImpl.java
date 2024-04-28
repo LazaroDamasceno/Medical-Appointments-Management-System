@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.api.v1.helper.DateTimeConverter;
-import com.api.v1.helper.exceptions.DateTimesEqualityException;
+import com.api.v1.helper.exceptions.DuplicateDateTimeException;
 import com.api.v1.helper.exceptions.TemporalOrderException;
 import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.MedicalAppointmentRepository;
@@ -46,7 +46,7 @@ class TransferMedicalAppointmentServiceImpl implements TransferMedicalAppointmen
     private void validateDateTimes(TransferMedicalAppointmentDTO dto) {
         LocalDateTime firstDateTime = DateTimeConverter.convertToDateTime(dto.oldMedicalAppointmentDate());
         LocalDateTime lastDateTime = DateTimeConverter.convertToDateTime(dto.newMedicalAppointmentDate());
-        if (firstDateTime.isEqual(lastDateTime)) throw new DateTimesEqualityException();
+        if (firstDateTime.isEqual(lastDateTime)) throw new DuplicateDateTimeException();
         else if (firstDateTime.isAfter(lastDateTime)) throw new TemporalOrderException();
     }
     

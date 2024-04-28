@@ -1,8 +1,8 @@
 package com.api.v1.helper.exceptions;
 
-public class DateTimeInconsistencyException  extends RuntimeException {
+public class TemporalOrderException  extends RuntimeException {
 
-    public DateTimeInconsistencyException() {
+    public TemporalOrderException() {
         super("First date time cannot be beyond last date time. Last date time cannot be behind the first date time.");
     }
     

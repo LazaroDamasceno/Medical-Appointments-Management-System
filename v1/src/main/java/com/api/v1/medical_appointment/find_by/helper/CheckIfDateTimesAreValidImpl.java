@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.api.v1.helper.DateTimeConverter;
-import com.api.v1.helper.exceptions.DateTimeInconsistencyException;
+import com.api.v1.helper.exceptions.TemporalOrderException;
 import com.api.v1.medical_appointment.find_by.dto.BetweenDatesTimesDTO;
 
 @Service
@@ -16,7 +16,7 @@ public class CheckIfDateTimesAreValidImpl implements CheckIfDateTimesAreValid {
     @Transactional(readOnly = true)
     public void checkIfFirstDateTimeIsBeyondLastDateTime(BetweenDatesTimesDTO dto) {
         if (getFirstDateTime(dto).isAfter(getLastDateTime(dto))) {
-            throw new DateTimeInconsistencyException();
+            throw new TemporalOrderException();
         }
     }
 

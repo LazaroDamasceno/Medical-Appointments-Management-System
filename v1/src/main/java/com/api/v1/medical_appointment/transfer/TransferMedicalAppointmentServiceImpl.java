@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.api.v1.helper.DateTimeConverter;
 import com.api.v1.helper.exceptions.DateTimesEqualityException;
 import com.api.v1.helper.exceptions.FutureFirstDateTimeException;
-import com.api.v1.helper.exceptions.PastLastDateTimeException;
 import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.MedicalAppointmentRepository;
 import com.api.v1.medical_appointment.helper.find_by_physician.FindMedicalAppointmentByPhysician;
@@ -49,7 +48,6 @@ class TransferMedicalAppointmentServiceImpl implements TransferMedicalAppointmen
         LocalDateTime lastDateTime = DateTimeConverter.convertToDateTime(dto.newMedicalAppointmentDate());
         if (firstDateTime.isEqual(lastDateTime)) throw new DateTimesEqualityException();
         else if (firstDateTime.isAfter(lastDateTime)) throw new FutureFirstDateTimeException();
-        else if (lastDateTime.isBefore(firstDateTime)) throw new PastLastDateTimeException();
     }
     
 }

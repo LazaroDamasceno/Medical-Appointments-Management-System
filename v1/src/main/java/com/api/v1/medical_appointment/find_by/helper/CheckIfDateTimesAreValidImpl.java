@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.api.v1.helper.DateTimeConverter;
 import com.api.v1.helper.exceptions.FutureFirstDateTimeException;
-import com.api.v1.helper.exceptions.PastLastDateTimeException;
 import com.api.v1.medical_appointment.find_by.dto.BetweenDatesTimesDTO;
 
 @Service
@@ -18,14 +17,6 @@ public class CheckIfDateTimesAreValidImpl implements CheckIfDateTimesAreValid {
     public void checkIfFirstDateTimeIsBeyondLastDateTime(BetweenDatesTimesDTO dto) {
         if (getFirstDateTime(dto).isAfter(getLastDateTime(dto))) {
             throw new FutureFirstDateTimeException();
-        }
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public void checkIfLastDateTimeIsBeyondFirstDateTime(BetweenDatesTimesDTO dto) {
-        if (getLastDateTime(dto).isAfter(getFirstDateTime(dto))) {
-            throw new PastLastDateTimeException();
         }
     }
 

@@ -6,6 +6,4 @@ public interface CheckIfDateTimesAreValid {
 
     void checkIfFirstDateTimeIsBeyondLastDateTime(BetweenDatesTimesDTO dto);
 
-    void checkIfLastDateTimeIsBeyondFirstDateTime(BetweenDatesTimesDTO dto);
-
 }

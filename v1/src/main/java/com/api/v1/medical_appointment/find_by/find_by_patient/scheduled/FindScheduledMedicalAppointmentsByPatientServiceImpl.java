@@ -79,7 +79,6 @@ public class FindScheduledMedicalAppointmentsByPatientServiceImpl implements Fin
 
     private void validateDateTimes(BetweenDatesTimesDTO dto) {
         checkIfDateTimesAreValid.checkIfFirstDateTimeIsBeyondLastDateTime(dto);
-        checkIfDateTimesAreValid.checkIfLastDateTimeIsBeyondFirstDateTime(dto);
     }
     
 }

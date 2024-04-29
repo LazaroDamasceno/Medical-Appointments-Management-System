@@ -1,5 +1,6 @@
 package com.api.v1.patient;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,6 +16,6 @@ public interface PatientRepository extends JpaRepository<Patient, UUID> {
 			select p from Patient p
 			where p.systemUser.ssn = :ssn
 	""")
-	Patient findPatientBySsn(@NotNull @Size(min=9, max=9) @Param("ssn") String ssn);
+	Optional<Patient> findPatientBySsn(@NotNull @Size(min=9, max=9) @Param("ssn") String ssn);
 
 }

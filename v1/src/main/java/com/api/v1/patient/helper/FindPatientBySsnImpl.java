@@ -19,11 +19,11 @@ public class FindPatientBySsnImpl implements FindPatientBySsn {
 	@Transactional(readOnly = true)
 	public Patient findBySsn(@SSN String ssn) {
 		validateInput(ssn);
-		return repository.findPatientBySsn(ssn);
+		return repository.findPatientBySsn(ssn).get();
 	}
 	
 	private void validateInput(String ssn) {
-		if (repository.findPatientBySsn(ssn) == null) {
+		if (repository.findPatientBySsn(ssn).isEmpty()) {
 			throw new PatientNotFoundException(ssn);
 		}
 	}

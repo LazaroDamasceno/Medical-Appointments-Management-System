@@ -1,7 +1,5 @@
 package com.api.v1.patient.register;
 
-import java.util.Objects;
-
 import org.springframework.stereotype.Service;
 
 import com.api.v1.patient.Patient;
@@ -26,7 +24,7 @@ public class RegisterPatientServiceImpl implements RegisterPatientService {
 	}
 	
 	private void validateInput(String ssn) {
-		if (Objects.nonNull(repository.findPatientBySsn(ssn))) {
+		if (repository.findPatientBySsn(ssn).isPresent()) {
 			throw new DuplicatedPatientException(ssn);
 		}
 	}

@@ -1,8 +1,8 @@
 package com.api.v1.medical_appointment.schedule;
 
-import com.api.v1.helper.customized_annotations.DateTimeFormat;
-import com.api.v1.helper.customized_annotations.PhysicianLicenseNumber;
-import com.api.v1.helper.customized_annotations.SSN;
+import com.api.v1.helper.DateTimeFormat;
+import com.api.v1.helper.PhysicianLicenseNumber;
+import com.api.v1.helper.SSN;
 
 import jakarta.validation.constraints.Future;
 

@@ -1,4 +1,4 @@
-package com.api.v1.helper.exceptions;
+package com.api.v1.helper;
 
 public class DuplicateDateTimeException extends RuntimeException {
 

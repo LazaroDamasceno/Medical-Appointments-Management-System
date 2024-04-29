@@ -1,6 +1,6 @@
 package com.api.v1.patient.update;
 
-import com.api.v1.helper.customized_annotations.SSN;
+import com.api.v1.helper.SSN;
 import com.api.v1.system_user.UpdateSystemUserDTO;
 
 import jakarta.validation.constraints.NotBlank;

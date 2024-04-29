@@ -2,8 +2,8 @@ package com.api.v1.medical_appointment.add_medical_notes;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.api.v1.helper.customized_annotations.PhysicianLicenseNumber;
-import com.api.v1.helper.customized_annotations.SSN;
+import com.api.v1.helper.PhysicianLicenseNumber;
+import com.api.v1.helper.SSN;
 
 import jakarta.validation.constraints.NotBlank;
 

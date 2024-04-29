@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.api.v1.helper.DateTimeConverter;
-import com.api.v1.helper.exceptions.DuplicateDateTimeException;
-import com.api.v1.helper.exceptions.TemporalOrderException;
+import com.api.v1.helper.DuplicateDateTimeException;
+import com.api.v1.helper.TemporalOrderException;
 import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.MedicalAppointmentRepository;
 import com.api.v1.medical_appointment.helper.find_by_physician.FindMedicalAppointmentByPhysician;

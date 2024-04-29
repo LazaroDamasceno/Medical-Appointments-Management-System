@@ -4,7 +4,7 @@ import java.time.ZonedDateTime;
 
 import org.springframework.stereotype.Service;
 
-import com.api.v1.helper.customized_annotations.PhysicianLicenseNumber;
+import com.api.v1.helper.PhysicianLicenseNumber;
 import com.api.v1.physician.Physician;
 import com.api.v1.physician.PhysicianRepository;
 import com.api.v1.physician.helper.FindPhysicianByLicenseNumber;

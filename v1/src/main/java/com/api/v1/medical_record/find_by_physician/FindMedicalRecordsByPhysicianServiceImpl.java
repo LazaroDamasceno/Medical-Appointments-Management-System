@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.api.v1.helper.customized_annotations.PhysicianLicenseNumber;
+import com.api.v1.helper.PhysicianLicenseNumber;
 import com.api.v1.medical_record.MedicalRecord;
 import com.api.v1.medical_record.MedicalRecordRepository;
 import com.api.v1.physician.Physician;

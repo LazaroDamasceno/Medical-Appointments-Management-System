@@ -3,7 +3,7 @@ package com.api.v1.physician.helper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.api.v1.helper.customized_annotations.PhysicianLicenseNumber;
+import com.api.v1.helper.PhysicianLicenseNumber;
 import com.api.v1.physician.Physician;
 import com.api.v1.physician.PhysicianRepository;
 

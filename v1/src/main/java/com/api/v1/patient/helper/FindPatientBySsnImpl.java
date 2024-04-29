@@ -3,7 +3,7 @@ package com.api.v1.patient.helper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.api.v1.helper.customized_annotations.SSN;
+import com.api.v1.helper.SSN;
 import com.api.v1.patient.Patient;
 import com.api.v1.patient.PatientRepository;
 

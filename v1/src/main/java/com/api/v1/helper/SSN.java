@@ -1,4 +1,4 @@
-package com.api.v1.helper.customized_annotations;
+package com.api.v1.helper;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -6,12 +6,12 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.PARAMETER)
 @NotNull
-@Pattern(regexp = "^([0-9]{2})/([0-9]{2})/([0-9]{4})$")
-public @interface DateFormat {
-  String message() default "Invalid date time format. Please enter date time as dd/mm/yyyy hh:mm:ss.";
+@Size(min = 9, max = 9)
+public @interface SSN {
+  String message() default "Invalid SSN format. Please enter a 9-digit Social Security Number.";
 }

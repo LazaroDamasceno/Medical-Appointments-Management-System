@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.api.v1.helper.DateTimeConverter;
-import com.api.v1.helper.customized_annotations.PhysicianLicenseNumber;
-import com.api.v1.helper.customized_annotations.SSN;
+import com.api.v1.helper.PhysicianLicenseNumber;
+import com.api.v1.helper.SSN;
 import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.find_by.dto.BetweenDatesTimesDTO;
 import com.api.v1.medical_appointment.find_by.helper.CheckIfDateTimesAreValid;

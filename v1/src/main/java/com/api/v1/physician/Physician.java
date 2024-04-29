@@ -9,7 +9,6 @@ import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.physician.hire.HirePhysicianDTO;
 import com.api.v1.physician.update.UpdatePhysicianDTO;
 import com.api.v1.system_user.SystemUser;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
@@ -34,10 +33,8 @@ public class Physician implements Serializable {
 	@Column(nullable = false, unique = true)
 	private String physicianLicenseNumber ;
 	
-	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	private final ZonedDateTime inductionDateTime = ZonedDateTime.now();
 	
-	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	private ZonedDateTime terminationDateTime;
 	
 	@OneToOne(cascade = CascadeType.ALL)

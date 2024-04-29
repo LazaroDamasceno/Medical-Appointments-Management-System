@@ -8,7 +8,6 @@ import com.api.v1.helper.DateTimeConverter;
 import com.api.v1.patient.Patient;
 import com.api.v1.physician.Physician;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -29,13 +28,10 @@ public class MedicalAppointment implements Serializable {
 	private UUID id;
 	
 	@Column(nullable = false)
-	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	private ZonedDateTime scheduledDateTime;
 	
-	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	private ZonedDateTime cancelationDateTime;
 
-	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	private ZonedDateTime finishingDateTime;
 	
 	@ManyToOne(cascade = CascadeType.ALL)

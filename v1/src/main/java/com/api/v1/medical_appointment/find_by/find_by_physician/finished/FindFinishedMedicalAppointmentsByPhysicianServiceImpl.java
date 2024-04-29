@@ -1,6 +1,6 @@
 package com.api.v1.medical_appointment.find_by.find_by_physician.finished;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -34,8 +34,8 @@ public class FindFinishedMedicalAppointmentsByPhysicianServiceImpl implements Fi
             @NotNull BetweenDatesTimesDTO dto
     ) {
         validateDateTimes(dto);
-        LocalDateTime ldt1 = DateTimeConverter.convertToDateTime(dto.firstDateTime());
-        LocalDateTime ldt2 = DateTimeConverter.convertToDateTime(dto.lastDateTime());
+        ZonedDateTime ldt1 = DateTimeConverter.convertToZonedDateTime(dto.firstDateTime());
+        ZonedDateTime ldt2 = DateTimeConverter.convertToZonedDateTime(dto.lastDateTime());
         return findPhysicianByLicenseNumber
             .findByphysicianLicenseNumber(physicianLicenseNumber)
             .getAppointmentList()
@@ -55,8 +55,8 @@ public class FindFinishedMedicalAppointmentsByPhysicianServiceImpl implements Fi
             @NotNull BetweenDatesTimesDTO dto
     ) {
         validateDateTimes(dto);
-        LocalDateTime ldt1 = DateTimeConverter.convertToDateTime(dto.firstDateTime());
-        LocalDateTime ldt2 = DateTimeConverter.convertToDateTime(dto.lastDateTime());
+        ZonedDateTime ldt1 = DateTimeConverter.convertToZonedDateTime(dto.firstDateTime());
+        ZonedDateTime ldt2 = DateTimeConverter.convertToZonedDateTime(dto.lastDateTime());
         Patient patient = findPatientBySsn.findBySsn(ssn);
         return findPhysicianByLicenseNumber
             .findByphysicianLicenseNumber(physicianLicenseNumber)

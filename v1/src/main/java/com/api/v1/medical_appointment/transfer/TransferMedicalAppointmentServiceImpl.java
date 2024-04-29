@@ -1,6 +1,6 @@
 package com.api.v1.medical_appointment.transfer;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,7 +33,7 @@ class TransferMedicalAppointmentServiceImpl implements TransferMedicalAppointmen
         Physician physician = findPhysicianByLicenseNumber.findByphysicianLicenseNumber(dto.physicianLicenseNumber());
         MedicalAppointment oldMedicalAppointment = findMedicalAppointmentByPhysician.findByPhysician(
             dto.physicianLicenseNumber(), 
-            DateTimeConverter.convertToDateTime(dto.newMedicalAppointmentDate())
+            DateTimeConverter.convertToZonedDateTime(dto.newMedicalAppointmentDate())
         );
         Patient patient = oldMedicalAppointment.getPatient();
         System.out.println(patient);
@@ -44,8 +44,8 @@ class TransferMedicalAppointmentServiceImpl implements TransferMedicalAppointmen
     }
 
     private void validateDateTimes(TransferMedicalAppointmentDTO dto) {
-        LocalDateTime firstDateTime = DateTimeConverter.convertToDateTime(dto.oldMedicalAppointmentDate());
-        LocalDateTime lastDateTime = DateTimeConverter.convertToDateTime(dto.newMedicalAppointmentDate());
+        ZonedDateTime firstDateTime = DateTimeConverter.convertToZonedDateTime(dto.oldMedicalAppointmentDate());
+        ZonedDateTime lastDateTime = DateTimeConverter.convertToZonedDateTime(dto.newMedicalAppointmentDate());
         if (firstDateTime.isEqual(lastDateTime)) throw new DuplicateDateTimeException();
         else if (firstDateTime.isAfter(lastDateTime)) throw new TemporalOrderException();
     }

@@ -1,4 +1,4 @@
-package com.api.v1.helper.constant;
+package com.api.v1.helper.constants;
 
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;

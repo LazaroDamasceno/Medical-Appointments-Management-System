@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.v1.helper.constant.HttpStatusCodes;
+import com.api.v1.helper.constants.HttpStatusCodes;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;

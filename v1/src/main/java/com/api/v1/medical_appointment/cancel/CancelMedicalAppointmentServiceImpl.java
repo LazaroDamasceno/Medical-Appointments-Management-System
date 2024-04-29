@@ -21,7 +21,7 @@ class CancelMedicalAppointmentServiceImpl implements CancelMedicalAppointmentSer
     @Override
     @Transactional
     public void cancel(@NotNull CancelMedicalAppointmentDTO dto) {
-        MedicalAppointment medicalAppointment = findMedicalAppointmentByPatient.findByPatient(dto.ssn(), DateTimeConverter.convertToDateTime(dto.dateTime()));
+        MedicalAppointment medicalAppointment = findMedicalAppointmentByPatient.findByPatient(dto.ssn(), DateTimeConverter.convertToZonedDateTime(dto.dateTime()));
         validateInput(medicalAppointment);
         medicalAppointment.cancel();
         repository.save(medicalAppointment);

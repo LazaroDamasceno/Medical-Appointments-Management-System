@@ -1,7 +1,7 @@
 package com.api.v1.physician;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -35,10 +35,10 @@ public class Physician implements Serializable {
 	private String physicianLicenseNumber ;
 	
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-	private final LocalDateTime inductionDateTime = LocalDateTime.now();
+	private final ZonedDateTime inductionDateTime = ZonedDateTime.now();
 	
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-	private LocalDateTime terminationDateTime;
+	private ZonedDateTime terminationDateTime;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "system_user_id")

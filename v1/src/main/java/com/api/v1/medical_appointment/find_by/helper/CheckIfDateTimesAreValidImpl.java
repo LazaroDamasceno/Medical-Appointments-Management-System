@@ -1,6 +1,6 @@
 package com.api.v1.medical_appointment.find_by.helper;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,12 +20,12 @@ public class CheckIfDateTimesAreValidImpl implements CheckIfDateTimesAreValid {
         }
     }
 
-    private LocalDateTime getFirstDateTime(BetweenDatesTimesDTO dto) {
-        return DateTimeConverter.convertToDateTime(dto.firstDateTime());
+    private ZonedDateTime getFirstDateTime(BetweenDatesTimesDTO dto) {
+        return DateTimeConverter.convertToZonedDateTime(dto.firstDateTime());
     }
 
-    private LocalDateTime getLastDateTime(BetweenDatesTimesDTO dto) {
-        return DateTimeConverter.convertToDateTime(dto.lastDateTime());
+    private ZonedDateTime getLastDateTime(BetweenDatesTimesDTO dto) {
+        return DateTimeConverter.convertToZonedDateTime(dto.lastDateTime());
     }
     
 }

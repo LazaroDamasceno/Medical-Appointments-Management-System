@@ -1,7 +1,7 @@
 package com.api.v1.medical_appointment;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.UUID;
 
 import com.api.v1.helper.DateTimeConverter;
@@ -30,13 +30,13 @@ public class MedicalAppointment implements Serializable {
 	
 	@Column(nullable = false)
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-	private LocalDateTime scheduledDateTime;
+	private ZonedDateTime scheduledDateTime;
 	
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-	private LocalDateTime cancelationDateTime;
+	private ZonedDateTime cancelationDateTime;
 
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-	private LocalDateTime finishingDateTime;
+	private ZonedDateTime finishingDateTime;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "patientId")
@@ -51,17 +51,17 @@ public class MedicalAppointment implements Serializable {
 	private String medicalNotes = "";
 
 	public MedicalAppointment(String scheduledDateTime, Patient patient, Physician physician) {
-		this.scheduledDateTime = DateTimeConverter.convertToDateTime(scheduledDateTime);
+		this.scheduledDateTime = DateTimeConverter.convertToZonedDateTime(scheduledDateTime);
 		this.patient = patient;
 		this.physician = physician;
 	}
 
 	public void cancel() {
-		this.cancelationDateTime = LocalDateTime.now();
+		this.cancelationDateTime = ZonedDateTime.now();
 	}
 
 	public void finish() {
-		this.finishingDateTime = LocalDateTime.now();
+		this.finishingDateTime = ZonedDateTime.now();
 	}
 
 	public void addMedicalNotes(@NotBlank String notes) {

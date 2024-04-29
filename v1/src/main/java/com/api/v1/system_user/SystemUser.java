@@ -54,7 +54,7 @@ public class SystemUser implements Serializable {
 		super();
 		this.fullName = dto.fullName();
 		this.ssn = dto.ssn();
-		this.birthDate = DateTimeConverter.convertToDate(dto.birthDate());
+		this.birthDate = DateTimeConverter.convertToLocalDate(dto.birthDate());
 		this.email = dto.email();
 		this.phoneNumber = dto.phoneNumber();
 		this.gender = dto.gender();
@@ -62,7 +62,7 @@ public class SystemUser implements Serializable {
 
 	public void update(UpdateSystemUserDTO dto) {
 		this.fullName = dto.fullName();
-		this.birthDate = DateTimeConverter.convertToDate(dto.birthDate());
+		this.birthDate = DateTimeConverter.convertToLocalDate(dto.birthDate());
 		this.email = dto.email();
 		this.phoneNumber = dto.phoneNumber();
 		this.gender = dto.gender();

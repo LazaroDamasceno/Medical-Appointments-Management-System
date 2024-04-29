@@ -1,6 +1,6 @@
 package com.api.v1.medical_appointment.helper.find_by_patient;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -26,7 +26,7 @@ public class FindMedicalAppointmentByPatientService implements FindMedicalAppoin
 
     @Override
     @Transactional(readOnly = true)
-    public MedicalAppointment findByPatient(@SSN String ssn, @NotNull LocalDateTime dateTime) {
+    public MedicalAppointment findByPatient(@SSN String ssn, @NotNull ZonedDateTime dateTime) {
         Patient patient = findPatientBySsn.findBySsn(ssn);
         Optional<MedicalAppointment> medicalAppointment = repository.findScheduledMedicalAppointmentByPatient(patient, dateTime);
         validateInput(medicalAppointment);

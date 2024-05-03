@@ -2,7 +2,6 @@ package com.api.v1.medical_appointment.find_by.find_by_patient.canceled;
 
 import java.util.List;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,8 +22,8 @@ public class FindCanceledMedicalAppointmentsByPatientControllerImpl {
     
     @Transactional(readOnly = true)
     @GetMapping("{ssn}/{firstDateTime}/{lastDateTime}")
-    public ResponseEntity<List<MedicalAppointment>> findAll(@SSN @PathVariable String ssn) {
-        return ResponseEntity.ok(service.findAll(ssn));
+    public List<MedicalAppointment> findAll(@SSN @PathVariable String ssn) {
+        return service.findAll(ssn);
     }
     
 }

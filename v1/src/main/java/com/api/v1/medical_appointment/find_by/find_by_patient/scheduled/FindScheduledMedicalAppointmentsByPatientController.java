@@ -2,7 +2,6 @@ package com.api.v1.medical_appointment.find_by.find_by_patient.scheduled;
 
 import java.util.List;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,23 +26,23 @@ public class FindScheduledMedicalAppointmentsByPatientController {
 
     @GetMapping("{ssn}")
     @Transactional(readOnly = true)
-    public ResponseEntity<List<MedicalAppointment>> find(@SSN @PathVariable String ssn, @NotNull @RequestBody BetweenDatesTimesDTO dto) {
-        return ResponseEntity.ok(service.find(ssn, dto));
+    public List<MedicalAppointment> find(@SSN @PathVariable String ssn, @NotNull @RequestBody BetweenDatesTimesDTO dto) {
+        return service.find(ssn, dto);
     }
 
     @Transactional(readOnly = true)
     @GetMapping("and-by-physician/{ssn}/{physicianLicenseNumber}/{firstDateTime}/{lastDateTime}")
-    public ResponseEntity<List<MedicalAppointment>> findByPhysician(@SSN @PathVariable String ssn,
+    public List<MedicalAppointment> findByPhysician(@SSN @PathVariable String ssn,
                                                                     @PhysicianLicenseNumber @PathVariable String physicianLicenseNumber,
                                                                     @NotNull @RequestBody BetweenDatesTimesDTO dto
     ) {
-        return ResponseEntity.ok(service.findByPhysician(ssn, physicianLicenseNumber, dto));
+        return service.findByPhysician(ssn, physicianLicenseNumber, dto);
     }
 
     @GetMapping("ssn/{ssn}")
     @Transactional(readOnly = true)
-    public ResponseEntity<List<MedicalAppointment>> find(@SSN @PathVariable String ssn) {
-        return ResponseEntity.ok(service.findAll(ssn));
+    public List<MedicalAppointment> find(@SSN @PathVariable String ssn) {
+        return service.findAll(ssn);
     }
     
 }

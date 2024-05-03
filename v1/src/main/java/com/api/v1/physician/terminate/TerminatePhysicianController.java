@@ -1,12 +1,11 @@
 package com.api.v1.physician.terminate;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.v1.helper.HttpStatusCodes;
+import org.springframework.http.HttpStatus;
 import com.api.v1.helper.PhysicianLicenseNumber;
 
 import jakarta.transaction.Transactional;
@@ -21,9 +20,9 @@ public class TerminatePhysicianController {
 	
 	@PatchMapping("{physicianLicenseNumber}")
 	@Transactional
-	public ResponseEntity<Void> terminate(@PathVariable @PhysicianLicenseNumber String physicianLicenseNumber) {
+	public HttpStatus terminate(@PathVariable @PhysicianLicenseNumber String physicianLicenseNumber) {
 		service.terminate(physicianLicenseNumber);
-		return HttpStatusCodes.NO_CONTENT_204;
+		return HttpStatus.NO_CONTENT;
 	}
 
 }

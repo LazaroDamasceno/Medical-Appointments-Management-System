@@ -1,12 +1,11 @@
 package com.api.v1.physician.hire;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.v1.helper.HttpStatusCodes;
+import org.springframework.http.HttpStatus;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.constraints.NotNull;
@@ -21,9 +20,9 @@ class HirePhysicianController {
 
 	@PostMapping
 	@Transactional
-	public ResponseEntity<Void> register(@NotNull @RequestBody HirePhysicianDTO dto) {
+	public HttpStatus register(@NotNull @RequestBody HirePhysicianDTO dto) {
 		service.register(dto);
-		return HttpStatusCodes.CREATED_201;
+		return HttpStatus.CREATED;
 	}
 
 }

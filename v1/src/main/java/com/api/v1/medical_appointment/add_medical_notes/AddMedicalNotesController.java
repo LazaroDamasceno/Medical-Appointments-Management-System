@@ -1,11 +1,10 @@
 package com.api.v1.medical_appointment.add_medical_notes;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.v1.helper.HttpStatusCodes;
+import org.springframework.http.HttpStatus;
 
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,9 +20,9 @@ class AddMedicalNotesController {
 
     @PatchMapping("{ssn}/{physicianLicenseNumber}/dateTime")
     @Transactional
-    public ResponseEntity<Void> add(@NotNull @RequestBody MedicalNotesDTO dto) {
+    public HttpStatus add(@NotNull @RequestBody MedicalNotesDTO dto) {
         service.add(dto);
-        return HttpStatusCodes.NO_CONTENT_204;
+        return HttpStatus.NO_CONTENT;
     }
     
 }

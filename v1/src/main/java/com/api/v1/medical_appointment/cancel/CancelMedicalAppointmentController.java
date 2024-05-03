@@ -1,13 +1,12 @@
 package com.api.v1.medical_appointment.cancel;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.v1.helper.HttpStatusCodes;
+import org.springframework.http.HttpStatus;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
@@ -21,9 +20,9 @@ class CancelMedicalAppointmentController {
 
     @PatchMapping
     @Transactional
-    public ResponseEntity<Void> cancel(@NotNull @RequestBody CancelMedicalAppointmentDTO dto) {
+    public HttpStatus cancel(@NotNull @RequestBody CancelMedicalAppointmentDTO dto) {
         service.cancel(dto);
-        return HttpStatusCodes.NO_CONTENT_204;
+        return HttpStatus.NO_CONTENT;
     }
     
 }

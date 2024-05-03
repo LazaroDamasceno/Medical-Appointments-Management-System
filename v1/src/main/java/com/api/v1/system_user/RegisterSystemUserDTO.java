@@ -1,5 +1,8 @@
 package com.api.v1.system_user;
 
+import com.api.v1.helper.DateFormat;
+import com.api.v1.helper.SSN;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -9,11 +12,10 @@ public record RegisterSystemUserDTO(
 		@NotBlank
 		String fullName,
 		
-		@NotNull
-		@Size(min=9, max=9)
+		@SSN
 		String ssn,
 		
-		@NotNull
+		@DateFormat
 		String birthDate,
 		
 		@NotBlank

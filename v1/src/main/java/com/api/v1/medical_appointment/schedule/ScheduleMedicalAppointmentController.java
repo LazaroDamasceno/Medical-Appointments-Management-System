@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("api/v1/new-medical-appointment")
 @RequiredArgsConstructor
-class ScheduleMedicalAppointmentController {
+public class ScheduleMedicalAppointmentController {
 
     private final ScheduleMedicalAppointmentService service;
 

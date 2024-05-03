@@ -1,6 +1,6 @@
 package com.api.v1.patient.register;
 
-class DuplicatedPatientException extends RuntimeException {
+public class DuplicatedPatientException extends RuntimeException {
 	
 	private static final long serialVersionUID = 1L;
 

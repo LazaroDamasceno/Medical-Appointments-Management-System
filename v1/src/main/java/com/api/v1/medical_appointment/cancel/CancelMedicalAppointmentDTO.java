@@ -4,7 +4,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.api.v1.helper.SSN;
 
-record CancelMedicalAppointmentDTO(
+public record CancelMedicalAppointmentDTO(
     @SSN String ssn, 
     @DateTimeFormat String dateTime
 ) {

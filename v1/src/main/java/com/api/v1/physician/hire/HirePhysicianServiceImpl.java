@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-class HirePhysicianServiceImpl implements HirePhysicianService {
+public class HirePhysicianServiceImpl implements HirePhysicianService {
 	
 	private final PhysicianRepository repository;
 	

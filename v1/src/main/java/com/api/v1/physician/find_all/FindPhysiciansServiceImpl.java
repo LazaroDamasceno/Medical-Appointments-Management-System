@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-class FindPhysiciansServiceImpl implements FindPhysiciansService {
+public class FindPhysiciansServiceImpl implements FindPhysiciansService {
 
 	private final PhysicianRepository repository;
 

@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-    public class MedicalRecordCreateOrAddService implements MedicalRecordCreateOrAdd {
+public class MedicalRecordCreateOrAddService implements MedicalRecordCreateOrAdd {
         
         private final MedicalRecordRepository repository;
         

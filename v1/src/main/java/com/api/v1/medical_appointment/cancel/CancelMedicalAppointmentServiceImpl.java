@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-class CancelMedicalAppointmentServiceImpl implements CancelMedicalAppointmentService {
+public class CancelMedicalAppointmentServiceImpl implements CancelMedicalAppointmentService {
     
     private final MedicalAppointmentRepository repository;
     private final FindMedicalAppointmentByPatient findMedicalAppointmentByPatient;

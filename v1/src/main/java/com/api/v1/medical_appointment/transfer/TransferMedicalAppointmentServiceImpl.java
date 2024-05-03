@@ -20,7 +20,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-class TransferMedicalAppointmentServiceImpl implements TransferMedicalAppointmentService {
+public class TransferMedicalAppointmentServiceImpl implements TransferMedicalAppointmentService {
     
     private final MedicalAppointmentRepository repository;
     private final FindPhysicianByLicenseNumber findPhysicianByLicenseNumber;

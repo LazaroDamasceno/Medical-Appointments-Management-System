@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("api/v1/transfered-medical-appointment")
 @RequiredArgsConstructor
-class TransferMedicalAppointmentController {
+public class TransferMedicalAppointmentController {
      
     private final TransferMedicalAppointmentService service;
 

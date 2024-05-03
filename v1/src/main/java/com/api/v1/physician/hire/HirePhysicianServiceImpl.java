@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import com.api.v1.physician.Physician;
 import com.api.v1.physician.PhysicianRepository;
 
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 

@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class FindMedicalAppointmentByPhysicianService implements FindMedicalAppointmentByPhysician {
+public class FindMedicalAppointmentByPhysicianImpl implements FindMedicalAppointmentByPhysician {
     
     private final MedicalAppointmentRepository repository;
     private final FindPhysicianByLicenseNumber findPhysicianByLicenseNumber;
@@ -28,12 +28,12 @@ public class FindMedicalAppointmentByPhysicianService implements FindMedicalAppo
     public MedicalAppointment findByPhysician(@PhysicianLicenseNumber String physicianLicenseNumber, @NotNull ZonedDateTime dateTime) {
         Physician physician = findPhysicianByLicenseNumber.findByphysicianLicenseNumber(physicianLicenseNumber);
         Optional<MedicalAppointment> medicalAppointment = repository.findScheduledMedicalAppointmentByPhysician(physician, dateTime);
-        validateInput(medicalAppointment);
+        validateInput(medicalAppointment, dateTime.toString());
         return medicalAppointment.get();
     }
 
-    private void validateInput(Optional<MedicalAppointment> optional) {
-        if (optional.isEmpty()) throw new MedicalAppointmentNotFoundException();
+    private void validateInput(Optional<MedicalAppointment> optional, String dateTime) {
+        if (optional.isEmpty()) throw new MedicalAppointmentNotFoundException(dateTime);
     }
     
 }

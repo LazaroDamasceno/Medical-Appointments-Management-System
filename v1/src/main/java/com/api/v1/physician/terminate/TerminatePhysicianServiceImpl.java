@@ -3,13 +3,13 @@ package com.api.v1.physician.terminate;
 import java.time.ZonedDateTime;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.api.v1.helper.PhysicianLicenseNumber;
 import com.api.v1.physician.Physician;
 import com.api.v1.physician.PhysicianRepository;
 import com.api.v1.physician.helper.FindPhysicianByLicenseNumber;
 
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service

@@ -33,10 +33,9 @@ public class TransferMedicalAppointmentServiceImpl implements TransferMedicalApp
         Physician physician = findPhysicianByLicenseNumber.findByphysicianLicenseNumber(dto.physicianLicenseNumber());
         MedicalAppointment oldMedicalAppointment = findMedicalAppointmentByPhysician.findByPhysician(
             dto.physicianLicenseNumber(), 
-            DateTimeConverter.convertToZonedDateTime(dto.newMedicalAppointmentDate())
+            DateTimeConverter.convertToZonedDateTime(dto.oldMedicalAppointmentDate())
         );
         Patient patient = oldMedicalAppointment.getPatient();
-        System.out.println(patient);
         oldMedicalAppointment.cancel();
         repository.save(oldMedicalAppointment);
         MedicalAppointment newMedicalAppointment = new MedicalAppointment(dto.newMedicalAppointmentDate(), patient, physician);

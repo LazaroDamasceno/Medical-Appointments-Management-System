@@ -1,6 +1,6 @@
 package com.api.v1.medical_appointment.helper.find_by_date;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -32,7 +32,7 @@ public class FindMedicalAppointmentByDateImpl implements FindMedicalAppointmentB
     public MedicalAppointment findByDate(
         @SSN String ssn, 
         @NotNull @PhysicianLicenseNumber String physicianLicenseNumber, 
-        @NotNull ZonedDateTime dateTime
+        @NotNull LocalDateTime dateTime
     ) {
         Patient patient = findPatientBySsn.findBySsn(ssn);
         Physician physician = findPhysicianByLicenseNumber.findByphysicianLicenseNumber(physicianLicenseNumber);

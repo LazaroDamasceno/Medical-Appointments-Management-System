@@ -1,7 +1,7 @@
 package com.api.v1.physician;
 
 import java.io.Serializable;
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -33,9 +33,9 @@ public class Physician implements Serializable {
 	@Column(nullable = false, unique = true)
 	private String physicianLicenseNumber ;
 	
-	private final ZonedDateTime inductionDateTime = ZonedDateTime.now();
+	private final LocalDateTime inductionDateTime = LocalDateTime.now();
 	
-	private ZonedDateTime terminationDateTime;
+	private LocalDateTime terminationDateTime;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "system_user_id")

@@ -1,6 +1,6 @@
 package com.api.v1.medical_appointment;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -20,7 +20,7 @@ public interface MedicalAppointmentRepository extends JpaRepository<MedicalAppoi
 			and ma.cancelationDateTime is null
 			and ma.finishingDateTime is null
 	""")
-	Optional<MedicalAppointment> findScheduledMedicalAppointmentByPatient(@Param("patient") Patient patient, @Param("dateTime") ZonedDateTime dateTime);
+	Optional<MedicalAppointment> findScheduledMedicalAppointmentByPatient(@Param("patient") Patient patient, @Param("dateTime") LocalDateTime dateTime);
 	
 	@Query("""
 			select ma from MedicalAppointment ma
@@ -29,7 +29,7 @@ public interface MedicalAppointmentRepository extends JpaRepository<MedicalAppoi
 			and ma.cancelationDateTime is null
 			and ma.finishingDateTime is null
 	""")
-	Optional<MedicalAppointment> findScheduledMedicalAppointmentByPhysician(@Param("physician") Physician physician, @Param("dateTime") ZonedDateTime dateTime);
+	Optional<MedicalAppointment> findScheduledMedicalAppointmentByPhysician(@Param("physician") Physician physician, @Param("dateTime") LocalDateTime dateTime);
 	
 	@Query("""
 			select ma from MedicalAppointment ma
@@ -39,6 +39,6 @@ public interface MedicalAppointmentRepository extends JpaRepository<MedicalAppoi
 			and ma.cancelationDateTime is null
 			and ma.finishingDateTime is null
 	""")
-	Optional<MedicalAppointment> findScheduledMedicalAppointmentByDate(@Param("patient") Patient patient, @Param("physician") Physician physician, @Param("dateTime") ZonedDateTime dateTime);
+	Optional<MedicalAppointment> findScheduledMedicalAppointmentByDate(@Param("patient") Patient patient, @Param("physician") Physician physician, @Param("dateTime") LocalDateTime dateTime);
 
 }

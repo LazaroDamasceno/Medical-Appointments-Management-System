@@ -2,8 +2,6 @@ package com.api.v1.helper;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 public interface DateTimeConverter {
@@ -13,10 +11,9 @@ public interface DateTimeConverter {
         return LocalDate.parse(dateTime, dtf);
     }
     
-    static ZonedDateTime convertToZonedDateTime(String dateTime) {
-        ZoneId zoneId = ZoneId.systemDefault();
+    static LocalDateTime convertToLocalDateTime(String dateTime) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-        return LocalDateTime.parse(dateTime, dtf).atZone(zoneId);
+        return LocalDateTime.parse(dateTime, dtf);
     }
 
 }

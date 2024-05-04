@@ -23,7 +23,7 @@ public class AddMedicalNotesServiceImpl implements AddMedicalNotesService {
     @Override
     @Transactional
     public void add(@NotNull MedicalNotesDTO dto) {
-        MedicalAppointment medicalAppointment = findMedicalAppointmentByDate.findByDate(dto.ssn(), dto.physicianLicenseNumber(), DateTimeConverter.convertToZonedDateTime(dto.dateTime()));
+        MedicalAppointment medicalAppointment = findMedicalAppointmentByDate.findByDate(dto.ssn(), dto.physicianLicenseNumber(), DateTimeConverter.convertToLocalDateTime(dto.dateTime()));
         validateInput(medicalAppointment);
         medicalAppointment.addMedicalNotes(dto.notes());
         medicalAppointment.finish();

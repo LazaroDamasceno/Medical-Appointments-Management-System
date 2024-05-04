@@ -1,6 +1,6 @@
 package com.api.v1.physician.terminate;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,7 +23,7 @@ public class TerminatePhysicianServiceImpl implements TerminatePhysicianService 
 	@Transactional
 	public void terminate(@PhysicianLicenseNumber String physicianLicenseNumber) {
 		Physician physician = findPhysicianByLicenseNumber.findByphysicianLicenseNumber(physicianLicenseNumber);
-		ZonedDateTime now = ZonedDateTime.now();
+		LocalDateTime now = LocalDateTime.now();
 		physician.setTerminationDateTime(now);
 		repository.save(physician);
 	}

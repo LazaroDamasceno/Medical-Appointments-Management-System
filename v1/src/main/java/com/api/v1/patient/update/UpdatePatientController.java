@@ -20,9 +20,10 @@ public class UpdatePatientController {
 
     @PutMapping("{ssn}")
     @Transactional
-    public ResponseEntity<Void> update(@NotNull @RequestBody UpdatePatientDTO dto) {
+    public ResponseEntity<String> update(@NotNull @RequestBody UpdatePatientDTO dto) {
         service.update(dto);
-        return ResponseEntity.status(204).build();
+        String message = "Patient's data whose SSN is %s was updated.".formatted(dto.ssn());
+        return ResponseEntity.status(204).body(message);
     }
     
 }

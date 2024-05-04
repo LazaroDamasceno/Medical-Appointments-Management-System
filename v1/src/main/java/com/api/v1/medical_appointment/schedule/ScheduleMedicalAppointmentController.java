@@ -19,9 +19,10 @@ public class ScheduleMedicalAppointmentController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<Void> schedule(@NotNull ScheduleMedicalAppointmentDTO dto) {
+    public ResponseEntity<String> schedule(@NotNull ScheduleMedicalAppointmentDTO dto) {
         service.schedule(dto);
-        return ResponseEntity.status(201).build();
+        String message = "A new medical appointment ws scheduled at %s.".formatted(dto.dateTime());
+        return ResponseEntity.status(201).body(message);
     }
     
 }

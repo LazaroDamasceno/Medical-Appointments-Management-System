@@ -20,9 +20,10 @@ public class CancelMedicalAppointmentController {
 
     @PatchMapping
     @Transactional
-    public ResponseEntity<Void> cancel(@NotNull @RequestBody CancelMedicalAppointmentDTO dto) {
+    public ResponseEntity<String> cancel(@NotNull @RequestBody CancelMedicalAppointmentDTO dto) {
         service.cancel(dto);
-        return ResponseEntity.status(204).build();
+        String message = "Medical appointment whose scheduled date time is %s was canceled.".formatted(dto.dateTime());
+        return ResponseEntity.status(204).body(message);
     }
     
 }

@@ -19,9 +19,10 @@ public class AddMedicalNotesController {
 
     @PatchMapping("{ssn}/{physicianLicenseNumber}/dateTime")
     @Transactional
-    public ResponseEntity<Void> add(@NotNull @RequestBody MedicalNotesDTO dto) {
+    public ResponseEntity<String> add(@NotNull @RequestBody MedicalNotesDTO dto) {
         service.add(dto);
-        return ResponseEntity.status(204).build();
+        String message = "Medical appointment's medical notes whose scheduled date time is %s were added.".formatted(dto.dateTime());
+        return ResponseEntity.status(204).body(message);
     }
     
 }

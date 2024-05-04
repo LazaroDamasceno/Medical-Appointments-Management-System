@@ -19,9 +19,10 @@ public class HirePhysicianController {
 
 	@PostMapping
 	@Transactional
-	public ResponseEntity<Void> register(@NotNull @RequestBody HirePhysicianDTO dto) {
+	public ResponseEntity<String> register(@NotNull @RequestBody HirePhysicianDTO dto) {
 		service.register(dto);
-		return ResponseEntity.status(201).build();
+		String message = "A new physician was hired.".formatted();
+		return ResponseEntity.status(201).body(message);
 	}
 
 }

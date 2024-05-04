@@ -21,9 +21,10 @@ public class TerminatePhysicianController {
 	
 	@PatchMapping("{physicianLicenseNumber}")
 	@Transactional
-	public ResponseEntity<Void> terminate(@PathVariable @PhysicianLicenseNumber String physicianLicenseNumber) {
+	public ResponseEntity<String> terminate(@PathVariable @PhysicianLicenseNumber String physicianLicenseNumber) {
 		service.terminate(physicianLicenseNumber);
-		return ResponseEntity.status(204).build();
+		String message = "Physician whose license number is %s was terminated.".formatted(physicianLicenseNumber);
+		return ResponseEntity.status(204).body(message);
 	}
 
 }

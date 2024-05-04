@@ -20,9 +20,10 @@ public class UpdatePhysicianController {
     
     @PutMapping
     @Transactional
-    public ResponseEntity<Void> update(@NotNull @RequestBody UpdatePhysicianDTO dto) {
+    public ResponseEntity<String> update(@NotNull @RequestBody UpdatePhysicianDTO dto) {
         service.update(dto);
-        return ResponseEntity.status(204).build();
+        String message = "Physician's data whose license number is %s was updated.".formatted(dto.physicianLicenseNumber());
+        return ResponseEntity.status(204).body(message);
     }
     
 }

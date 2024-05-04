@@ -19,9 +19,10 @@ public class RegisterPatientController {
 	
 	@PostMapping
 	@Transactional
-	public ResponseEntity<Void> register(@NotNull @RequestBody RegisterPatientDTO dto) {
+	public ResponseEntity<String> register(@NotNull @RequestBody RegisterPatientDTO dto) {
 		service.register(dto);
-		return ResponseEntity.status(201).build();
+		String message = "A new patient was registred.";
+		return ResponseEntity.status(201).body(message);
 	}
 
 }

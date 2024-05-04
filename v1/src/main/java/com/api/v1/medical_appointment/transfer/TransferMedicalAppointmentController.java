@@ -20,9 +20,10 @@ public class TransferMedicalAppointmentController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<Void> transfer(@NotNull @RequestBody TransferMedicalAppointmentDTO dto) {
+    public ResponseEntity<String> transfer(@NotNull @RequestBody TransferMedicalAppointmentDTO dto) {
         service.transfer(dto);
-        return ResponseEntity.status(201).build();
+        String message = "Medical appointment whose scheduled date time is %s was to transfered to %s.".formatted(dto.oldMedicalAppointmentDate(), dto.newMedicalAppointmentDate());
+        return ResponseEntity.status(201).body(message);
     }
     
 }

@@ -1,6 +1,6 @@
 package com.api.v1.patient.register;
 
-import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,9 +19,9 @@ public class RegisterPatientController {
 	
 	@PostMapping
 	@Transactional
-	public HttpStatus register(@NotNull @RequestBody RegisterPatientDTO dto) {
+	public ResponseEntity<Void> register(@NotNull @RequestBody RegisterPatientDTO dto) {
 		service.register(dto);
-		return HttpStatus.CREATED;
+		return ResponseEntity.status(201).build();
 	}
 
 }

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
@@ -20,9 +20,9 @@ public class TransferMedicalAppointmentController {
 
     @PostMapping
     @Transactional
-    public HttpStatus transfer(@NotNull @RequestBody TransferMedicalAppointmentDTO dto) {
+    public ResponseEntity<Void> transfer(@NotNull @RequestBody TransferMedicalAppointmentDTO dto) {
         service.transfer(dto);
-        return HttpStatus.CREATED;
+        return ResponseEntity.status(201).build();
     }
     
 }

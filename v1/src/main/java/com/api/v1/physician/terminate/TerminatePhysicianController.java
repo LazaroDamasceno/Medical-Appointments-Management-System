@@ -5,7 +5,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
 import com.api.v1.helper.PhysicianLicenseNumber;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -20,9 +21,9 @@ public class TerminatePhysicianController {
 	
 	@PatchMapping("{physicianLicenseNumber}")
 	@Transactional
-	public HttpStatus terminate(@PathVariable @PhysicianLicenseNumber String physicianLicenseNumber) {
+	public ResponseEntity<Void> terminate(@PathVariable @PhysicianLicenseNumber String physicianLicenseNumber) {
 		service.terminate(physicianLicenseNumber);
-		return HttpStatus.NO_CONTENT;
+		return ResponseEntity.status(204).build();
 	}
 
 }

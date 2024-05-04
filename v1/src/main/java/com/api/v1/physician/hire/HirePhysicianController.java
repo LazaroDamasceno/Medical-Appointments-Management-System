@@ -5,8 +5,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.springframework.http.HttpStatus;
-
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
@@ -20,9 +19,9 @@ public class HirePhysicianController {
 
 	@PostMapping
 	@Transactional
-	public HttpStatus register(@NotNull @RequestBody HirePhysicianDTO dto) {
+	public ResponseEntity<Void> register(@NotNull @RequestBody HirePhysicianDTO dto) {
 		service.register(dto);
-		return HttpStatus.CREATED;
+		return ResponseEntity.status(201).build();
 	}
 
 }

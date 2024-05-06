@@ -38,7 +38,7 @@ HH = hour (24 format)<br>
 mm = minute<br>
 ss = second<br>
 
-For the methods `registerPatientController` and `registerPhysicianController`, the date time format must be `dd/MM/yyyy`. 
+For the methods `registerPatientController` and `registerPhysicianController`, the date time format must be `yyyy-MM-dd`. 
 
 The database used is H2. H2 is an in-memory database. In other words, every time it's initialized, it cleans its memory.
 

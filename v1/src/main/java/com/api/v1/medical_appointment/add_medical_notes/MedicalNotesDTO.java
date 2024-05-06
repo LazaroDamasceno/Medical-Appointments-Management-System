@@ -10,7 +10,7 @@ import jakarta.validation.constraints.NotBlank;
 public record MedicalNotesDTO(
     @SSN String ssn, 
     @PhysicianLicenseNumber String physicianLicenseNumber, 
-    @DateTimeFormat String dateTime,
+    LocalDateTime dateTime,
     @NotBlank
     String notes
 ) {

@@ -1,12 +1,10 @@
 package com.api.v1.medical_appointment.find_by.find_by_physician.scheduled;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.api.v1.helper.DateTimeConverter;
 import com.api.v1.helper.PhysicianLicenseNumber;
 import com.api.v1.helper.SSN;
 import com.api.v1.medical_appointment.MedicalAppointment;
@@ -33,16 +31,15 @@ public class FindScheduledMedicalAppointmentsByPhysicianServiceImpl implements F
                                             @NotNull BetweenDatesTimesDTO dto   
     ) {
         validateDateTimes(dto);
-        LocalDateTime ldt1 = DateTimeConverter.convertToLocalDateTime(dto.firstDateTime());
-        LocalDateTime ldt2 = DateTimeConverter.convertToLocalDateTime(dto.lastDateTime());
+
         return findPhysicianByLicenseNumber
         .findByphysicianLicenseNumber(physicianLicenseNumber)
             .getAppointmentList()
             .stream()
             .filter(e -> e.getCancelationDateTime() == null
                 && e.getFinishingDateTime() == null
-                && (e.getScheduledDateTime().isAfter(ldt1) || e.getScheduledDateTime().isEqual(ldt1))
-                && (e.getScheduledDateTime().isBefore(ldt2) || e.getScheduledDateTime().isEqual(ldt2))
+                && (e.getScheduledDateTime().isAfter(dto.firstDateTime()) || e.getScheduledDateTime().isEqual(dto.firstDateTime()))
+                && (e.getScheduledDateTime().isBefore(dto.lastDateTime()) || e.getScheduledDateTime().isEqual(dto.lastDateTime()))
             )
             .toList();
     }
@@ -54,8 +51,7 @@ public class FindScheduledMedicalAppointmentsByPhysicianServiceImpl implements F
                                                 @NotNull BetweenDatesTimesDTO dto
     ) {
         validateDateTimes(dto);
-        LocalDateTime ldt1 = DateTimeConverter.convertToLocalDateTime(dto.firstDateTime());
-        LocalDateTime ldt2 = DateTimeConverter.convertToLocalDateTime(dto.lastDateTime());
+
         Patient patient = findPatientBySsn.findBySsn(ssn);
         return findPhysicianByLicenseNumber
             .findByphysicianLicenseNumber(physicianLicenseNumber)
@@ -64,8 +60,8 @@ public class FindScheduledMedicalAppointmentsByPhysicianServiceImpl implements F
             .filter(e -> e.getCancelationDateTime() == null
                 && e.getFinishingDateTime() == null
                 && e.getPatient().equals(patient)
-                && (e.getScheduledDateTime().isAfter(ldt1) || e.getScheduledDateTime().isEqual(ldt1))
-                && (e.getScheduledDateTime().isBefore(ldt2) || e.getScheduledDateTime().isEqual(ldt2))
+                && (e.getScheduledDateTime().isAfter(dto.firstDateTime()) || e.getScheduledDateTime().isEqual(dto.firstDateTime()))
+                && (e.getScheduledDateTime().isBefore(dto.lastDateTime()) || e.getScheduledDateTime().isEqual(dto.lastDateTime()))
             )
             .toList();
     }

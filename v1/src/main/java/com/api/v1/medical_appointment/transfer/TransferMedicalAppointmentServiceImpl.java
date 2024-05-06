@@ -1,11 +1,8 @@
 package com.api.v1.medical_appointment.transfer;
 
-import java.time.LocalDateTime;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.api.v1.helper.DateTimeConverter;
 import com.api.v1.helper.DuplicateDateTimeException;
 import com.api.v1.helper.TemporalOrderException;
 import com.api.v1.medical_appointment.MedicalAppointment;
@@ -33,7 +30,7 @@ public class TransferMedicalAppointmentServiceImpl implements TransferMedicalApp
         Physician physician = findPhysicianByLicenseNumber.findByphysicianLicenseNumber(dto.physicianLicenseNumber());
         MedicalAppointment oldMedicalAppointment = findMedicalAppointmentByPhysician.findByPhysician(
             dto.physicianLicenseNumber(), 
-            DateTimeConverter.convertToLocalDateTime(dto.oldMedicalAppointmentDate())
+            dto.oldMedicalAppointmentDate()
         );
         Patient patient = oldMedicalAppointment.getPatient();
         oldMedicalAppointment.cancel();
@@ -43,10 +40,8 @@ public class TransferMedicalAppointmentServiceImpl implements TransferMedicalApp
     }
 
     private void validateDateTimes(TransferMedicalAppointmentDTO dto) {
-        LocalDateTime firstDateTime = DateTimeConverter.convertToLocalDateTime(dto.oldMedicalAppointmentDate());
-        LocalDateTime lastDateTime = DateTimeConverter.convertToLocalDateTime(dto.newMedicalAppointmentDate());
-        if (firstDateTime.isEqual(lastDateTime)) throw new DuplicateDateTimeException();
-        else if (firstDateTime.isAfter(lastDateTime)) throw new TemporalOrderException();
+        if (dto.oldMedicalAppointmentDate().isEqual(dto.newMedicalAppointmentDate())) throw new DuplicateDateTimeException();
+        else if (dto.oldMedicalAppointmentDate().isAfter(dto.newMedicalAppointmentDate())) throw new TemporalOrderException();
     }
     
 }

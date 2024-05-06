@@ -31,3 +31,5 @@
 For POST, GET, PUT and PATCH methods, the date time format must be `dd/MM/yyyy HH:mm:ss`. 
 
 For the methods `registerPatientController` and `registerPhysicianController`, the date time format must be `dd/MM/yyyy`. 
+
+The database used is H2. H2 is an in-memory database. In other words, every time it's initialized, it cleans its memory.

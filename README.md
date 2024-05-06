@@ -42,7 +42,7 @@ For the methods `registerPatientController` and `registerPhysicianController`, t
 
 The database used is H2. H2 is an in-memory database. In other words, every time it's initialized, it cleans its memory.
 
-## Warning
+# Warning
 
 To access the H2 database, type on the browser `localhost:8080/h2-console`. When the H2's console is open, type the following:
 1. In `JDBC URL`: `jdbc:h2:mem:testdb`

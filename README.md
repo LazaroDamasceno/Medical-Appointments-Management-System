@@ -33,3 +33,7 @@ For POST, GET, PUT and PATCH methods, the date time format must be `dd/MM/yyyy H
 For the methods `registerPatientController` and `registerPhysicianController`, the date time format must be `dd/MM/yyyy`. 
 
 The database used is H2. H2 is an in-memory database. In other words, every time it's initialized, it cleans its memory.
+
+To access the H2 database, type on the browser `localhost:8080/h2-console`. When the h2'c cosnsole is open, type the following:
+1. In `JDBC URL`: `jdbc:h2:mem:testdb`;
+2. In `User Name`: `sa`;

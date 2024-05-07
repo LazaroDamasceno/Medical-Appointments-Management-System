@@ -28,6 +28,8 @@
 
 # Warnings
 
+## 1
+
 For POST, GET, PUT and PATCH methods, the date time format must be `yyyy-MM-ddTHH:mm:ss`.
 
 yyyy = year<br>
@@ -42,8 +44,14 @@ For the methods `registerPatientController` and `registerPhysicianController`, t
 
 The database used is H2. H2 is an in-memory database. In other words, every time it's initialized, it cleans its memory.
 
-# Warning
+## 2 
 
 To access the H2 database, type on the browser `localhost:8080/h2-console`. When the H2's console is open, type the following:
 1. In `JDBC URL`: `jdbc:h2:mem:testdb`
 2. In `User Name`: `sa`
+
+## 3
+
+SSN has 9 digits.
+
+Phyisician license number has 7 digits.

@@ -2,11 +2,12 @@ package com.api.v1.medical_appointment.find_by.find_by_physician.finished;
 
 import java.util.List;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.api.v1.helper.PhysicianLicenseNumber;
-import com.api.v1.helper.SSN;
+import com.api.v1.helpers.PhysicianLicenseNumber;
+import com.api.v1.helpers.SSN;
 import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.find_by.dto.BetweenDatesTimesDTO;
 import com.api.v1.medical_appointment.find_by.helper.CheckIfDateTimesAreValid;
@@ -27,6 +28,7 @@ public class FindFinishedMedicalAppointmentsByPhysicianServiceImpl implements Fi
 
     @Override
     @Transactional(readOnly = true)
+    @Cacheable
     public List<MedicalAppointment> find(
             @PhysicianLicenseNumber String physicianLicenseNumber,
             @NotNull BetweenDatesTimesDTO dto
@@ -46,6 +48,7 @@ public class FindFinishedMedicalAppointmentsByPhysicianServiceImpl implements Fi
 
     @Override
     @Transactional(readOnly = true)
+    @Cacheable
     public List<MedicalAppointment> findByPatient(
             @PhysicianLicenseNumber String physicianLicenseNumber,
             @SSN String ssn, 

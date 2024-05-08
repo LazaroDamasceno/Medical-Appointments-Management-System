@@ -1,4 +1,4 @@
-package com.api.v1.helper;
+package com.api.v1.helpers;
 
 public class TemporalOrderException  extends RuntimeException {
 

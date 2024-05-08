@@ -2,8 +2,9 @@ package com.api.v1.physician.helper;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.cache.annotation.Cacheable;
 
-import com.api.v1.helper.PhysicianLicenseNumber;
+import com.api.v1.helpers.PhysicianLicenseNumber;
 import com.api.v1.physician.Physician;
 import com.api.v1.physician.PhysicianRepository;
 
@@ -17,6 +18,7 @@ public class FindPhysicianByLicenseNumberImpl implements FindPhysicianByLicenseN
 	
 	@Override
 	@Transactional(readOnly = true)
+	@Cacheable
 	public Physician findByphysicianLicenseNumber(@PhysicianLicenseNumber String physicianLicenseNumber) {
 		validatedInput(physicianLicenseNumber);
 		return repository.findByPhysicianLicenseNumber(physicianLicenseNumber).get();

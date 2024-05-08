@@ -3,11 +3,12 @@ package com.api.v1.medical_appointment.helper.find_by_date;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.api.v1.helper.PhysicianLicenseNumber;
-import com.api.v1.helper.SSN;
+import com.api.v1.helpers.PhysicianLicenseNumber;
+import com.api.v1.helpers.SSN;
 import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.MedicalAppointmentRepository;
 import com.api.v1.medical_appointment.helper.MedicalAppointmentNotFoundException;
@@ -29,6 +30,7 @@ public class FindMedicalAppointmentByDateImpl implements FindMedicalAppointmentB
 
     @Override
     @Transactional(readOnly = true)
+    @Cacheable
     public MedicalAppointment findByDate(
         @SSN String ssn, 
         @NotNull @PhysicianLicenseNumber String physicianLicenseNumber, 

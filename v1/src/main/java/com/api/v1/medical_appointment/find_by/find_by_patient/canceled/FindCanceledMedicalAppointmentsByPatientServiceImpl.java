@@ -2,10 +2,11 @@ package com.api.v1.medical_appointment.find_by.find_by_patient.canceled;
 
 import java.util.List;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.api.v1.helper.SSN;
+import com.api.v1.helpers.SSN;
 import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.patient.helper.FindPatientBySsn;
 
@@ -19,6 +20,7 @@ public class FindCanceledMedicalAppointmentsByPatientServiceImpl implements Find
 
     @Override
     @Transactional(readOnly = true)
+    @Cacheable
     public List<MedicalAppointment> findAll(@SSN String ssn) {
         return findPatientBySsn
             .findBySsn(ssn)

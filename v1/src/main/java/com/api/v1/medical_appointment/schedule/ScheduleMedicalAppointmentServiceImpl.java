@@ -5,6 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.api.v1.medical_appointment.MedicalAppointment;
@@ -31,6 +32,7 @@ public class ScheduleMedicalAppointmentServiceImpl implements ScheduleMedicalApp
     
     @Override
     @Transactional
+    @Cacheable
     public void schedule(@NotNull ScheduleMedicalAppointmentDTO dto) {
         Patient patient = findPatientBySsn.findBySsn(dto.ssn());
         Physician physician = findPhysicianByLicenseNumber.findByphysicianLicenseNumber(dto.physicianLicenseNumber());

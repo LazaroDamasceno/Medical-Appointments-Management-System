@@ -1,10 +1,11 @@
 package com.api.v1.medical_appointment.transfer;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.api.v1.helper.DuplicateDateTimeException;
-import com.api.v1.helper.TemporalOrderException;
+import com.api.v1.helpers.DuplicateDateTimeException;
+import com.api.v1.helpers.TemporalOrderException;
 import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.MedicalAppointmentRepository;
 import com.api.v1.medical_appointment.helper.find_by_physician.FindMedicalAppointmentByPhysician;
@@ -25,6 +26,7 @@ public class TransferMedicalAppointmentServiceImpl implements TransferMedicalApp
     
     @Override
     @Transactional
+    @Cacheable
     public void transfer(@NotNull TransferMedicalAppointmentDTO dto) {
         validateDateTimes(dto);
         Physician physician = findPhysicianByLicenseNumber.findByphysicianLicenseNumber(dto.physicianLicenseNumber());

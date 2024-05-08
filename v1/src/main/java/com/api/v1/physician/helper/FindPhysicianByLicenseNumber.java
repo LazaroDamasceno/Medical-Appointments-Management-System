@@ -1,6 +1,6 @@
 package com.api.v1.physician.helper;
 
-import com.api.v1.helper.PhysicianLicenseNumber;
+import com.api.v1.helpers.PhysicianLicenseNumber;
 import com.api.v1.physician.Physician;
 
 public interface FindPhysicianByLicenseNumber {

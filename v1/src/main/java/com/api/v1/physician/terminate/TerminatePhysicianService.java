@@ -1,6 +1,6 @@
 package com.api.v1.physician.terminate;
 
-import com.api.v1.helper.PhysicianLicenseNumber;
+import com.api.v1.helpers.PhysicianLicenseNumber;
 
 public interface TerminatePhysicianService {
 

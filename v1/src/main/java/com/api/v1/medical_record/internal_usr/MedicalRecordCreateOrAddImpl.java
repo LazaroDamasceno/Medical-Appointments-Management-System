@@ -2,6 +2,7 @@ package com.api.v1.medical_record.internal_usr;
 
 import java.util.Optional;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,12 +16,13 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class MedicalRecordCreateOrAddService implements MedicalRecordCreateOrAdd {
+public class MedicalRecordCreateOrAddImpl implements MedicalRecordCreateOrAdd {
         
         private final MedicalRecordRepository repository;
         
     @Override
     @Transactional
+    @Cacheable
     public void createOrAdd(Physician physician, Patient patient, MedicalAppointment medicalAppointment) {
         Optional<MedicalRecord> optional = repository.findByPatient(patient);
         if (optional.isPresent()) addMedicalAppointment(patient, medicalAppointment);

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.v1.helper.PhysicianLicenseNumber;
+import com.api.v1.helpers.PhysicianLicenseNumber;
 import com.api.v1.medical_record.MedicalRecord;
 
 import lombok.RequiredArgsConstructor;

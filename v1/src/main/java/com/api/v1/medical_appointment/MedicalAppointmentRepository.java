@@ -21,7 +21,8 @@ public interface MedicalAppointmentRepository extends JpaRepository<MedicalAppoi
 			and ma.cancelationDateTime is null
 			and ma.finishingDateTime is null
 	""")
-	Optional<MedicalAppointment> findScheduledMedicalAppointmentByPatient(@Param("patient") Patient patient, 
+	Optional<MedicalAppointment> findScheduledMedicalAppointmentByPatient(
+		@Param("patient") Patient patient, 
 		@Param("dateTime") LocalDateTime dateTime
 	);
 	
@@ -32,7 +33,8 @@ public interface MedicalAppointmentRepository extends JpaRepository<MedicalAppoi
 			and ma.cancelationDateTime is null
 			and ma.finishingDateTime is null
 	""")
-	Optional<MedicalAppointment> findScheduledMedicalAppointmentByPhysician(@Param("physician") Physician physician, 
+	Optional<MedicalAppointment> findScheduledMedicalAppointmentByPhysician(
+		@Param("physician") Physician physician, 
 		@Param("dateTime") LocalDateTime dateTime
 	);
 	
@@ -44,7 +46,8 @@ public interface MedicalAppointmentRepository extends JpaRepository<MedicalAppoi
 			and ma.cancelationDateTime is null
 			and ma.finishingDateTime is null
 	""")
-	Optional<MedicalAppointment> findScheduledMedicalAppointmentByDate(@Param("patient") Patient patient, 
+	Optional<MedicalAppointment> findScheduledMedicalAppointmentByDate(
+		@Param("patient") Patient patient, 
 		@Param("physician") Physician physician, 
 		@Param("dateTime") LocalDateTime dateTime
 	);
@@ -52,11 +55,12 @@ public interface MedicalAppointmentRepository extends JpaRepository<MedicalAppoi
 	@Query("""
 		select ma from MedicalAppointment ma
 		where ma.physician = :physician
-		and ma.scheduledDateTime >= firstDateTime
-		and ma.scheduledDateTime <= lastDateTime
+		and ma.scheduledDateTime >= :firstDateTime
+		and ma.scheduledDateTime <= :lastDateTime
 		and ma.finishedDateTime is null
 	""")
-	List<MedicalAppointment> getScheduledMedicalAppointmentsByPhysician(@Param("physician") Physician physician, 
+	List<MedicalAppointment> getScheduledMedicalAppointmentsByPhysician(
+		@Param("physician") Physician physician, 
 		@Param("firstDateTime") LocalDateTime firstDateTime, 
 		@Param("lastDateTime") LocalDateTime lastDateTime
 	);
@@ -64,11 +68,12 @@ public interface MedicalAppointmentRepository extends JpaRepository<MedicalAppoi
 	@Query("""
 		select ma from MedicalAppointment ma
 		where ma.physician = :physician
-		and ma.scheduledDateTime >= firstDateTime
-		and ma.scheduledDateTime <= lastDateTime
+		and ma.scheduledDateTime >= :firstDateTime
+		and ma.scheduledDateTime <= :lastDateTime
 		and ma.finishedDateTime is not null
 	""")
-	List<MedicalAppointment> getFinishedMedicalAppointmentsByPhysician(@Param("physician") Physician physician, 
+	List<MedicalAppointment> getFinishedMedicalAppointmentsByPhysician(
+		@Param("physician") Physician physician, 
 		@Param("firstDateTime") LocalDateTime firstDateTime, 
 		@Param("lastDateTime") LocalDateTime lastDateTime
 	);
@@ -89,11 +94,12 @@ public interface MedicalAppointmentRepository extends JpaRepository<MedicalAppoi
 	@Query("""
 		select ma from MedicalAppointment ma
 		where ma.patient = :patient
-		and ma.scheduledDateTime >= firstDateTime
-		and ma.scheduledDateTime <= lastDateTime
+		and ma.scheduledDateTime >= :firstDateTime
+		and ma.scheduledDateTime <= :lastDateTime
 		and ma.finishedDateTime is null
 	""")
-	List<MedicalAppointment> getScheduledMedicalAppointmentsByPatient(@Param("patient") Patient patient, 
+	List<MedicalAppointment> getScheduledMedicalAppointmentsByPatient(
+		@Param("patient") Patient patient, 
 		@Param("firstDateTime") LocalDateTime firstDateTime, 
 		@Param("lastDateTime") LocalDateTime lastDateTime
 	);
@@ -101,11 +107,12 @@ public interface MedicalAppointmentRepository extends JpaRepository<MedicalAppoi
 	@Query("""
 		select ma from MedicalAppointment ma
 		where ma.patient = :patient
-		and ma.scheduledDateTime >= firstDateTime
-		and ma.scheduledDateTime <= lastDateTime
+		and ma.scheduledDateTime >= :firstDateTime
+		and ma.scheduledDateTime <= :lastDateTime
 		and ma.finishedDateTime is not null
 	""")
-	List<MedicalAppointment> getFinishedMedicalAppointmentsByPatient(@Param("patient") Patient patient, 
+	List<MedicalAppointment> getFinishedMedicalAppointmentsByPatient(
+		@Param("patient") Patient patient, 
 		@Param("firstDateTime") LocalDateTime firstDateTime, 
 		@Param("lastDateTime") LocalDateTime lastDateTime
 	);

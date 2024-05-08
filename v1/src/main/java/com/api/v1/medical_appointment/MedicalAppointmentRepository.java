@@ -18,8 +18,8 @@ public interface MedicalAppointmentRepository extends JpaRepository<MedicalAppoi
 			select ma from MedicalAppointment ma
 			where ma.patient = :patient
 			and ma.scheduledDateTime = :dateTime
-			and ma.cancelationDateTime is null
-			and ma.finishingDateTime is null
+			and ma.canceledDateTime is null
+			and ma.finishedDateTime is null
 	""")
 	Optional<MedicalAppointment> findScheduledMedicalAppointmentByPatient(
 		@Param("patient") Patient patient, 
@@ -30,8 +30,8 @@ public interface MedicalAppointmentRepository extends JpaRepository<MedicalAppoi
 			select ma from MedicalAppointment ma
 			where ma.physician = :physician
 			and ma.scheduledDateTime = :dateTime
-			and ma.cancelationDateTime is null
-			and ma.finishingDateTime is null
+			and ma.canceledDateTime is null
+			and ma.finishedDateTime is null
 	""")
 	Optional<MedicalAppointment> findScheduledMedicalAppointmentByPhysician(
 		@Param("physician") Physician physician, 
@@ -43,8 +43,8 @@ public interface MedicalAppointmentRepository extends JpaRepository<MedicalAppoi
 			where ma.physician = :physician
 			and ma.patient = :patient
 			and ma.scheduledDateTime = :dateTime
-			and ma.cancelationDateTime is null
-			and ma.finishingDateTime is null
+			and ma.canceledDateTime is null
+			and ma.finishedDateTime is null
 	""")
 	Optional<MedicalAppointment> findScheduledMedicalAppointmentByDate(
 		@Param("patient") Patient patient, 

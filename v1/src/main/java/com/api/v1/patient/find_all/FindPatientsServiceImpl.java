@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.cache.annotation.Cacheable;
 
 import com.api.v1.patient.Patient;
 import com.api.v1.patient.PatientRepository;
@@ -19,7 +18,6 @@ public class FindPatientsServiceImpl implements FindPatientsService {
 	
 	@Override
 	@Transactional(readOnly = true)
-	@Cacheable("patients")
 	public List<Patient> findAll() {
 		return repository.findAll();
 	}

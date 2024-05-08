@@ -2,7 +2,6 @@ package com.api.v1.medical_appointment.find_by.find_by_physician.canceled;
 
 import java.util.List;
 
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,7 +22,6 @@ public class FindCanceledMedicalAppointmentsByPhysicianController {
 
     @Transactional(readOnly = true)
     @GetMapping("{physicianLicenseNumber}")
-    @Cacheable("canceled-medical-appointment-of-physician")
     public List<MedicalAppointment> find(@PhysicianLicenseNumber @PathVariable String physicianLicenseNumber) {
         return service.find(physicianLicenseNumber);
     }

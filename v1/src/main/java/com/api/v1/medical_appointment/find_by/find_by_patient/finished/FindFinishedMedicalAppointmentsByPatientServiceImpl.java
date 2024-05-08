@@ -2,7 +2,6 @@ package com.api.v1.medical_appointment.find_by.find_by_patient.finished;
 
 import java.util.List;
 
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,7 +25,6 @@ public class FindFinishedMedicalAppointmentsByPatientServiceImpl implements Find
 
     @Override
     @Transactional(readOnly = true)
-    @Cacheable("finished-medical-appointment-of-patient")
     public List<MedicalAppointment> find(@SSN String ssn, @NotNull BetweenDatesTimesDTO dto) {
         Patient patient = findPatientBySsn.findBySsn(ssn);
         validateDateTimes(dto);

@@ -2,7 +2,6 @@ package com.api.v1.medical_record.find_by_physician;
 
 import java.util.List;
 
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,7 +22,6 @@ public class FindMedicalRecordsByPhysicianServiceImpl implements FindMedicalReco
 
     @Override
     @Transactional(readOnly = true)
-    @Cacheable("medical-record")
     public List<MedicalRecord> findByPhysicianLicenseNumber(@PhysicianLicenseNumber String physicianLicenseNumber) {
         Physician physician = findPhysicianByLicenseNumber.findByphysicianLicenseNumber(physicianLicenseNumber);
         return repository

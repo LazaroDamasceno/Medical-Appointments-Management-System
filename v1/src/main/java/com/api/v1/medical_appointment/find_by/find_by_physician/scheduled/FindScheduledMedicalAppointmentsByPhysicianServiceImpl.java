@@ -1,7 +1,6 @@
 package com.api.v1.medical_appointment.find_by.find_by_physician.scheduled;
 
 import java.util.List;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.api.v1.helpers.PhysicianLicenseNumber;
@@ -24,7 +23,6 @@ public class FindScheduledMedicalAppointmentsByPhysicianServiceImpl implements F
 
     @Override
     @Transactional(readOnly = true)
-    @Cacheable("scheduled-medical-appointment-of-physician")
     public List<MedicalAppointment> find(@PhysicianLicenseNumber String physicianLicenseNumber,
                                             @NotNull BetweenDatesTimesDTO dto   
     ) {

@@ -2,7 +2,7 @@ package com.api.v1.medical_appointment.find_by.find_by_physician.finished;
 
 import java.util.List;
 
-import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,7 +27,7 @@ public class FindFinishedMedicalAppointmentsByPhysicianServiceImpl implements Fi
 
     @Override
     @Transactional(readOnly = true)
-    @CachePut
+    @Cacheable("finished-medical-appointment-of-physician")
     public List<MedicalAppointment> find(
             @PhysicianLicenseNumber String physicianLicenseNumber,
             @NotNull BetweenDatesTimesDTO dto

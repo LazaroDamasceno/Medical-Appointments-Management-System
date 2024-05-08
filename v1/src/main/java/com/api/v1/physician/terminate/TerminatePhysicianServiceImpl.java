@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.CachePut;
 
 import com.api.v1.helpers.PhysicianLicenseNumber;
 import com.api.v1.physician.Physician;
@@ -22,7 +22,7 @@ public class TerminatePhysicianServiceImpl implements TerminatePhysicianService 
 
 	@Override
 	@Transactional
-	@Cacheable
+	@CachePut
 	public void terminate(@PhysicianLicenseNumber String physicianLicenseNumber) {
 		Physician physician = findPhysicianByLicenseNumber.findByphysicianLicenseNumber(physicianLicenseNumber);
 		LocalDateTime now = LocalDateTime.now();

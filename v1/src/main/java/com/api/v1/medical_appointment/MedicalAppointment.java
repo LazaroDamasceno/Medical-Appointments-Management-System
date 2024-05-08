@@ -6,7 +6,6 @@ import java.util.UUID;
 
 import com.api.v1.patient.Patient;
 import com.api.v1.physician.Physician;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.*;
@@ -32,19 +31,17 @@ public class MedicalAppointment implements Serializable {
 	private LocalDateTime scheduledDateTime;
 	
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-	private LocalDateTime cancelationDateTime;
+	private LocalDateTime canceledDateTime;
 
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-	private LocalDateTime finishingDateTime;
+	private LocalDateTime finishedDateTime;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "patientId")
-	@JsonBackReference
 	private Patient patient;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "physician_id")
-	@JsonBackReference
 	private Physician physician;
 
 	private String medicalNotes = "";
@@ -56,11 +53,11 @@ public class MedicalAppointment implements Serializable {
 	}
 
 	public void cancel() {
-		this.cancelationDateTime = LocalDateTime.now();
+		this.canceledDateTime = LocalDateTime.now();
 	}
 
 	public void finish() {
-		this.finishingDateTime = LocalDateTime.now();
+		this.finishedDateTime = LocalDateTime.now();
 	}
 
 	public void addMedicalNotes(@NotBlank String notes) {

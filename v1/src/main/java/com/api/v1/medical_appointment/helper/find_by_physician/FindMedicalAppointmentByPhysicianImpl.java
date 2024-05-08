@@ -3,7 +3,7 @@ package com.api.v1.medical_appointment.helper.find_by_physician;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,7 +26,7 @@ public class FindMedicalAppointmentByPhysicianImpl implements FindMedicalAppoint
     
     @Override
     @Transactional(readOnly = true)
-    @Cacheable
+    @CachePut
     public MedicalAppointment findByPhysician(@PhysicianLicenseNumber String physicianLicenseNumber, @NotNull LocalDateTime dateTime) {
         Physician physician = findPhysicianByLicenseNumber.findByphysicianLicenseNumber(physicianLicenseNumber);
         Optional<MedicalAppointment> medicalAppointment = repository.findScheduledMedicalAppointmentByPhysician(physician, dateTime);

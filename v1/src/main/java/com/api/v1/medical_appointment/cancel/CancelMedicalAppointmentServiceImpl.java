@@ -1,6 +1,6 @@
 package com.api.v1.medical_appointment.cancel;
 
-import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,7 +20,7 @@ public class CancelMedicalAppointmentServiceImpl implements CancelMedicalAppoint
 
     @Override
     @Transactional
-    @Cacheable
+    @CachePut
     public void cancel(@NotNull CancelMedicalAppointmentDTO dto) {
         MedicalAppointment medicalAppointment = findMedicalAppointmentByPatient.findByPatient(dto.ssn(), dto.dateTime());
         validateInput(medicalAppointment);
@@ -29,7 +29,7 @@ public class CancelMedicalAppointmentServiceImpl implements CancelMedicalAppoint
     }
 
     private void validateInput(MedicalAppointment medicalAppointment) {
-        if (medicalAppointment.getFinishingDateTime() != null) {
+        if (medicalAppointment.getFinishedDateTime() != null) {
             throw new FinishedMedicalAppointmentException();
         }
     }

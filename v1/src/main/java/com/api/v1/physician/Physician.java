@@ -2,14 +2,11 @@ package com.api.v1.physician;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
-import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.physician.hire.HirePhysicianDTO;
 import com.api.v1.physician.update.UpdatePhysicianDTO;
 import com.api.v1.system_user.SystemUser;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -41,10 +38,6 @@ public class Physician implements Serializable {
 	@JoinColumn(name = "system_user_id")
 	private SystemUser systemUser;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "physician")
-	@JsonManagedReference
-	private List<MedicalAppointment> appointmentList;
-
 	public Physician(HirePhysicianDTO dto) {
 		super();
 		this.physicianLicenseNumber = dto.physicianLicenseNumber();
@@ -53,10 +46,6 @@ public class Physician implements Serializable {
 
 	public void update(UpdatePhysicianDTO dto) {
 		this.systemUser.update(dto.systemUserDTO());
-	}
-
-	public void addMedicalAppointment(MedicalAppointment medicalAppointment) {
-		appointmentList.add(medicalAppointment);
 	}
 
 }

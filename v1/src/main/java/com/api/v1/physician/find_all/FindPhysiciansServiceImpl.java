@@ -19,7 +19,7 @@ public class FindPhysiciansServiceImpl implements FindPhysiciansService {
 
 	@Override
 	@Transactional(readOnly = true)
-	@Cacheable
+	@Cacheable("physicians")
 	public List<Physician> findAll() {
 		return repository.findAll();
 	}

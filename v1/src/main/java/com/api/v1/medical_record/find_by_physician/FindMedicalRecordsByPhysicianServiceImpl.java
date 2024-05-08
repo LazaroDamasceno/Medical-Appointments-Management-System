@@ -23,7 +23,7 @@ public class FindMedicalRecordsByPhysicianServiceImpl implements FindMedicalReco
 
     @Override
     @Transactional(readOnly = true)
-    @Cacheable
+    @Cacheable("medical-record")
     public List<MedicalRecord> findByPhysicianLicenseNumber(@PhysicianLicenseNumber String physicianLicenseNumber) {
         Physician physician = findPhysicianByLicenseNumber.findByphysicianLicenseNumber(physicianLicenseNumber);
         return repository

@@ -1,20 +1,16 @@
 package com.api.v1.medical_appointment.find_by.find_by_physician.scheduled;
 
 import java.util.List;
-
-import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.api.v1.helpers.PhysicianLicenseNumber;
-import com.api.v1.helpers.SSN;
 import com.api.v1.medical_appointment.MedicalAppointment;
+import com.api.v1.medical_appointment.MedicalAppointmentRepository;
 import com.api.v1.medical_appointment.find_by.dto.BetweenDatesTimesDTO;
 import com.api.v1.medical_appointment.find_by.helper.CheckIfDateTimesAreValid;
-import com.api.v1.patient.Patient;
-import com.api.v1.patient.helper.FindPatientBySsn;
+import com.api.v1.physician.Physician;
 import com.api.v1.physician.helper.FindPhysicianByLicenseNumber;
-
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 
@@ -23,61 +19,18 @@ import lombok.RequiredArgsConstructor;
 public class FindScheduledMedicalAppointmentsByPhysicianServiceImpl implements FindScheduledMedicalAppointmentsByPhysicianService {
 
     private final FindPhysicianByLicenseNumber findPhysicianByLicenseNumber;
-    private final FindPatientBySsn findPatientBySsn;
     private final CheckIfDateTimesAreValid checkIfDateTimesAreValid;
+    private final MedicalAppointmentRepository repository;
 
     @Override
     @Transactional(readOnly = true)
-    @Cacheable
+    @CachePut
     public List<MedicalAppointment> find(@PhysicianLicenseNumber String physicianLicenseNumber,
                                             @NotNull BetweenDatesTimesDTO dto   
     ) {
         validateDateTimes(dto);
-
-        return findPhysicianByLicenseNumber
-        .findByphysicianLicenseNumber(physicianLicenseNumber)
-            .getAppointmentList()
-            .stream()
-            .filter(e -> e.getCancelationDateTime() == null
-                && e.getFinishingDateTime() == null
-                && (e.getScheduledDateTime().isAfter(dto.firstDateTime()) || e.getScheduledDateTime().isEqual(dto.firstDateTime()))
-                && (e.getScheduledDateTime().isBefore(dto.lastDateTime()) || e.getScheduledDateTime().isEqual(dto.lastDateTime()))
-            )
-            .toList();
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    @Cacheable
-    public List<MedicalAppointment> findByPatient(@PhysicianLicenseNumber String physicianLicenseNumber,
-                                                @SSN String ssn, 
-                                                @NotNull BetweenDatesTimesDTO dto
-    ) {
-        validateDateTimes(dto);
-
-        Patient patient = findPatientBySsn.findBySsn(ssn);
-        return findPhysicianByLicenseNumber
-            .findByphysicianLicenseNumber(physicianLicenseNumber)
-            .getAppointmentList()
-            .stream()
-            .filter(e -> e.getCancelationDateTime() == null
-                && e.getFinishingDateTime() == null
-                && e.getPatient().equals(patient)
-                && (e.getScheduledDateTime().isAfter(dto.firstDateTime()) || e.getScheduledDateTime().isEqual(dto.firstDateTime()))
-                && (e.getScheduledDateTime().isBefore(dto.lastDateTime()) || e.getScheduledDateTime().isEqual(dto.lastDateTime()))
-            )
-            .toList();
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public List<MedicalAppointment> findAll(@PhysicianLicenseNumber String physicianLicenseNumber) {
-        return findPhysicianByLicenseNumber
-            .findByphysicianLicenseNumber(physicianLicenseNumber)
-            .getAppointmentList()
-            .stream()
-            .filter(e -> e.getCancelationDateTime() == null && e.getFinishingDateTime() == null)
-            .toList();
+        Physician physician = findPhysicianByLicenseNumber.findByphysicianLicenseNumber(physicianLicenseNumber);
+        return repository.getScheduledMedicalAppointmentsByPhysician(physician, dto.firstDateTime(), dto.lastDateTime());
     }
 
     private void validateDateTimes(BetweenDatesTimesDTO dto) {

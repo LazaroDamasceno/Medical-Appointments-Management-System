@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.v1.helpers.PhysicianLicenseNumber;
-import com.api.v1.helpers.SSN;
 import com.api.v1.medical_appointment.MedicalAppointment;
 import com.api.v1.medical_appointment.find_by.dto.BetweenDatesTimesDTO;
 
@@ -30,21 +29,6 @@ public class FindScheduledMedicalAppointmentsByPhysicianController {
                                                         @NotNull @RequestBody BetweenDatesTimesDTO dto
     ) {
         return service.find(physicianLicenseNumber, dto);
-    }
-
-    @Transactional(readOnly = true)
-    @GetMapping("and-by-patient/{physicianLicenseNumber}/{ssn}/{firstDateTime}/{lastDateTime}")
-    public List<MedicalAppointment> findByPatient(@PhysicianLicenseNumber @PathVariable String physicianLicenseNumber, 
-                                                                    @SSN @PathVariable String ssn,
-                                                                    @NotNull @RequestBody BetweenDatesTimesDTO dto
-    ) {
-        return service.findByPatient(physicianLicenseNumber, ssn, dto);
-    }
-
-    @Transactional(readOnly = true)
-    @GetMapping("license-number/{physicianLicenseNumber}")
-    public List<MedicalAppointment> findAll(@PhysicianLicenseNumber @PathVariable String physicianLicenseNumber) {
-        return service.findAll(physicianLicenseNumber);
     }
     
 }

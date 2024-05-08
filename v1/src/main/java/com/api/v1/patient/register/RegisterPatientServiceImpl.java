@@ -6,7 +6,7 @@ import com.api.v1.patient.Patient;
 import com.api.v1.patient.PatientRepository;
 
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.CachePut;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 
@@ -18,7 +18,7 @@ public class RegisterPatientServiceImpl implements RegisterPatientService {
 	
 	@Override
 	@Transactional
-	@Cacheable
+	@CachePut
 	public void register(@NotNull RegisterPatientDTO dto) {
 		validateInput(dto.systemUser().ssn());
 		Patient patient = new Patient(dto);

@@ -1,6 +1,5 @@
 package com.api.v1.patient.update;
 
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +18,6 @@ public class UpdatePatientController {
     private final UpdatePatientService service;
 
     @PutMapping("{ssn}")
-    @Transactional
     public ResponseEntity<String> update(@NotNull @RequestBody UpdatePatientDTO dto) {
         service.update(dto);
         String message = "Patient's data whose SSN is %s was updated.".formatted(dto.ssn());

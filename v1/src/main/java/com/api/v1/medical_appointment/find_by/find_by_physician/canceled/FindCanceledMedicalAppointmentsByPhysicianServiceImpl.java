@@ -2,7 +2,6 @@ package com.api.v1.medical_appointment.find_by.find_by_physician.canceled;
 
 import java.util.List;
 
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,7 +22,6 @@ public class FindCanceledMedicalAppointmentsByPhysicianServiceImpl implements Fi
 
     @Override
     @Transactional(readOnly = true)
-    @CachePut
     public List<MedicalAppointment> find(@PhysicianLicenseNumber String physicianLicenseNumber) {
         Physician physician = findPhysicianByLicenseNumber.findByphysicianLicenseNumber(physicianLicenseNumber);
         return repository.getCanceledMedicalAppointmentsByPhysician(physician);

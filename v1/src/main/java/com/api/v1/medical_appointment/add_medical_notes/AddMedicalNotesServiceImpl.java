@@ -1,6 +1,5 @@
 package com.api.v1.medical_appointment.add_medical_notes;
 
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,7 +21,6 @@ public class AddMedicalNotesServiceImpl implements AddMedicalNotesService {
     
     @Override
     @Transactional
-    @CachePut
     public void add(@NotNull MedicalNotesDTO dto) {
         MedicalAppointment medicalAppointment = findMedicalAppointmentByDate.findByDate(dto.ssn(), dto.physicianLicenseNumber(), dto.dateTime());
         validateInput(medicalAppointment);

@@ -2,7 +2,6 @@ package com.api.v1.physician.update;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.cache.annotation.CachePut;
 
 import com.api.v1.physician.Physician;
 import com.api.v1.physician.PhysicianRepository;
@@ -20,7 +19,6 @@ public class UpdatePhysicianServiceImpl implements UpdatePhysicianService {
     
     @Override
     @Transactional
-    @CachePut
     public void update(@NotNull UpdatePhysicianDTO dto) {
         Physician physician = findPhysicianByLicenseNumber.findByphysicianLicenseNumber(dto.physicianLicenseNumber());
         physician.update(dto);

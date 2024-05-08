@@ -1,0 +1,11 @@
+{
+    "address": "St",
+    "systemUser": {
+      "fullName": "Gabriel Pinheiro",
+      "ssn": "123456789",
+      "birthDate": "2000-05-08",
+      "email": "gpinheiro@gpinheiro.com",
+      "phoneNumber": "1234567890",
+      "gender": "m"
+    }
+  }

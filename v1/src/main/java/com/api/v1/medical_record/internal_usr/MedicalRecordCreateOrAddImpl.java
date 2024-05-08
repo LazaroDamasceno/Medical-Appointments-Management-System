@@ -2,7 +2,6 @@ package com.api.v1.medical_record.internal_usr;
 
 import java.util.Optional;
 
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,7 +21,6 @@ public class MedicalRecordCreateOrAddImpl implements MedicalRecordCreateOrAdd {
         
     @Override
     @Transactional
-    @CachePut
     public void createOrAdd(Physician physician, Patient patient, MedicalAppointment medicalAppointment) {
         Optional<MedicalRecord> optional = repository.findByPatient(patient);
         if (optional.isPresent()) addMedicalAppointment(patient, medicalAppointment);

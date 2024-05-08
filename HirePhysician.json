@@ -1,0 +1,11 @@
+{
+    "physicianLicenseNumber": "1234567",
+    "systemUserDTO": {
+      "fullName": "Leo",
+      "ssn": "123456987",
+      "birthDate": "2000-05-08",
+      "email": "leo@leo.com",
+      "phoneNumber": "1234567890",
+      "gender": "m"
+    }
+}

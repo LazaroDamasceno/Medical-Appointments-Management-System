@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 import com.api.v1.physician.Physician;
 import com.api.v1.physician.PhysicianRepository;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.cache.annotation.CachePut;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 
@@ -16,7 +15,6 @@ public class HirePhysicianServiceImpl implements HirePhysicianService {
 	
 	@Override
 	@Transactional
-	@CachePut
 	public void register(@NotNull HirePhysicianDTO dto) {
 		validateInput(dto.physicianLicenseNumber());
 		Physician physician = new Physician(dto);

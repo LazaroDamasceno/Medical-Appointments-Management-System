@@ -1,6 +1,5 @@
 package com.api.v1.medical_appointment.transfer;
 
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,7 +25,6 @@ public class TransferMedicalAppointmentServiceImpl implements TransferMedicalApp
     
     @Override
     @Transactional
-    @CachePut
     public void transfer(@NotNull TransferMedicalAppointmentDTO dto) {
         validateDateTimes(dto);
         Physician physician = findPhysicianByLicenseNumber.findByphysicianLicenseNumber(dto.physicianLicenseNumber());

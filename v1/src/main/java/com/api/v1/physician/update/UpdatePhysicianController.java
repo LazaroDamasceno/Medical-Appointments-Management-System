@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.api.v1.helpers.Constants;
+
 import org.springframework.http.ResponseEntity;
 
 import jakarta.validation.constraints.NotNull;
@@ -20,8 +22,7 @@ public class UpdatePhysicianController {
     @PutMapping
     public ResponseEntity<String> update(@NotNull @RequestBody UpdatePhysicianDTO dto) {
         service.update(dto);
-        String message = "Physician's data whose license number is %s was updated.".formatted(dto.physicianLicenseNumber());
-        return ResponseEntity.status(204).body(message);
+        return ResponseEntity.status(204).body(Constants.NO_CONTENT_204);
     }
     
 }

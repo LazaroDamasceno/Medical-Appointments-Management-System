@@ -3,6 +3,8 @@ package com.api.v1.medical_appointment.add_medical_notes;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.api.v1.helpers.Constants;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,8 +21,7 @@ public class AddMedicalNotesController {
     @PatchMapping("{ssn}/{physicianLicenseNumber}/dateTime")
     public ResponseEntity<String> add(@NotNull @RequestBody MedicalNotesDTO dto) {
         service.add(dto);
-        String message = "Medical appointment's medical notes whose scheduled date time is %s were added.".formatted(dto.dateTime());
-        return ResponseEntity.status(204).body(message);
+        return ResponseEntity.status(204).body(Constants.NO_CONTENT_204);
     }
     
 }

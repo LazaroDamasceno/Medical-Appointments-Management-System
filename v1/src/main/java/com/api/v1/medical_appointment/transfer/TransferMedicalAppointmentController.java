@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.api.v1.helpers.Constants;
+
 import org.springframework.http.ResponseEntity;
 
 import jakarta.validation.constraints.NotNull;
@@ -20,8 +22,7 @@ public class TransferMedicalAppointmentController {
     @PostMapping
     public ResponseEntity<String> transfer(@NotNull @RequestBody TransferMedicalAppointmentDTO dto) {
         service.transfer(dto);
-        String message = "Medical appointment whose scheduled date time is %s was to transfered to %s.".formatted(dto.oldMedicalAppointmentDate(), dto.newMedicalAppointmentDate());
-        return ResponseEntity.status(201).body(message);
+        return ResponseEntity.status(201).body(Constants.CREATED_201);
     }
     
 }

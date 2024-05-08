@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.api.v1.helpers.Constants;
+
 import org.springframework.transaction.annotation.Transactional;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
@@ -21,8 +23,7 @@ public class RegisterPatientController {
 	@Transactional
 	public ResponseEntity<String> register(@NotNull @RequestBody RegisterPatientDTO dto) {
 		service.register(dto);
-		String message = "A new patient was registred.";
-		return ResponseEntity.status(201).body(message);
+		return ResponseEntity.status(201).body(Constants.CREATED_201);
 	}
 
 }

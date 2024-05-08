@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.api.v1.helpers.Constants;
+
 import org.springframework.http.ResponseEntity;
 
 import jakarta.validation.constraints.NotNull;
@@ -20,8 +22,7 @@ public class CancelMedicalAppointmentController {
     @PatchMapping
     public ResponseEntity<String> cancel(@NotNull @RequestBody CancelMedicalAppointmentDTO dto) {
         service.cancel(dto);
-        String message = "Medical appointment whose scheduled date time is %s was canceled.".formatted(dto.dateTime());
-        return ResponseEntity.status(204).body(message);
+        return ResponseEntity.status(204).body(Constants.NO_CONTENT_204);
     }
     
 }

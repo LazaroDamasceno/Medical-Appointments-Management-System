@@ -4,6 +4,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.api.v1.helpers.Constants;
+
 import org.springframework.http.ResponseEntity;
 
 import jakarta.validation.constraints.NotNull;
@@ -19,8 +21,7 @@ public class ScheduleMedicalAppointmentController {
     @PostMapping
     public ResponseEntity<String> schedule(@NotNull ScheduleMedicalAppointmentDTO dto) {
         service.schedule(dto);
-        String message = "A new medical appointment ws scheduled at %s.".formatted(dto.dateTime());
-        return ResponseEntity.status(201).body(message);
+        return ResponseEntity.status(201).body(Constants.CREATED_201);
     }
     
 }

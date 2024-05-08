@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.api.v1.helpers.Constants;
 import com.api.v1.helpers.PhysicianLicenseNumber;
 
 import org.springframework.http.ResponseEntity;
@@ -22,8 +23,7 @@ public class TerminatePhysicianController {
 	@Transactional
 	public ResponseEntity<String> terminate(@PathVariable @PhysicianLicenseNumber String physicianLicenseNumber) {
 		service.terminate(physicianLicenseNumber);
-		String message = "Physician whose license number is %s was terminated.".formatted(physicianLicenseNumber);
-		return ResponseEntity.status(204).body(message);
+		return ResponseEntity.status(204).body(Constants.NO_CONTENT_204);
 	}
 
 }

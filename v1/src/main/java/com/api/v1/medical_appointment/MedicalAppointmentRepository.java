@@ -58,6 +58,7 @@ public interface MedicalAppointmentRepository extends JpaRepository<MedicalAppoi
 		and ma.scheduledDateTime >= :firstDateTime
 		and ma.scheduledDateTime <= :lastDateTime
 		and ma.finishedDateTime is null
+		and ma.canceledDateTime is null
 	""")
 	List<MedicalAppointment> getScheduledMedicalAppointmentsByPhysician(
 		@Param("physician") Physician physician, 

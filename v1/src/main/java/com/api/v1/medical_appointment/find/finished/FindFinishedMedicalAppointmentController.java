@@ -30,7 +30,7 @@ public class FindFinishedMedicalAppointmentController {
         return service.findByPatient(ssn, firstDateTime, lastDateTime);
     }
 
-    @GetMapping("by-physician/{ssn}/{firstDateTime}/{lastDateTime}")
+    @GetMapping("by-physician/{physicianLicenseNumber}/{firstDateTime}/{lastDateTime}")
     public List<MedicalAppointment> findByPhysicain(
         @SSN @PathVariable String physicianLicenseNumber, 
         @NotNull @PathVariable LocalDateTime firstDateTime, 

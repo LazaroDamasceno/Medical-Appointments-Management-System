@@ -1,6 +1,7 @@
 package com.api.v1.medical_appointment.schedule;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +20,7 @@ public class ScheduleMedicalAppointmentController {
     private final ScheduleMedicalAppointmentService service;
 
     @PostMapping
-    public ResponseEntity<String> schedule(@NotNull ScheduleMedicalAppointmentDTO dto) {
+    public ResponseEntity<String> schedule(@NotNull @RequestBody ScheduleMedicalAppointmentDTO dto) {
         service.schedule(dto);
         return ResponseEntity.status(201).body(Constants.CREATED_201);
     }

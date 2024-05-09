@@ -13,7 +13,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("api/v1/patient")
+@RequestMapping("api/v1/patients")
 @RequiredArgsConstructor
 public class RegisterPatientController {
 	

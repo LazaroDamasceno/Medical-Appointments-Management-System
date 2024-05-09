@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("api/v1/physician")
+@RequestMapping("api/v1/physicians")
 @RequiredArgsConstructor
 public class TerminatePhysicianController {
 	

@@ -14,7 +14,7 @@ import com.api.v1.medical_record.MedicalRecord;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("api/v1/medical-record-by-physician")
+@RequestMapping("api/v1/medical-records-by-physician")
 @RequiredArgsConstructor
 public class FindMedicalRecordsByPhysicianController {
     

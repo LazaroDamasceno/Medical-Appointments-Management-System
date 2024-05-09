@@ -23,13 +23,13 @@ public class FindCanceledMedicalAppointmentController {
 
     @Transactional(readOnly = true)
     @GetMapping("by-patient/{ssn}")
-    List<MedicalAppointment> findByPatient(@SSN @PathVariable String ssn) {
+    public List<MedicalAppointment> findByPatient(@SSN @PathVariable String ssn) {
         return service.findByPatient(ssn);
     }
 
     @Transactional(readOnly = true)
     @GetMapping("by-physician/{physicianLicenseNumber}")
-    List<MedicalAppointment> findByPhysician(@PhysicianLicenseNumber @PathVariable String physicianLicenseNumber) {
+    public List<MedicalAppointment> findByPhysician(@PhysicianLicenseNumber @PathVariable String physicianLicenseNumber) {
         return service.findByPatient(physicianLicenseNumber);
     }
     

@@ -18,7 +18,7 @@ public class AddMedicalNotesController {
 
     private final AddMedicalNotesService service;
 
-    @PatchMapping("{ssn}/{physicianLicenseNumber}/dateTime")
+    @PatchMapping
     public ResponseEntity<String> add(@NotNull @RequestBody MedicalNotesDTO dto) {
         service.add(dto);
         return ResponseEntity.status(204).body(Constants.NO_CONTENT_204);

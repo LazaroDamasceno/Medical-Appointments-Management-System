@@ -35,8 +35,8 @@ For POST, GET, PUT and PATCH methods, the date time format must be `yyyy-MM-ddTH
 yyyy = year<br>
 MM = month<br>
 dd = day<br>
-HH = hour (24 format)<br>
-*hh = hour (12 format)<br>
+HH = hour (24H format)<br>
+*hh = hour (12H format)<br>
 mm = minute<br>
 ss = second<br>
 

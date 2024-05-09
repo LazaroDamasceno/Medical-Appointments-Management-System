@@ -55,3 +55,7 @@ To access the H2 database, type on the browser `localhost:8080/h2-console`. When
 SSN has 9 digits.
 
 Phyisician license number has 7 digits.
+
+# API running
+
+[https://youtu.be/RdtXYxab4q8](https://youtu.be/RdtXYxab4q8)

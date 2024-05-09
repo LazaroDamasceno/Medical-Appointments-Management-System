@@ -15,7 +15,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("api/v1/medical-appointment/finished")
+@RequestMapping("api/v1/medical-appointments/finished")
 @RequiredArgsConstructor
 public class FindFinishedMedicalAppointmentController {
 

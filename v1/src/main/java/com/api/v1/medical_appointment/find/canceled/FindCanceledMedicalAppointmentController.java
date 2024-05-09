@@ -14,7 +14,7 @@ import com.api.v1.medical_appointment.MedicalAppointment;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("api/v1/medical-appointment/canceled")
+@RequestMapping("api/v1/medical-appointments/canceled")
 @RequiredArgsConstructor
 public class FindCanceledMedicalAppointmentController {
 

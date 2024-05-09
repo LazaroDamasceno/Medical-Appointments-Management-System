@@ -58,4 +58,3 @@ Phyisician license number has 7 digits.
 
 # API running
 
-[https://youtu.be/RdtXYxab4q8](https://youtu.be/RdtXYxab4q8)

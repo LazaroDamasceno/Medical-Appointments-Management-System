@@ -27,7 +27,6 @@ public class FindCanceledMedicalAppointmentController {
 
     @GetMapping("by-physician/{physicianLicenseNumber}")
     public List<MedicalAppointment> findByPhysician(@PhysicianLicenseNumber @PathVariable String physicianLicenseNumber) {
-        return service.findByPatient(physicianLicenseNumber);
+        return service.findByPhysician(physicianLicenseNumber);
     }
-    
 }
